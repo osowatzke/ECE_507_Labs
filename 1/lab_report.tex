@@ -101,6 +101,38 @@
 		\label{fig::nand_symbol}
 	\end{figure}
 	
+	\subsubsection{Voltage Transfer Characteristics}
+	
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nand_vtc_test_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va.png}}
+		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\label{fig::nand_vtc_test_sweep_va}
+	\end{figure}
+	
+	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va.png}}
+		\caption{NAND VTC Results for Independent Variations of Input \texttt{a}}
+		\label{fig::nand_vtc_sweep_va}
+	\end{figure}
+	
+	We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nand_vtc_test_sweep_vb} and \ref{fig::nand_vtc_sweep_vb} independently.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_vb.png}}
+		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{b}}
+		\label{fig::nand_vtc_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_vb.png}}
+		\caption{NAND VTC Results for Independent Variations of Input \texttt{b}}
+		\label{fig::nand_vtc_sweep_vb}
+	\end{figure}
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_schematic.png}}
 		\caption{NOR Circuit Schematic}
