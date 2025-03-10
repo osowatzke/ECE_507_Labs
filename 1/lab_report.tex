@@ -81,12 +81,20 @@
 	
 	\section{Results}
 	
+	\subsection{NAND Gate}
+	
+	\subsubsection{Design}
+	
+	The pull-down circuit of the NAND gate is composed of two sequential NMOS gates. The pull-up circuit is the complement and is composed of two parallel PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nand_schematic}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nand_schematic.png}}
 		\caption{NAND Circuit Schematic}
 		\label{fig::nand_schematic}
 	\end{figure}
 
+	We also create a circuit symbol for the NAND gate, which is shown in Figure \ref{fig::nand_symbol}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nand_symbol.png}}
 		\caption{NAND Circuit Symbol}
