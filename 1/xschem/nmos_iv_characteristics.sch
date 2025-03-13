@@ -34,7 +34,7 @@ C {vsource.sym} -60 30 0 0 {name=Vgs value=1.8 savecurrent=true}
 C {gnd.sym} -60 90 0 0 {name=l3 lab=GND}
 C {code_shown.sym} -270 -170 0 0 {name=tran only_toplevel=false value=".lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 //.include ../scripts/measure_vt.ngs
-.dc Vgs 0 1.8 1m
+.dc Vds 0 1.8 1m
 .save all
 .end"}
 C {lab_wire.sym} -60 0 0 0 {name=Vgs1 sig_type=std_logic lab=Vgs}

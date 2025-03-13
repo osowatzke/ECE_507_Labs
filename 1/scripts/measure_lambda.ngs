@@ -1,0 +1,10 @@
+*ng_script
+
+let ids = -vds#branch
+let end_idx = length(vds) - 1
+let vds1 = vds[end_idx]
+let ids1 = ids[end_idx]
+let vds2 = 1.6
+meas dc ids2 find ids when vds=vds2 > /dev/null
+let lambda = (ids1 - ids2)/(vds1*ids2 - ids1*vds2)
+print lambda
