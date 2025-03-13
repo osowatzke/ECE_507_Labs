@@ -32,31 +32,10 @@ C {vsource.sym} 140 0 0 0 {name=Vds value=1.8 savecurrent=true}
 C {gnd.sym} 140 60 0 0 {name=l2 lab=GND}
 C {vsource.sym} -60 30 0 0 {name=Vgs value=0.7 savecurrent=true}
 C {gnd.sym} -60 90 0 0 {name=l3 lab=GND}
-C {code_shown.sym} -160 -620 0 0 {name=tran only_toplevel=false value=".lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+C {code_shown.sym} -270 -170 0 0 {name=tran only_toplevel=false value=".lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+//.include ../scripts/measure_vt.ngs
 .dc Vgs 0 1.8 1m
 .save all
-
-.control
-run
-let ids=-vds#branch
-let ids_p=deriv(ids)
-let ids_pp=deriv(ids_p)
-meas dc m max ids_pp > /dev/null
-meas dc vgs_i max_at ids_pp > /dev/null
-meas dc ids_p_i find ids_p when vgs=vgs_i > /dev/null
-let b = ids_p_i - m*vgs_i
-let vt = -b/m
-let ids_p_fit = m*vgs + b
-meas dc ymax max ids_p
-meas dc ymin min ids_p
-let yoff = 0.1*(ymax - ymin)
-set ymax = ymax + yoff
-set ymin = ymin - yoff
-plot ids_p ids_p_fit ylimit -0.0001 0.0006
-
-print vt
-.endc
-
 .end"}
 C {lab_wire.sym} -60 0 0 0 {name=Vgs1 sig_type=std_logic lab=Vgs}
 C {lab_wire.sym} 140 -30 0 1 {name=Vds1 sig_type=std_logic lab=Vds}
