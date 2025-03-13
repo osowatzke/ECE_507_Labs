@@ -1,0 +1,11 @@
+*ng_script
+
+let ids = -vds#branch
+let end_idx = length(vgs) - 1
+let vgs1 = vgs[end_idx]
+let ids1 = ids[end_idx]
+let vgs2 = 1.6
+meas dc ids2 find ids when vgs=vgs2 > /dev/null
+let x = (ids1 * vgs2 - ids2 * vgs1)/(ids1 - ids2)
+let vdsat = 2 * (x - vt)
+print vdsat

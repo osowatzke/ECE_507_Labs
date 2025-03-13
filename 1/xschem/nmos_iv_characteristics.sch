@@ -30,7 +30,7 @@ spiceprefix=X
 C {gnd.sym} 40 60 0 0 {name=l1 lab=GND}
 C {vsource.sym} 140 0 0 0 {name=Vds value=1.8 savecurrent=true}
 C {gnd.sym} 140 60 0 0 {name=l2 lab=GND}
-C {vsource.sym} -60 30 0 0 {name=Vgs value=0.7 savecurrent=true}
+C {vsource.sym} -60 30 0 0 {name=Vgs value=1.8 savecurrent=true}
 C {gnd.sym} -60 90 0 0 {name=l3 lab=GND}
 C {code_shown.sym} -270 -170 0 0 {name=tran only_toplevel=false value=".lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 //.include ../scripts/measure_vt.ngs
