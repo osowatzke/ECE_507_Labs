@@ -1,0 +1,14 @@
+*ng_script
+
+let ids=-vds#branch
+let ids_p=deriv(ids)
+let ids_pp=deriv(ids_p)
+meas dc m max ids_pp > /dev/null
+meas dc vgs_i max_at ids_pp > /dev/null
+meas dc ids_p_i find ids_p when vgs=vgs_i > /dev/null
+let b = ids_p_i - m*vgs_i
+let vt = -b/m
+let ids_p_fit = m*vgs + b
+plot ids_p ids_p_fit ylimit -0.0001 0.0006
+print vt
+

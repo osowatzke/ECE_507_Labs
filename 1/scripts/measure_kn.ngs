@@ -1,0 +1,10 @@
+*ng_script
+
+let ids = -vds#branch
+let end_idx = length(vds) - 1
+let vds1 = vds[end_idx]
+let ids1 = ids[end_idx]
+let vgs1 = 1.8
+
+let kn = ids1/(w/l*(vgs1-vt-vdsat/2)*vdsat*(1+lambda*vds1))
+print kn

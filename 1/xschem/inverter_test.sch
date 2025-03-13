@@ -22,6 +22,7 @@ C {lab_pin.sym} 80 -50 0 1 {name=Vdd2 sig_type=std_logic lab=Vdd}
 C {lab_pin.sym} 0 0 0 0 {name=Vin2 sig_type=std_logic lab=Vin}
 C {gnd.sym} 80 70 0 0 {name=l3 lab=GND}
 C {code_shown.sym} -160 -270 0 0 {name=VTC only_toplevel=false value=".lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.save @m.x1.xm2.msky130_fd_pr__pfet_01v8[vdsat]
 .dc Vin 0 2 1m
 .save all
 .end"
