@@ -82,5 +82,85 @@
 	\section{Results}
 	
 	\subsection{NAND Gate}
+	
+	\subsubsection{Design}
+	
+	The pull-down circuit of the NAND gate is composed of two sequential NMOS gates. The pull-up circuit is the complement and is composed of two parallel PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nand_schematic}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_schematic.png}}
+		\caption{NAND Circuit Schematic}
+		\label{fig::nand_schematic}
+	\end{figure}
+
+	We also create a circuit symbol for the NAND gate, which is shown in Figure \ref{fig::nand_symbol}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_symbol.png}}
+		\caption{NAND Circuit Symbol}
+		\label{fig::nand_symbol}
+	\end{figure}
+	
+	\subsubsection{Voltage Transfer Characteristics}
+	
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nand_vtc_test_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va.png}}
+		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\label{fig::nand_vtc_test_sweep_va}
+	\end{figure}
+	
+	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va.png}}
+		\caption{NAND VTC Results for Independent Variations of Input \texttt{a}}
+		\label{fig::nand_vtc_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8805V}. We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nand_vtc_test_sweep_vb} and \ref{fig::nand_vtc_sweep_vb} independently.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_vb.png}}
+		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{b}}
+		\label{fig::nand_vtc_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_vb.png}}
+		\caption{NAND VTC Results for Independent Variations of Input \texttt{b}}
+		\label{fig::nand_vtc_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8737V}. Finally, we sweep both inputs \texttt{a} and \texttt{b} together. The test circuit and results for this analysis are included in Figures \ref{fig::nand_vtc_test_sweep_va_vb} and \ref{fig::nand_vtc_sweep_va_vb} respectively.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va_vb.png}}
+		\caption{NAND VTC Test Circuit for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nand_vtc_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va_vb.png}}
+		\caption{NAND VTC Results for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nand_vtc_sweep_va_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.9609V}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nor_schematic.png}}
+		\caption{NOR Circuit Schematic}
+		\label{fig::nor_schematic}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nor_symbol.png}}
+		\caption{NOR Circuit Symbol}
+		\label{fig::nor_symbol}
+	\end{figure}
+	
+	\subsection{NAND Gate}
 
 \end{document}
