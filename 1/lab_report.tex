@@ -81,6 +81,28 @@
 	
 	\section{Results}
 	
+	\subsection{First Order Transistor Model}
+	
+	\texttt{let ids=-vds\#branch}
+	
+	\texttt{let ids\_p=deriv(ids)}
+	
+	\texttt{plot ids\_p}
+	
+	\texttt{let ids\_pp=deriv(ids\_p)}
+	
+	\texttt{meas dc m max ids\_pp}
+	
+	\texttt{meas dc vgs\_i max\_at ids\_pp}
+	
+	\texttt{meas dc ids\_p\_i find ids\_p when vgs=vgs\_i}
+	
+	\texttt{let b = ids\_p\_i - m*vgs\_i}
+	
+	\texttt{let vt = -b/m}
+	
+	\texttt{print vt}
+	
 	\subsection{NAND Gate}
 	
 	\subsubsection{Design}
