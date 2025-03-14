@@ -244,16 +244,18 @@
 	Examining the ngspice outputs, we find that \texttt{Vil = 0.7536 V} and \texttt{Vih = 0.9944 V}. This implies that \texttt{Nmh = 1.8 V - 0.9944 V = 0.8056 V} and \texttt{Nml = 0.7536 V}. We can repeat this analysis for independent variations of input \texttt{a} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nand_noise_analysis_sweep_vb} and \ref{fig::nand_noise_analysis_sweep_va_vb}.
 	
 	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_vb.png}}
 		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
 		\label{fig::nand_noise_analysis_sweep_vb}
 	\end{figure}
 	
 	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va_vb.png}}
 		\caption{Measuring \texttt{Vil} for the NAND Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
 		\label{fig::nand_noise_analysis_sweep_va_vb}
 	\end{figure}
+	
+	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8146 V} and \texttt{Nml = 0.7706 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.7126 V} and \texttt{Nml = 0.8596 V}.
 	
 	\subsection{NOR Gate}
 	
