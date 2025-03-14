@@ -9,7 +9,20 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
-\graphicspath{{./images}}
+\graphicspath{
+{./images}
+{./images/nand}
+{./images/nand/delay}
+{./images/nand/design}
+{./images/nand/noise_analysis}
+{./images/nand/power}
+{./images/nand/vtc}
+{./images/nor}
+{./images/nor/delay}
+{./images/nor/design}
+{./images/nor/noise_analysis}
+{./images/nor/power}
+{./images/nor/vtc}}
 
 \hypersetup{
     colorlinks=true,
@@ -228,6 +241,54 @@
 		\label{fig::nor_symbol}
 	\end{figure}
 
+	\subsubsection{Voltage Transfer Characteristics}
+	
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NOR gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nor_vtc_test_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va.png}}
+		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\label{fig::nor_vtc_test_sweep_va}
+	\end{figure}
+	
+	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nor_vtc_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va.png}}
+		\caption{NOR VTC Results for Independent Variations of Input \texttt{a}}
+		\label{fig::nor_vtc_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8591V}. We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nor_vtc_test_sweep_vb} and \ref{fig::nor_vtc_sweep_vb} independently.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_vb.png}}
+		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{b}}
+		\label{fig::nor_vtc_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_vb.png}}
+		\caption{NOR VTC Results for Independent Variations of Input \texttt{b}}
+		\label{fig::nor_vtc_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8531V}. Finally, we sweep both inputs \texttt{a} and \texttt{b} together. The test circuit and results for this analysis are included in Figures \ref{fig::nor_vtc_test_sweep_va_vb} and \ref{fig::nor_vtc_sweep_va_vb} respectively.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va_vb.png}}
+		\caption{NOR VTC Test Circuit for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nor_vtc_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va_vb.png}}
+		\caption{NOR VTC Results for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nor_vtc_sweep_va_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.7772V}.
+	
 	\subsection{NAND Gate}
 
 	\begin{align}
