@@ -303,7 +303,25 @@
 		\label{fig::nand_delay_sweep_va_vb}
 	\end{figure}
 	
-	Examining the output, we find that \texttt{tphl=37.809 ps}.
+	Examining the output, we find that \texttt{tphl=37.809 ps}. Note that the delays are data dependent.
+	
+	\subsection{Power Analysis}
+	
+	In this section, we analyze the power consumption of our NAND gate. Our test circuit for this analysis is included in Figure \ref{fig::nand_power_test_sweep_va}, and the results of our analysis are shown in Figure \ref{fig::nand_power_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nand_power_test_sweep_va}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_va.png}}
+		\caption{Power Consumption of the NAND Gate wwhen \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nand_power_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.1936{\mu}W$.
 	
 	\subsection{NOR Gate}
 	
