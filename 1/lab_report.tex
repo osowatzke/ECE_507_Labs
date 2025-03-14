@@ -275,7 +275,35 @@
 		\label{fig::nand_delay_sweep_va}
 	\end{figure}
 	
-	Examining the output results, we find that \texttt{tphl = 29.815 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b} and varying both inputs together.
+	Examining the output results, we find that \texttt{tphl = 29.815 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b}. The test circuits for this analysis is shown in Figures \ref{fig::nand_delay_test_sweep_vb} and the results are shown in Figure \ref{fig::nand_delay_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Only Input \texttt{b} is Varied}
+		\label{fig::nand_delay_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nand_delay_sweep_vb}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 34.311 ps}. Finally, we can examine the impact of varying both inputs together. The test circuit for this analysis is shown in Figure  \ref{fig::nand_delay_test_sweep_va_vb} and the results are captured in Figure  \ref{fig::nand_delay_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_delay_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_delay_sweep_va_vb}
+	\end{figure}
+	
+	Examining the output, we find that \texttt{tphl=37.809 ps}.
 	
 	\subsection{NOR Gate}
 	
