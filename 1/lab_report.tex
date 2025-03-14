@@ -208,11 +208,19 @@
 	
 	Examining the results, we find that \texttt{Vm = 0.9609V}.
 	
+	\subsection{NOR Gate}
+	
+	The pull-down circuit of the NAND gate is composed of two parallel NMOS gates. The pull-up circuit is the complement and is composed of two sequential PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nor_schematic}.
+	
+	\subsubsection{Design}
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_schematic.png}}
 		\caption{NOR Circuit Schematic}
 		\label{fig::nor_schematic}
 	\end{figure}
+	
+	We also create a circuit symbol for the NOR gate, which is shown in Figure \ref{fig::nor_symbol}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_symbol.png}}
@@ -238,7 +246,7 @@
 		I_{ds_n} + I_{ds_p} = 0
 	\end{equation}
 	
-	Solving numerically, using the parameters in Table \ref{table::nmos_params} we find:
+	Solving numerically, using the parameters in Table \ref{table::nmos_params} we find that $V_m = 0.8422 V$.
 	
 	
 \end{document}
