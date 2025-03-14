@@ -222,15 +222,18 @@
 	Examining the results, we find that \texttt{Vm = 0.9609V}.
 	
 	\subsubsection{Noise Analysis}
+	\label{section::nand_noise_analysis}
 	
 	Using the test circuits shown in Figures \ref{fig::nand_vtc_test_sweep_va}, \ref{fig::nand_vtc_test_sweep_vb}, and \ref{fig::nand_vtc_test_sweep_va_vb}, we perform noise analysis. We specifically use the test circuits to measure the noise margins, which are defined follows:
 	
 	\begin{equation}
 		NM_H = V_{DD} - V_{IH}
+		\label{eq::noise_margin_high}
 	\end{equation}
 	
 	\begin{equation}
 		NM_L = V_{IL} - GND
+		\label{eq::noise_margin_low}
 	\end{equation}
 	
 	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points and the corresponding noise margins as follows:
@@ -418,6 +421,32 @@
 	\end{figure}
 	
 	Examining the results, we find that \texttt{Vm = 0.7772V}.
+	
+	\subsubsection{Noise Analysis}
+	
+	In this section, we perform noise analysis of the NOR circuit following the process outlined for the NAND gate in Section \ref{section::nand_noise_analysis}. For this analysis, we use the test circuits shown in Figures \ref{fig::nor_vtc_test_sweep_va}, \ref{fig::nor_vtc_test_sweep_vb}, and \ref{fig::nor_vtc_test_sweep_va_vb}. We specifically use the test circuits to measure the noise margins, which are defined in Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points ($V_{IH}$ and $V_{IL}$) and the corresponding noise margins as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nor_noise_analysis_sweep_va}
+	\end{figure}
+	
+	Examining the ngspice outputs, we find that \texttt{Vil = 0.7336 V} and \texttt{Vih = 0.9354 V}. This implies that \texttt{Nmh = 1.8 V - 0.9354 V = 0.8646 V} and \texttt{Nml = 0.7336 V}. We can repeat this analysis for independent variations of the input \texttt{b} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nor_noise_analysis_sweep_vb} and \ref{fig::nor_noise_analysis_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nor_noise_analysis_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
+		\label{fig::nor_noise_analysis_sweep_va_vb}
+	\end{figure}
+	
+	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8426 V} and \texttt{Nml = 0.7296 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.9486 V} and \texttt{Nml = 0.6656 V}.
 	
 	\subsection{NAND Gate}
 
