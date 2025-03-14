@@ -257,6 +257,26 @@
 	
 	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8146 V} and \texttt{Nml = 0.7706 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.7126 V} and \texttt{Nml = 0.8596 V}.
 	
+	\subsubsection{Delay Analysis}
+	
+	In this section, we analyze the delay of the NAND gate and specifically measure the high to low propagation delay (\texttt{tphl}). To perform this analysis for independent variations of the input \texttt{a}, we use the following test circuit:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Only Input \texttt{a} is Varied}
+		\label{fig::nand_delay_test_sweep_va}
+	\end{figure}
+	
+	Using the test circuit, we measure can measure the high-to-low propagation delay as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nand_delay_sweep_va}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 29.815 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b} and varying both inputs together.
+	
 	\subsection{NOR Gate}
 	
 	The pull-down circuit of the NAND gate is composed of two parallel NMOS gates. The pull-up circuit is the complement and is composed of two sequential PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nor_schematic}.
