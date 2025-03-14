@@ -108,6 +108,7 @@
 	\texttt{plot ids\_p ids\_p\_fit yrange}
 	
 	\begin{center}
+	\label{table::nmos_params}
 	\begin{tabular}{| c | c |}
 		\hline
 		Parameter & Value \\
@@ -222,7 +223,22 @@
 	\subsection{NAND Gate}
 
 	\begin{align}
-		I_{ds_p} &= -k_p\frac{W}{L}V_{dsat_p}\left(V_{gs_p} - V_{T0_p} - \frac{V_{dsat_p}}{2}\right)\left(1 + {\lambda_p}V_{ds_p}\right) \\
+		I_{ds_p} &= -k_p\frac{W_p}{L}V_{dsat_p}\left(V_{gs_p} - V_{T0_p} - \frac{V_{dsat_p}}{2}\right)\left(1 + {\lambda_p}V_{ds_p}\right) \\
 		&= -k_p\frac{W}{L}V_{dsat_p}\left(V_m - V_{dd} - V_{T0_p} - \frac{V_{dsat_p}}{2}\right)\left(1 + {\lambda_p}(V_m - V_{dd})\right)
 	\end{align}
+	
+	\begin{align}
+		I_{ds_n} &= k_n\frac{W_n}{L}V_{dsat_n}\left(V_{gs_n} - V_{T0_n} - \frac{V_{dsat_n}}{2}\right)\left(1 + {\lambda_n}V_{ds_n}\right) \\
+		&= k_n\frac{W_n}{L}V_{dsat_n}\left(V_m - V_{T0_n} - \frac{V_{dsat_n}}{2}\right)\left(1 + {\lambda_n}V_m\right)
+	\end{align}
+	
+	Using KCL, we know that:
+	
+	\begin{equation}
+		I_{ds_n} + I_{ds_p} = 0
+	\end{equation}
+	
+	Solving numerically, using the parameters in Table \ref{table::nmos_params} we find:
+	
+	
 \end{document}
