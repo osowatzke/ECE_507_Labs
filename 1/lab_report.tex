@@ -221,6 +221,40 @@
 	
 	Examining the results, we find that \texttt{Vm = 0.9609V}.
 	
+	\subsubsection{Noise Analysis}
+	
+	Using the test circuits shown in Figures \ref{fig::nand_vtc_test_sweep_va}, \ref{fig::nand_vtc_test_sweep_vb}, and \ref{fig::nand_vtc_test_sweep_va_vb}, we perform noise analysis. We specifically use the test circuits to measure the noise margins, which are defined follows:
+	
+	\begin{equation}
+		NM_H = V_{DD} - V_{IH}
+	\end{equation}
+	
+	\begin{equation}
+		NM_L = V_{IL} - GND
+	\end{equation}
+	
+	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points and the corresponding noise margins as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nand_noise_analysis_sweep_va}
+	\end{figure}
+	
+	Examining the ngspice outputs, we find that \texttt{Vil = 0.7536 V} and \texttt{Vih = 0.9944 V}. This implies that \texttt{Nmh = 1.8 V - 0.9944 V = 0.8056 V} and \texttt{Nml = 0.7536 V}. We can repeat this analysis for independent variations of input \texttt{a} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nand_noise_analysis_sweep_vb} and \ref{fig::nand_noise_analysis_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nand_noise_analysis_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
+		\label{fig::nand_noise_analysis_sweep_va_vb}
+	\end{figure}
+	
 	\subsection{NOR Gate}
 	
 	The pull-down circuit of the NAND gate is composed of two parallel NMOS gates. The pull-up circuit is the complement and is composed of two sequential PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nor_schematic}.
