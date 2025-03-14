@@ -321,7 +321,35 @@
 		\label{fig::nand_power_sweep_va}
 	\end{figure}
 	
-	Examining the results, we find that the power consumption is $1.1936{\mu}W$.
+	Examining the results, we find that the power consumption is $1.1936{\mu}W$. We can also measure the power consumption when we fix \texttt{a} at 1 and vary \texttt{b}. The test circuit for this analysis is shown in Figure \ref{fig::nand_power_test_sweep_vb} and the results are shown in Figure \ref{fig::nand_power_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nand_power_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_vb.png}}
+		\caption{Power Consumption of the NAND Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nand_power_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.45331{\mu}W$. Next, we measure the power when the inputs are varied together. For this analysis, we use the test circuit shown in Figure \ref{fig::nand_power_test_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_power_test_sweep_va_vb}
+	\end{figure}
+	
+	The results of our analysis are included in Figure \ref{fig::nand_power_sweep_vb} and indicate a power consumption of $1.27361{\mu}W$. 
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_va_vb.png}}
+		\caption{Power Consumption of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_power_sweep_va_vb}
+	\end{figure}
 	
 	\subsection{NOR Gate}
 	
