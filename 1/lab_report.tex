@@ -299,23 +299,62 @@
 	
 	\subsubsection{Delay Analysis}
 	
-	In this section, we analyze the delay of the NAND gate and specifically measure the high to low propagation delay (\texttt{tphl}). To perform this analysis for independent variations of the input \texttt{a}, we use the following test circuit:
+	In this section, we analyze the propagation delay of the NAND gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay. We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nand_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nand_gate_low_to_high_transitions}.
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Inputs that Create Low-to-High Transition for NAND Gate}
+	\label{table::nand_gate_low_to_high_transitions}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$1 \rightarrow 0$ & $1$\\
+		\hline	
+		$1$ & $1 \rightarrow 0$\\
+		\hline	
+		$1 \rightarrow 0$ & $1 \rightarrow 0$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\noindent For variations of \texttt{a} with \texttt{b=1}, we can use the test circuit shown in Figure \ref{fig::nand_delay_test_sweep_va} to measure propagation delays. Note the input waveforms contains both rising an falling edges, so we can use it to measure \texttt{tphl} and \texttt{tplh}.
+
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va.png}}
-		\caption{Test Circuit to Measure the Delay of the NAND Gate when Only Input \texttt{a} is Varied}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
 		\label{fig::nand_delay_test_sweep_va}
 	\end{figure}
 	
-	Using the test circuit, we measure can measure the high-to-low propagation delay as follows:
+	\noindent Using the test circuit, we measure can measure \texttt{tphl} and \texttt{tplh} as follows:
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va.png}}
-		\caption{\texttt{tphl} Measurement for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
 		\label{fig::nand_delay_sweep_va}
 	\end{figure}
 	
-	Examining the output results, we find that \texttt{tphl = 29.815 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b}. The test circuits for this analysis is shown in Figures \ref{fig::nand_delay_test_sweep_vb} and the results are shown in Figure \ref{fig::nand_delay_sweep_vb}.
+	Examining the output results, we find that \texttt{tphl = 20.859 ps} for \texttt{a = }$0 \rightarrow 1$ and \texttt{b = 1}. Similarly, we find that \texttt{tphl = 33.178 ps} for \texttt{a = }$1 \rightarrow 0$ and \texttt{b = 1}. We perform similar analysis for the remaining transitions listed in Table \ref{table::nand_gate_high_to_low_transitions} and Table \ref{table::nand_gate_high_to_low_transitions}. Our results are summarized in Table \ref{table::nand_gate_delay_analysis}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Propagation Delays for Each Transition That Result in an Output Logic Level Change}
+	\label{table::nand_gate_delay_analysis}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $20.859\ \text{ps}$ & $1 \rightarrow 0$ & $1$ & $33.178\ \text{ps}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $28.146\ \text{ps}$ & $1$ & $1 \rightarrow 0$ & $48.137\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $29.297\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $26.097\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_vb.png}}
