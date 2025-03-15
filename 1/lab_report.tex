@@ -417,77 +417,92 @@
 
 	\subsubsection{Voltage Transfer Characteristics}
 	
-	In this section, we analyze the voltage transfer characteristics (VTC) of our NOR gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nor_vtc_test_sweep_va}.
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NOR gate. For this analysis, we need to analyze the VTC for all combinations of inputs that lead to a logic level change. To generate the VTC in ngspice, we only need to consider one set of transitions because we care about the steady state output voltages for each input voltage. As such, we analyze the input voltages that result in high-to-low transitions. These voltages are dictated in Table \ref{table::nor_gate_high_to_low_transitions}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Inputs that Create High to Low Transition for NOR Gate}
+	\label{table::nor_gate_high_to_low_transitions}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\noindent The test circuit we use to generate the VTC for the first entry in the above table is shown in Figure \ref{fig::nor_vtc_test_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va.png}}
-		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\caption{NOR VTC Test Circuit for Variations of \texttt{a} with \texttt{b=0}}
 		\label{fig::nor_vtc_test_sweep_va}
-	\end{figure}
+	\end{figure}	
 	
-	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nor_vtc_sweep_va}.
+	\noindent Using this test circuit, we perform DC analysis to generate the VTC and find \texttt{Vm}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nor_vtc_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va.png}}
-		\caption{NOR VTC Results for Independent Variations of Input \texttt{a}}
+		\caption{NOR VTC Results for Variations of \texttt{a} with \texttt{b=0}}
 		\label{fig::nor_vtc_sweep_va}
 	\end{figure}
 	
-	Examining the results, we find that \texttt{Vm = 0.8591V}. We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nor_vtc_test_sweep_vb} and \ref{fig::nor_vtc_sweep_vb} independently.
+	Examining the results, we find that \texttt{Vm = 0.8952V}. With slight modifications to our test circuit, we perform similar analysis to find \texttt{Vm} for the other sets inputs listed in Table \ref{table::nor_gate_high_to_low_transitions}. These results are included in Table \ref{table::nor_gate_vm}.
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_vb.png}}
-		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{b}}
-		\label{fig::nor_vtc_test_sweep_vb}
-	\end{figure}
+	\begin{table}[H]
+	\begin{center}
+	\caption{\texttt{Vm} for Each Set of Inputs That Result in an Output Logic Level Change}
+	\label{table::nor_gate_vm}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8952 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $0.8919 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.8078 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_vb.png}}
-		\caption{NOR VTC Results for Independent Variations of Input \texttt{b}}
-		\label{fig::nor_vtc_sweep_vb}
-	\end{figure}
-	
-	Examining the results, we find that \texttt{Vm = 0.8531V}. Finally, we sweep both inputs \texttt{a} and \texttt{b} together. The test circuit and results for this analysis are included in Figures \ref{fig::nor_vtc_test_sweep_va_vb} and \ref{fig::nor_vtc_sweep_va_vb} respectively.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va_vb.png}}
-		\caption{NOR VTC Test Circuit for Joint Variations of Inputs \texttt{a} and \texttt{b}}
-		\label{fig::nor_vtc_test_sweep_va_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va_vb.png}}
-		\caption{NOR VTC Results for Joint Variations of Inputs \texttt{a} and \texttt{b}}
-		\label{fig::nor_vtc_sweep_va_vb}
-	\end{figure}
-	
-	Examining the results, we find that \texttt{Vm = 0.7772V}.
+	\noindent Reviewing our captured results, we see that \texttt{Vm} is dependent on the gate inputs. \texttt{Vm} is the smallest when both gates switch at the same time. This makes sense because our pull-down network is strongest in this case, causing \texttt{Vm} to shift to the left.
 	
 	\subsubsection{Noise Analysis}
 	
-	In this section, we perform noise analysis of the NOR circuit following the process outlined for the NAND gate in Section \ref{section::nand_noise_analysis}. For this analysis, we use the test circuits shown in Figures \ref{fig::nor_vtc_test_sweep_va}, \ref{fig::nor_vtc_test_sweep_vb}, and \ref{fig::nor_vtc_test_sweep_va_vb}. We specifically use the test circuits to measure the noise margins, which are defined in Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points ($V_{IH}$ and $V_{IL}$) and the corresponding noise margins as follows:
+	Using the test circuit shown in Figure \ref{fig::nor_vtc_test_sweep_va}, we can also measure the noise margins, which are defined by Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. In the referenced formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=0}, we can identify the unity gain points and solve for the noise margins.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va.png}}
-		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{a}}
-		\label{fig::nor_noise_analysis_sweep_va}
+		\caption{Measuring Noise Margins for the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}	\label{fig::nor_noise_analysis_sweep_va}
 	\end{figure}
 	
-	Examining the ngspice outputs, we find that \texttt{Vil = 0.7336 V} and \texttt{Vih = 0.9354 V}. This implies that \texttt{Nmh = 1.8 V - 0.9354 V = 0.8646 V} and \texttt{Nml = 0.7336 V}. We can repeat this analysis for independent variations of the input \texttt{b} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nor_noise_analysis_sweep_vb} and \ref{fig::nor_noise_analysis_sweep_va_vb}.
+	Examining the outputs shown in Figure \ref{fig::nor_noise_analysis_sweep_va}, we find that \texttt{Vil = 0.7756 V} and \texttt{Vih = 0.9764 V}. This implies that \texttt{Nmh = 1.8 V - 0.9764 V = 0.8326 V} and \texttt{Nml = 0.7756 V - 0 V = 0.7756 V}. With slight modifications to the test circuit, we can measure the noise margins for the sets of inputs listed in Table \ref{table::nor_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nor_gate_noise_analysis}.
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_vb.png}}
-		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{b}}
-		\label{fig::nor_noise_analysis_sweep_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va_vb.png}}
-		\caption{Measuring \texttt{Vil} for the NOR Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
-		\label{fig::nor_noise_analysis_sweep_va_vb}
-	\end{figure}
-	
-	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8426 V} and \texttt{Nml = 0.7296 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.9486 V} and \texttt{Nml = 0.6656 V}.
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins for Each Set of Inputs That Result in an Output Logic Level Change}
+	\label{table::nor_gate_noise_analysis}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.9764 \text{V}$ & $0.7756 \text{V}$ & $0.8326 \text{V}$ & $0.7756 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $1.0134 \text{V}$ & $0.7706 \text{V}$ & $0.7660 \text{V}$ & $0.7706 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.7006 \text{V}$ & $0.8844 \text{V}$ & $0.9156 \text{V}$ & $0.7006 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\subsubsection{Delay Analysis}
 	
