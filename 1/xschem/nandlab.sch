@@ -4,19 +4,19 @@ K {}
 V {}
 S {}
 E {}
-N -160 -100 -160 -60 {lab=Vout}
+N -160 -100 -160 -60 {lab=Y}
 N -160 90 -160 130 {lab=GND}
 N -160 0 -160 30 {lab=#net1}
 N -160 -230 -160 -200 {lab=Vdd}
-N -240 -100 -80 -100 {lab=Vout}
-N -160 -80 -100 -80 {lab=Vout}
+N -240 -100 -80 -100 {lab=Y}
+N -160 -80 -100 -80 {lab=Y}
 N -240 -200 -240 -160 {lab=Vdd}
 N -80 -200 -80 -160 {lab=Vdd}
 N -240 -200 -80 -200 {lab=Vdd}
 N -380 -240 -340 -240 {lab=A}
 N -380 -200 -340 -200 {lab=B}
 C {/opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/xschem/sky130_fd_pr/nfet3_01v8.sym} -180 -30 0 0 {name=M1
-W=1
+W=2
 L=0.15
 body=GND
 nf=1
@@ -50,7 +50,7 @@ C {opin.sym} -100 -80 0 0 {name=Y lab=Y
 C {ipin.sym} -160 130 0 0 {name=GND lab=GND}
 C {ipin.sym} -380 -240 0 0 {name=A1 lab=A}
 C {/opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/xschem/sky130_fd_pr/nfet3_01v8.sym} -180 60 0 0 {name=M3
-W=1
+W=2
 L=0.15
 body=GND
 nf=1
