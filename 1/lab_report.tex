@@ -253,33 +253,7 @@
 	\end{center}
 	\end{table}
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_vb.png}}
-		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{b}}
-		\label{fig::nand_vtc_test_sweep_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_vb.png}}
-		\caption{NAND VTC Results for Independent Variations of Input \texttt{b}}
-		\label{fig::nand_vtc_sweep_vb}
-	\end{figure}
-	
-	Examining the results, we find that \texttt{Vm = 0.8737V}. Finally, we sweep both inputs \texttt{a} and \texttt{b} together. The test circuit and results for this analysis are included in Figures \ref{fig::nand_vtc_test_sweep_va_vb} and \ref{fig::nand_vtc_sweep_va_vb} respectively.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va_vb.png}}
-		\caption{NAND VTC Test Circuit for Joint Variations of Inputs \texttt{a} and \texttt{b}}
-		\label{fig::nand_vtc_test_sweep_va_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va_vb.png}}
-		\caption{NAND VTC Results for Joint Variations of Inputs \texttt{a} and \texttt{b}}
-		\label{fig::nand_vtc_sweep_va_vb}
-	\end{figure}
-	
-	Examining the results, we find that \texttt{Vm = 0.9609V}.
+	\noindent Reviewing our captured results, we see that \texttt{Vm} is dependent on the gate inputs. \texttt{Vm} is the largest when both gates switch at the same time. This makes sense because our pull-up network is strongest in this case, causing \texttt{Vm} to shift to the right.
 	
 	\subsubsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
