@@ -564,49 +564,41 @@
 	
 	\subsubsection{Power Analysis}
 	
-	In this section, we analyze the power consumption of our NOR gate. Our test circuit for this analysis is included in Figure \ref{fig::nor_power_test_sweep_va}, and the results of our analysis are shown in Figure \ref{fig::nor_power_sweep_va}.
+	In this section, we analyze the power consumption of our NOR gate. Similar to what we did above, we analyze the power consumption for each input variation that results in an output logical level change. For our input, we used a pulsed source. This allows us to capture both rising and falling edges of the output. We use the test circuit shown in Figure \ref{fig::nor_power_test_sweep_va} to measure the power consumption for variations of \texttt{a} with \texttt{b=0}. For this analysis, we have also attached a parasitic capacitance to the gate output.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_va.png}}
-		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_power_test_sweep_va}
 	\end{figure}
 	
+	\noindent Using the test circuit, we measure the power consumption as follows:
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_va.png}}
-		\caption{Power Consumption of the NOR Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\caption{Power Consumption of the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_power_sweep_va}
 	\end{figure}
 	
-	Examining the results, we find that the power consumption is $1.62693{\mu}W$. We can also measure the power consumption when we fix \texttt{a} at 1 and vary \texttt{b}. The test circuit for this analysis is shown in Figure \ref{fig::nor_power_test_sweep_vb} and the results are shown in Figure \ref{fig::nor_power_sweep_vb}.
+	\noindent Examining the results, we find that the power consumption is $2.28022{\mu}W$. Note that this power estimate includes the effects of the rising and falling edges of \texttt{a}. We can perform similar analysis for other variations of the input. Our results for this work are summarized in Table \ref{table::nor_gate_power_analysis}.
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_vb.png}}
-		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when \texttt{a=1} and Input \texttt{b} is Varied}
-		\label{fig::nor_power_test_sweep_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_vb.png}}
-		\caption{Power Consumption of the NOR Gate when \texttt{a=1} and Input \texttt{b} is Varied}
-		\label{fig::nor_power_sweep_vb}
-	\end{figure}
-	
-	Examining the results, we find that the power consumption is $1.17534{\mu}W$. Next, we measure the power when the inputs are varied together. For this analysis, we use the test circuit shown in Figure \ref{fig::nor_power_test_sweep_va_vb}.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_va_vb.png}}
-		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when Both Inputs are Varied Together}
-		\label{fig::nor_power_test_sweep_va_vb}
-	\end{figure}
-	
-	The results of our analysis are included in Figure \ref{fig::nor_power_sweep_va_vb} and indicate a power consumption of $1.31831{\mu}W$. 
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_va_vb.png}}
-		\caption{Power Consumption of the NOR Gate when Both Inputs are Varied Together}
-		\label{fig::nor_power_sweep_va_vb}
-	\end{figure}	
+	\begin{table}[H]
+	\begin{center}
+	\caption{NOR Gate Power Consumption for Different Input Variations}
+	\label{table::nor_gate_power_analysis}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Power}\\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $1$ & $2.28022{\mu}W$ \\
+		\hline	
+		$1$ & $0 \rightarrow 1 \rightarrow 0$ & $1.3767{\mu}W$ \\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.61932{\mu}W$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\subsection{NAND Gate}
 
