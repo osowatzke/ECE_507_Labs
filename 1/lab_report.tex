@@ -506,51 +506,61 @@
 	
 	\subsubsection{Delay Analysis}
 	
-	In this section, we analyze the delay of the NOR gate by measuring the high to low propagation delay (\texttt{tphl}). To perform this analysis for independent variations of the input \texttt{a}, we use the following test circuit:
+	In this section, we analyze the propagation delay of the NOR gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay. We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nor_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nor_gate_low_to_high_transitions}.
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Inputs that Create Low-to-High Transition for NOR Gate}
+	\label{table::nor_gate_low_to_high_transitions}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$1 \rightarrow 0$ & $0$\\
+		\hline	
+		$0$ & $1 \rightarrow 0$\\
+		\hline	
+		$1 \rightarrow 0$ & $1 \rightarrow 0$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\noindent For variations of \texttt{a} with \texttt{b=0}, we can use the test circuit shown in Figure \ref{fig::nor_delay_test_sweep_va} to measure propagation delays. Note the input waveforms contains both rising an falling edges, so we can use it to measure \texttt{tphl} and \texttt{tplh}.
+
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_va.png}}
-		\caption{Test Circuit to Measure the Delay of the NOR Gate when Only Input \texttt{a} is Varied}
+		\caption{Test Circuit to Measure the Delay of the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_delay_test_sweep_va}
 	\end{figure}
 	
-	Using the test circuit, we measure can measure the high-to-low propagation delay as follows:
+	\noindent Using the test circuit, we measure can measure \texttt{tphl} and \texttt{tplh} as follows:
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_va.png}}
-		\caption{\texttt{tphl} Measurement for the NOR Gate when Input Variations are Limited to Input \texttt{a}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_delay_sweep_va}
 	\end{figure}
 	
-	Examining the output results, we find that \texttt{tphl = 30.949 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b}. The test circuits for this analysis is shown in Figures \ref{fig::nor_delay_test_sweep_vb} and the results are shown in Figure \ref{fig::nor_delay_sweep_vb}.
+	Examining the output results, we find that \texttt{tphl = 44.975 ps} for \texttt{a = }$0 \rightarrow 1$ and \texttt{b = 1}. Similarly, we find that \texttt{tphl = 45.841 ps} for \texttt{a = }$1 \rightarrow 0$ and \texttt{b = 0}. We perform similar analysis for the remaining transitions listed in Table \ref{table::nor_gate_high_to_low_transitions} and Table \ref{table::nor_gate_low_to_high_transitions}. Our results are summarized in Table \ref{table::nor_gate_delay_analysis}.
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_vb.png}}
-		\caption{Test Circuit to Measure the Delay of the NOR Gate when Only Input \texttt{b} is Varied}
-		\label{fig::nor_delay_test_sweep_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_vb.png}}
-		\caption{\texttt{tphl} Measurement for the NOR Gate when Input Variations are Limited to Input \texttt{b}}
-		\label{fig::nor_delay_sweep_vb}
-	\end{figure}
-	
-	Examining the output results, we find that \texttt{tphl = 24.458 ps}. Finally, we can examine the impact of varying both inputs together. The test circuit for this analysis is shown in Figure  \ref{fig::nor_delay_test_sweep_va_vb} and the results are captured in Figure  \ref{fig::nor_delay_sweep_va_vb}.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_va_vb.png}}
-		\caption{Test Circuit to Measure the Delay of the NOR Gate when Both Inputs are Varied Together}
-		\label{fig::nor_delay_test_sweep_va_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_va_vb.png}}
-		\caption{\texttt{tphl} Measurement for the NOR Gate when Both Inputs are Varied Together}
-		\label{fig::nor_delay_sweep_va_vb}
-	\end{figure}
-	
-	Examining the output, we find that \texttt{tphl=14.681 ps}. Note that the delays are data dependent.
+	\begin{table}[H]
+	\begin{center}
+	\caption{Propagation Delays for Each Transition That Result in an Output Logic Level Change}
+	\label{table::nor_gate_delay_analysis}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $44.975\ \text{ps}$ & $1 \rightarrow 0$ & $0$ & $45.841\ \text{ps}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $29.139\ \text{ps}$ & $0$ & $1 \rightarrow 0$ & $29.942\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $22.437\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $40.997\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\subsubsection{Power Analysis}
 	
