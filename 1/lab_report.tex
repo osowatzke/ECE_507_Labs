@@ -9,7 +9,20 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
-\graphicspath{{./images}}
+\graphicspath{
+{./images}
+{./images/nand}
+{./images/nand/delay}
+{./images/nand/design}
+{./images/nand/noise_analysis}
+{./images/nand/power}
+{./images/nand/vtc}
+{./images/nor}
+{./images/nor/delay}
+{./images/nor/design}
+{./images/nor/noise_analysis}
+{./images/nor/power}
+{./images/nor/vtc}}
 
 \hypersetup{
     colorlinks=true,
@@ -140,11 +153,47 @@
 	\end{tabular}
 	\end{center}
 	
+	\begin{table}
+	\begin{center}
+	\caption{Inputs that Create High to Low Transition for NAND Gate}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}
+	\begin{center}
+	\caption{Inputs that Create High to Low Transition for NOR Gate}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	\subsection{NAND Gate}
 	
 	\subsubsection{Design}
 	
-	The pull-down circuit of the NAND gate is composed of two sequential NMOS gates. The pull-up circuit is the complement and is composed of two parallel PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nand_schematic}.
+	The NAND gate pull-down circuit is composed of two NMOS transistors in series. The pull-up circuit is the complement of the pull-down circuit and is composed of two parallel PMOS transistors. For analysis, we can create an equivalent inverter from the NAND gate. In this equivalent inverter, the channel length of the NMOS transistor is doubled because the NMOS transistors in the NAND gate are laid out in series. (This is equivalent to halving the width of the transistor). The NAND gate pull-up circuit is on when either transistor is on. However, for analysis, we consider the worst (slowest) case, when only one transistor is on. Therefore, the PMOS transistor width in the equivalent inverter remains unchanged.
+	
+	For an inverter, we know that we need to make the width of the PMOS transistor twice as large as the width NMOS transistor because the mobility of holes is lower than the mobility of electrons. We can map these sizes back to the NAND gate. Doing so, we find that PMOS transistor width in the NAND gate should be the same as the inverter, and the NMOS transistor width should be doubled. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we should make the NMOS width 2 and the PMOS width 2. The NAND gate circuit with these transistor widths is shown in Figure \ref{fig::nand_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nand_schematic.png}}
@@ -208,6 +257,139 @@
 	
 	Examining the results, we find that \texttt{Vm = 0.9609V}.
 	
+	\subsubsection{Noise Analysis}
+	\label{section::nand_noise_analysis}
+	
+	Using the test circuits shown in Figures \ref{fig::nand_vtc_test_sweep_va}, \ref{fig::nand_vtc_test_sweep_vb}, and \ref{fig::nand_vtc_test_sweep_va_vb}, we perform noise analysis. We specifically use the test circuits to measure the noise margins, which are defined follows:
+	
+	\begin{equation}
+		NM_H = V_{DD} - V_{IH}
+		\label{eq::noise_margin_high}
+	\end{equation}
+	
+	\begin{equation}
+		NM_L = V_{IL} - GND
+		\label{eq::noise_margin_low}
+	\end{equation}
+	
+	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points and the corresponding noise margins as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nand_noise_analysis_sweep_va}
+	\end{figure}
+	
+	Examining the ngspice outputs, we find that \texttt{Vil = 0.7536 V} and \texttt{Vih = 0.9944 V}. This implies that \texttt{Nmh = 1.8 V - 0.9944 V = 0.8056 V} and \texttt{Nml = 0.7536 V}. We can repeat this analysis for independent variations of input \texttt{a} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nand_noise_analysis_sweep_vb} and \ref{fig::nand_noise_analysis_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nand_noise_analysis_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NAND Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
+		\label{fig::nand_noise_analysis_sweep_va_vb}
+	\end{figure}
+	
+	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8146 V} and \texttt{Nml = 0.7706 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.7126 V} and \texttt{Nml = 0.8596 V}.
+	
+	\subsubsection{Delay Analysis}
+	
+	In this section, we analyze the delay of the NAND gate and specifically measure the high to low propagation delay (\texttt{tphl}). To perform this analysis for independent variations of the input \texttt{a}, we use the following test circuit:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Only Input \texttt{a} is Varied}
+		\label{fig::nand_delay_test_sweep_va}
+	\end{figure}
+	
+	Using the test circuit, we measure can measure the high-to-low propagation delay as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nand_delay_sweep_va}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 29.815 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b}. The test circuits for this analysis is shown in Figures \ref{fig::nand_delay_test_sweep_vb} and the results are shown in Figure \ref{fig::nand_delay_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Only Input \texttt{b} is Varied}
+		\label{fig::nand_delay_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nand_delay_sweep_vb}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 34.311 ps}. Finally, we can examine the impact of varying both inputs together. The test circuit for this analysis is shown in Figure  \ref{fig::nand_delay_test_sweep_va_vb} and the results are captured in Figure  \ref{fig::nand_delay_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_delay_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_delay_sweep_va_vb}
+	\end{figure}
+	
+	Examining the output, we find that \texttt{tphl=37.809 ps}. Note that the delays are data dependent.
+	
+	\subsection{Power Analysis}
+	
+	In this section, we analyze the power consumption of our NAND gate. Our test circuit for this analysis is included in Figure \ref{fig::nand_power_test_sweep_va}, and the results of our analysis are shown in Figure \ref{fig::nand_power_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nand_power_test_sweep_va}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_va.png}}
+		\caption{Power Consumption of the NAND Gate wwhen \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nand_power_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.1936{\mu}W$. We can also measure the power consumption when we fix \texttt{a} at 1 and vary \texttt{b}. The test circuit for this analysis is shown in Figure \ref{fig::nand_power_test_sweep_vb} and the results are shown in Figure \ref{fig::nand_power_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nand_power_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_vb.png}}
+		\caption{Power Consumption of the NAND Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nand_power_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.45331{\mu}W$. Next, we measure the power when the inputs are varied together. For this analysis, we use the test circuit shown in Figure \ref{fig::nand_power_test_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_power_test_sweep_va_vb}
+	\end{figure}
+	
+	The results of our analysis are included in Figure \ref{fig::nand_power_sweep_vb} and indicate a power consumption of $1.27361{\mu}W$. 
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_sweep_va_vb.png}}
+		\caption{Power Consumption of the NAND Gate when Both Inputs are Varied Together}
+		\label{fig::nand_power_sweep_va_vb}
+	\end{figure}
+	
 	\subsection{NOR Gate}
 	
 	The pull-down circuit of the NAND gate is composed of two parallel NMOS gates. The pull-up circuit is the complement and is composed of two sequential PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nor_schematic}.
@@ -228,6 +410,174 @@
 		\label{fig::nor_symbol}
 	\end{figure}
 
+	\subsubsection{Voltage Transfer Characteristics}
+	
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NOR gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nor_vtc_test_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va.png}}
+		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\label{fig::nor_vtc_test_sweep_va}
+	\end{figure}
+	
+	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nor_vtc_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va.png}}
+		\caption{NOR VTC Results for Independent Variations of Input \texttt{a}}
+		\label{fig::nor_vtc_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8591V}. We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nor_vtc_test_sweep_vb} and \ref{fig::nor_vtc_sweep_vb} independently.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_vb.png}}
+		\caption{NOR VTC Test Circuit for Independent Variations of Input \texttt{b}}
+		\label{fig::nor_vtc_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_vb.png}}
+		\caption{NOR VTC Results for Independent Variations of Input \texttt{b}}
+		\label{fig::nor_vtc_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.8531V}. Finally, we sweep both inputs \texttt{a} and \texttt{b} together. The test circuit and results for this analysis are included in Figures \ref{fig::nor_vtc_test_sweep_va_vb} and \ref{fig::nor_vtc_sweep_va_vb} respectively.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_sweep_va_vb.png}}
+		\caption{NOR VTC Test Circuit for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nor_vtc_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_sweep_va_vb.png}}
+		\caption{NOR VTC Results for Joint Variations of Inputs \texttt{a} and \texttt{b}}
+		\label{fig::nor_vtc_sweep_va_vb}
+	\end{figure}
+	
+	Examining the results, we find that \texttt{Vm = 0.7772V}.
+	
+	\subsubsection{Noise Analysis}
+	
+	In this section, we perform noise analysis of the NOR circuit following the process outlined for the NAND gate in Section \ref{section::nand_noise_analysis}. For this analysis, we use the test circuits shown in Figures \ref{fig::nor_vtc_test_sweep_va}, \ref{fig::nor_vtc_test_sweep_vb}, and \ref{fig::nor_vtc_test_sweep_va_vb}. We specifically use the test circuits to measure the noise margins, which are defined in Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points ($V_{IH}$ and $V_{IL}$) and the corresponding noise margins as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nor_noise_analysis_sweep_va}
+	\end{figure}
+	
+	Examining the ngspice outputs, we find that \texttt{Vil = 0.7336 V} and \texttt{Vih = 0.9354 V}. This implies that \texttt{Nmh = 1.8 V - 0.9354 V = 0.8646 V} and \texttt{Nml = 0.7336 V}. We can repeat this analysis for independent variations of the input \texttt{b} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nor_noise_analysis_sweep_vb} and \ref{fig::nor_noise_analysis_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nor_noise_analysis_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va_vb.png}}
+		\caption{Measuring \texttt{Vil} for the NOR Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
+		\label{fig::nor_noise_analysis_sweep_va_vb}
+	\end{figure}
+	
+	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8426 V} and \texttt{Nml = 0.7296 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.9486 V} and \texttt{Nml = 0.6656 V}.
+	
+	\subsubsection{Delay Analysis}
+	
+	In this section, we analyze the delay of the NOR gate by measuring the high to low propagation delay (\texttt{tphl}). To perform this analysis for independent variations of the input \texttt{a}, we use the following test circuit:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Delay of the NOR Gate when Only Input \texttt{a} is Varied}
+		\label{fig::nor_delay_test_sweep_va}
+	\end{figure}
+	
+	Using the test circuit, we measure can measure the high-to-low propagation delay as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_va.png}}
+		\caption{\texttt{tphl} Measurement for the NOR Gate when Input Variations are Limited to Input \texttt{a}}
+		\label{fig::nor_delay_sweep_va}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 30.949 ps}. We can perform similar analysis to examine the impact of varying just the input \texttt{b}. The test circuits for this analysis is shown in Figures \ref{fig::nor_delay_test_sweep_vb} and the results are shown in Figure \ref{fig::nor_delay_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NOR Gate when Only Input \texttt{b} is Varied}
+		\label{fig::nor_delay_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NOR Gate when Input Variations are Limited to Input \texttt{b}}
+		\label{fig::nor_delay_sweep_vb}
+	\end{figure}
+	
+	Examining the output results, we find that \texttt{tphl = 24.458 ps}. Finally, we can examine the impact of varying both inputs together. The test circuit for this analysis is shown in Figure  \ref{fig::nand_delay_test_sweep_va_vb} and the results are captured in Figure  \ref{fig::nand_delay_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_va_vb.png}}
+		\caption{Test Circuit to Measure the Delay of the NOR Gate when Both Inputs are Varied Together}
+		\label{fig::nor_delay_test_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_va_vb.png}}
+		\caption{\texttt{tphl} Measurement for the NOR Gate when Both Inputs are Varied Together}
+		\label{fig::nor_delay_sweep_va_vb}
+	\end{figure}
+	
+	Examining the output, we find that \texttt{tphl=14.681 ps}. Note that the delays are data dependent.
+	
+	\subsubsection{Power Analysis}
+	
+	In this section, we analyze the power consumption of our NOR gate. Our test circuit for this analysis is included in Figure \ref{fig::nor_power_test_sweep_va}, and the results of our analysis are shown in Figure \ref{fig::nor_power_sweep_va}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_va.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nor_power_test_sweep_va}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_va.png}}
+		\caption{Power Consumption of the NOR Gate when \texttt{b=1} and Input \texttt{a} is Varied}
+		\label{fig::nor_power_sweep_va}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.62693{\mu}W$. We can also measure the power consumption when we fix \texttt{a} at 1 and vary \texttt{b}. The test circuit for this analysis is shown in Figure \ref{fig::nor_power_test_sweep_vb} and the results are shown in Figure \ref{fig::nor_power_sweep_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nor_power_test_sweep_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_vb.png}}
+		\caption{Power Consumption of the NOR Gate when \texttt{a=1} and Input \texttt{b} is Varied}
+		\label{fig::nor_power_sweep_vb}
+	\end{figure}
+	
+	Examining the results, we find that the power consumption is $1.17534{\mu}W$. Next, we measure the power when the inputs are varied together. For this analysis, we use the test circuit shown in Figure \ref{fig::nor_power_test_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_test_sweep_va_vb.png}}
+		\caption{Test Circuit to Measure the Power Consumption of the NOR Gate when Both Inputs are Varied Together}
+		\label{fig::nor_power_test_sweep_va_vb}
+	\end{figure}
+	
+	The results of our analysis are included in Figure \ref{fig::nor_power_sweep_va_vb} and indicate a power consumption of $1.31831{\mu}W$. 
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_sweep_va_vb.png}}
+		\caption{Power Consumption of the NOR Gate when Both Inputs are Varied Together}
+		\label{fig::nor_power_sweep_va_vb}
+	\end{figure}	
+	
 	\subsection{NAND Gate}
 
 	\begin{align}
