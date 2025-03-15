@@ -258,41 +258,44 @@
 	\subsubsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
 	
-	Using the test circuits shown in Figures \ref{fig::nand_vtc_test_sweep_va}, \ref{fig::nand_vtc_test_sweep_vb}, and \ref{fig::nand_vtc_test_sweep_va_vb}, we perform noise analysis. We specifically use the test circuits to measure the noise margins, which are defined follows:
+	Using the test circuit shown in Figure \ref{fig::nand_vtc_test_sweep_va}, we can also measure the noise margins, which are defined follows:
 	
 	\begin{equation}
-		NM_H = V_{DD} - V_{IH}
+		NM_H = V_{OH} - V_{IH}
 		\label{eq::noise_margin_high}
 	\end{equation}
 	
 	\begin{equation}
-		NM_L = V_{IL} - GND
+		NM_L = V_{IL} - V_{OL}
 		\label{eq::noise_margin_low}
 	\end{equation}
 	
-	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we only vary the input \texttt{a}, we can identify the unity gain points and the corresponding noise margins as follows:
+	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=1}, we can identify the unity gain points and solve for the noise margins.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
-		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{a}}
-		\label{fig::nand_noise_analysis_sweep_va}
+		\caption{Measuring Noise Margins for the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}	\label{fig::nand_noise_analysis_sweep_va}
 	\end{figure}
 	
-	Examining the ngspice outputs, we find that \texttt{Vil = 0.7536 V} and \texttt{Vih = 0.9944 V}. This implies that \texttt{Nmh = 1.8 V - 0.9944 V = 0.8056 V} and \texttt{Nml = 0.7536 V}. We can repeat this analysis for independent variations of input \texttt{a} and for joint variations of inputs \texttt{a} and \texttt{b}. The ngspice outputs for this analysis are included in Figure \ref{fig::nand_noise_analysis_sweep_vb} and \ref{fig::nand_noise_analysis_sweep_va_vb}.
+	Examining the outputs shown in Figure \ref{fig::nand_noise_analysis_sweep_va}, we find that \texttt{Vil = 0.6926 V} and \texttt{Vih = 0.9264 V}. This implies that \texttt{Nmh = 1.8 V - 0.9264 V = 0.8736 V} and \texttt{Nml = 0.6926 V - 0 V = 0.6926 V}. With slight modifications to the test circuit, we can measure the noise margins for the sets of inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nand_gate_noise_analysis}.
 	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_vb.png}}
-		\caption{Measuring \texttt{Vil} for the NAND Gate when Input Variations are Limited to Input \texttt{b}}
-		\label{fig::nand_noise_analysis_sweep_vb}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va_vb.png}}
-		\caption{Measuring \texttt{Vil} for the NAND Gate when Inputs \texttt{a} and \texttt{b} are Varied Together}
-		\label{fig::nand_noise_analysis_sweep_va_vb}
-	\end{figure}
-	
-	Examining the outputs, we find that the noise margins are defined as \texttt{Nmh = 0.8146 V} and \texttt{Nml = 0.7706 V} when input variations are limited to input \texttt{b}. When we vary the inputs \texttt{a} and \texttt{b} in unison, we find that the noise margins are \texttt{Nmh = 0.7126 V} and \texttt{Nml = 0.8596 V}.
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins for Each Set of Inputs That Result in an Output Logic Level Change}
+	\label{table::nand_gate_noise_analysis}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $0.9264 \text{V}$ & $0.6926 \text{V}$ & $0.8736 \text{V}$ & $0.6926 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $0.9184 \text{V}$ & $0.7116 \text{V}$ & $0.8816 \text{V}$ & $0.7116 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $1.0224 \text{V}$ & $0.8046 \text{V}$ & $0.7776 \text{V}$ & $0.8046 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\subsubsection{Delay Analysis}
 	
