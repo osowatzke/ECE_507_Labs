@@ -217,25 +217,41 @@
 	\end{center}
 	\end{table}
 	
-	we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nand_vtc_test_sweep_va}.
-	
-	
+	\noindent The test circuit we use to generate the VTC for the first entry in the above table is shown in Figure \ref{fig::nand_vtc_test_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va.png}}
-		\caption{NAND VTC Test Circuit for Independent Variations of Input \texttt{a}}
+		\caption{NAND VTC Test Circuit for Variations of \texttt{a} with \texttt{b=1}}
 		\label{fig::nand_vtc_test_sweep_va}
-	\end{figure}
+	\end{figure}	
 	
-	Using this test circuit, we perform DC analysis to determine the VTC and find \texttt{Va}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
+	\noindent Using this test circuit, we perform DC analysis to generate the VTC and find \texttt{Vm}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va.png}}
-		\caption{NAND VTC Results for Independent Variations of Input \texttt{a}}
+		\caption{NAND VTC Results for Variations of \texttt{a} with \texttt{b=1}}
 		\label{fig::nand_vtc_sweep_va}
 	\end{figure}
 	
-	Examining the results, we find that \texttt{Vm = 0.8805V}. We perform similar analysis for independent variations of the input \texttt{b}. The test circuit and results are attached in figures \ref{fig::nand_vtc_test_sweep_vb} and \ref{fig::nand_vtc_sweep_vb} independently.
+	Examining the results, we find that \texttt{Vm = 0.8257V}. With slight modifications to our test circuit, we perform similar analysis to find \texttt{Vm} for the other sets inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. These results are included in Table \ref{table::nand_gate_vm}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{\texttt{Vm} for Each Set of Inputs That Result in an Output Logic Level Change}
+	\label{table::nand_gate_vm}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $0.8257 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $0.8195 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_vb.png}}
