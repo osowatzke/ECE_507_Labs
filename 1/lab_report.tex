@@ -9,6 +9,9 @@
 \usepackage{listings}
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
+\usepackage{indentfirst}
+%\usepackage{chngcntr}
+%\counterwithin{table}{section}
 \graphicspath{
 {./images}
 {./images/nand}
@@ -155,23 +158,6 @@
 	
 	\begin{table}
 	\begin{center}
-	\caption{Inputs that Create High to Low Transition for NAND Gate}
-	\begin{tabular}{| c | c |}
-		\hline
-		\texttt{a} & \texttt{b} \\
-		\hline	
-		$0 \rightarrow 1$ & $1$\\
-		\hline	
-		$1$ & $0 \rightarrow 1$\\
-		\hline	
-		$0 \rightarrow 1$ & $0 \rightarrow 1$\\
-		\hline
-	\end{tabular}
-	\end{center}
-	\end{table}
-	
-	\begin{table}
-	\begin{center}
 	\caption{Inputs that Create High to Low Transition for NOR Gate}
 	\begin{tabular}{| c | c |}
 		\hline
@@ -211,7 +197,29 @@
 	
 	\subsubsection{Voltage Transfer Characteristics}
 	
-	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nand_vtc_test_sweep_va}.
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we need to analyze the VTC for all combinations of inputs that lead to a logic level change. To generate the VTC in ngspice, we only need to consider one set of transitions because we care about the steady state output voltages for each input voltage. As such, we analyze the input voltages that result in high-to-low transitions. These voltages are dictated in Table \ref{table::nand_gate_high_to_low_transitions}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Inputs that Create High to Low Transition for NAND Gate}
+	\label{table::nand_gate_high_to_low_transitions}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{a} & \texttt{b} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	we analyze the VTC when varying \texttt{a} and \texttt{b} independently and when varying \texttt{a} and \texttt{b} together. The test circuit we use when just varying the input \texttt{a} is included in Figure \ref{fig::nand_vtc_test_sweep_va}.
+	
+	
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va.png}}
