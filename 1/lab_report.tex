@@ -395,9 +395,11 @@
 	
 	\subsection{NOR Gate}
 	
-	The pull-down circuit of the NAND gate is composed of two parallel NMOS gates. The pull-up circuit is the complement and is composed of two sequential PMOS gates. Note that we also increase the width of the PMOS transistor by a factor of 2 to account for the lower mobility of holes in the p-type material. The schematic for the resulting circuit is shown in Figure \ref{fig::nor_schematic}.
-	
 	\subsubsection{Design}
+	
+	The NOR gate pull-down circuit is composed of two parallel NMOS transistors. The pull-up circuit is the complement of the pull-down circuit and is composed of two PMOS transistors in series. For analysis, we can create an equivalent inverter from the NOR gate. In this equivalent inverter, the channel length of the PMOS transistor is doubled because the PMOS transistors in the NOR gate are laid out in series. (This is equivalent to halving the width of the transistor). The NOR gate pull-down circuit is on when either transistor is on. However, for analysis, we consider the worst (slowest) case, when only one transistor is on. Therefore, the NMOS transistor width in the equivalent inverter remains unchanged.
+	
+	For an inverter, we know that we need to make the width of the PMOS transistor twice as large as the width NMOS transistor because the mobility of holes is lower than the mobility of electrons. We can map these sizes back to the NOR gate. Doing so, we find that NMOS transistor width in the NOR gate should be the same as the inverter, and the PMOS transistor width should be doubled. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we should make the NMOS width 1 and the PMOS width 4. The NOR gate circuit with these transistor widths is shown in Figure \ref{fig::nor_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_schematic.png}}
@@ -405,7 +407,7 @@
 		\label{fig::nor_schematic}
 	\end{figure}
 	
-	We also create a circuit symbol for the NOR gate, which is shown in Figure \ref{fig::nor_symbol}.
+	\noindent We also create a circuit symbol for the NOR gate, to allow reuse in other schematics. This circuit symbol is shown in Figure \ref{fig::nor_symbol}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_symbol.png}}
