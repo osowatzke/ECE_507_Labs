@@ -29,12 +29,12 @@
 {./images/nmos}
 {./images/pmos}}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=black,      
-    urlcolor=blue
-    }
+%\hypersetup{
+%    colorlinks=true,
+%    linkcolor=black,
+%    filecolor=black,      
+%    urlcolor=blue
+%    }
 
 \newcommand{\zerodisplayskip}{
 	\setlength{\abovedisplayskip}{0pt}%
@@ -241,6 +241,22 @@
 	\noindent Reviewing our captured results, we see that \texttt{Vm} is dependent on the gate inputs. \texttt{Vm} is the largest when both gates switch at the same time. This makes sense because our pull-up network is strongest in this case, causing \texttt{Vm} to shift to the right.
 	
 	We can solve the IV equations to find \texttt{Vm} analytically. However, that can get complicated, especially for gates more complex than an inverter. When both inputs switch at the same time, we can instead use an equivalent inverter model described in \cite{cmos_vlsi_design, equivalent_inverter, inverter_dc_analysis}. In the equivalent inverter model, we treat the gate as an inverter and scale the NMOS and PMOS transistors to reflect the series and parallel transistors. For parallel connections, the equivalent resistance will be halved, and for series connections, the equivalent resistance will be doubled. For an NAND gate, this is equivalent to doubling the PMOS width (halving PMOS resistance) and halving NMOS width (doubling NMOS resistance).
+	
+	In an inverter, we can solve for \texttt{Vm} as follows:
+	
+	\begin{equation}
+		\label{eq::vm}
+		V_{M} = \frac{\left(V_{T_n} + \frac{V_{DSAT_n}}{2}\right) + r\left(V_{DD} + V_{T_p} + \frac{V_{DSAT_p}}{2}\right)}{1 + r}
+	\end{equation}
+	
+	\noindent where:
+	
+	\begin{equation}
+		\label{eq::beta_ratio}
+		r = \frac{\beta_pV_{DSAT_p}}{\beta_nV_{DSAT_n}} = \frac{k_pW_pV_{DSAT_p}}{k_nW_nV_{DSAT_n}}
+	\end{equation}
+	
+	\noindent In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $Vm$. Doing so, we find that $V_m \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, equation \label{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|Vgs - Vt| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class do not do a good job of representing the current in the transition between linear and saturation regions, where $V_m$ unfortunately lies. 
 	
 	\subsubsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
@@ -616,14 +632,6 @@
 	\end{equation}
 	
 	\begin{equation}
-		V_{M} = \frac{\left(V_{T_n} + \frac{V_{DSAT_n}}{2}\right) + r\left(V_{DD} + V_{T_p} + \frac{V_{DSAT_p}}{2}\right)}{1 + r}
-	\end{equation}
-	
-	\begin{equation}
-		r = \frac{k_pV_{DSAT_p}}{k_nV_{DSAT_n}} = \frac{{\nu}_{satp}W_p}{{\nu}_{satn}W_n}
-	\end{equation}
-	
-	\begin{equation}
 		g = -\frac{1}{I_D(V_M)}\frac{k_nV_{DSAT_n} + k_pV_{DSAT_p}}{\lambda_n - \lambda_p} \approx \frac{1 + r}{(V_M - V_{T_n} - V_{DSAT_n}/2)(\lambda_n - \lambda_p)}
 	\end{equation}
 	
@@ -640,6 +648,7 @@
 	\pagebreak
 	\appendix
 	\section{NMOS IV Characteristics}
+	\label{appendix::nmos_iv_characteristics}
 	
 	In this appendix, we fit a first-order mosfet model to NMOS IV characteristics measured with the sky130A PDK. This enables us to use the equations presented in class to perform first-order analysis of our CMOS gate. We start by estimating the threshold voltage of the NMOS transistor. To perform this measurement, we use the linear extrapolation (or maximum gm) method given in \cite{cmos_vlsi_design}. Our ngspice flowchart for this analysis is given in Figure \ref{fig::nmos_vt_meas_schem}.
 	
@@ -780,6 +789,7 @@
 	
 	\pagebreak
 	\section{PMOS IV Characteristics}
+	\label{appendix::pmos_iv_characteristics}
 	
 	In this appendix, we fit a first-order mosfet model to PMOS IV characteristics measured with the sky130A PDK. This enables us to use the equations presented in class to perform first-order analysis of our CMOS gate. We start by estimating the threshold voltage of the PMOS transistor. To perform this measurement, we use the linear extrapolation (or maximum gm) method given in \cite{cmos_vlsi_design}. Our ngspice flowchart for this analysis is given in Figure \ref{fig::pmos_vt_meas_schem}.
 	
@@ -792,7 +802,7 @@
 	\noindent Using the flowchart, we examine the drain current for the PMOS transistor in the linear region of operation. In this region, the drain current of the PMOS transistor is given as follows:
 	
 	\begin{equation}
-		I_{ds} = -k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{ds}}{2}\right)V_{ds}
+		I_{ds} = k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{ds}}{2}\right)V_{ds}
 	\end{equation}
 	
 	\noindent To fit the IV characteristics, we estimate the $I_{ds}$ curve with a line that is tangent to the point with maximum-slope. We then define $V_t$ as the voltage at which the estimated current is zero. This procedure is illustrated in Figure \ref{fig::pmos_vt_meas}, which predicts a threshold voltage of -0.793 V.
@@ -815,7 +825,7 @@
 	
 	\begin{equation}
 		\label{eq::pmos_sat_current}
-		I_{ds} = -k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})
+		I_{ds} = k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})
 	\end{equation}
 	
 	\noindent If we analyze the ratio of drain currents for the same values of $V_{ds}$ and different values of $V_{gs}$, we can express the ratios as follows:
@@ -869,7 +879,7 @@
 	\noindent Using $\lambda$, we can solve for $k_p$. To do so, we use the current at $V_{ds}=-1.8\ \text{V}$ and Equation \ref{eq::pmos_sat_current}. Solving for $k_p$, we obtain:
 	
 	\begin{equation}
-		k_p = -I_{ds}\left[\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})\right]^{-1} = 63.25 {\mu}A/V^2
+		k_p = I_{ds}\left[\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})\right]^{-1} = -63.25 {\mu}A/V^2
 	\end{equation}
 	
 	Finally, we can solve for the body effect coefficient, $\gamma$. To do so, we compute the threshold voltage with a non-zero source-to-body voltage, $V_{SB}$. Our test circuit for this measurement is shown in Figure \ref{fig::pmos_gamma_meas_schem}.
@@ -910,7 +920,7 @@
 		\hline	
 		$\lambda$ & $-0.335\ \text{V}^{-1}$\\
 		\hline	
-		$k_p$ & $63.25\ {\mu}A/V^2$\\
+		$k_p$ & $-63.25\ {\mu}A/V^2$\\
 		\hline	
 		$\gamma$ & $-0.261\ \text{V}^{1/2}$\\
 		\hline
