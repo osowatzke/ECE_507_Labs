@@ -856,7 +856,7 @@
 		\lambda = \frac{\alpha - 1}{V_{ds_1} - V_{ds_2}}
 	\end{equation}
 	
-	\noindent In Figure \ref{fig::pmos_lambda_meas}, we perform this analysis for the PMOS circuit and find that $\lambda = 0.128 V^{-1}$.
+	\noindent In Figure \ref{fig::pmos_lambda_meas}, we perform this analysis for the PMOS circuit and find that $\lambda = -0.335 V^{-1}$.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{pmos_lambda_meas.png}}
@@ -864,10 +864,10 @@
 		\label{fig::pmos_lambda_meas}
 	\end{figure}
 	
-	\noindent Using $\lambda$, we can solve for $k_p$. To do so, we use the current at $V_{ds}=1.8\ \text{V}$ and Equation \ref{eq::pmos_sat_current}. Solving for $k_p$, we obtain:
+	\noindent Using $\lambda$, we can solve for $k_p$. To do so, we use the current at $V_{ds}=-1.8\ \text{V}$ and Equation \ref{eq::pmos_sat_current}. Solving for $k_p$, we obtain:
 	
 	\begin{equation}
-		k_p = -I_{ds}\left[\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})\right]^{-1} = 321.6 {\mu}A/V^2
+		k_p = -I_{ds}\left[\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})\right]^{-1} = 63.25 {\mu}A/V^2
 	\end{equation}
 	
 	Finally, we can solve for the body effect coefficient, $\gamma$. To do so, we compute the threshold voltage with a non-zero source-to-body voltage, $V_{SB}$. Our test circuit for this measurement is shown in Figure \ref{fig::pmos_gamma_meas_schem}.
@@ -886,13 +886,13 @@
 		\label{fig::pmos_gamma_meas}
 	\end{figure}
 	
-	\noindent Examining our measured data, we find that $V_T = 0.893 text{V}$. Next, we can solve for the body effect coefficient as follows:
+	\noindent Examining our measured data, we find that $V_T = -0.921\ \text{V}$. Next, we can solve for the body effect coefficient as follows:
 	
 	\begin{equation}
-		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F + V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
+		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F - V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
 	\end{equation}
 	
-	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = 0.273 V^{1/2}$. We summarize our results in Table \ref{table::pmos_derived_params}.
+	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = -0.261 V^{1/2}$. We summarize our results in Table \ref{table::pmos_derived_params}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -902,15 +902,15 @@
 		\hline
 		\texttt{Parameter} & \texttt{Value}\\
 		\hline	
-		$V_{T_0}$ & $0.759\ \text{V}$ \\
+		$V_{T_0}$ & $-0.793\ \text{V}$ \\
 		\hline	
-		$V_{DSAT}$ & $0.202\ \text{V}$ \\
+		$V_{DSAT}$ & $-0.361\ \text{V}$ \\
 		\hline	
-		$\lambda$ & $0.128\ \text{V}^{-1}$\\
+		$\lambda$ & $-0.335\ \text{V}^{-1}$\\
 		\hline	
-		$k_n$ & $321.6\ {\mu}A/V^2$\\
+		$k_n$ & $63.25\ {\mu}A/V^2$\\
 		\hline	
-		$\gamma$ & $0.273\ \text{V}^{1/2}$\\
+		$\gamma$ & $-0.261\ \text{V}^{1/2}$\\
 		\hline
 	\end{tabular}
 	\end{center}
