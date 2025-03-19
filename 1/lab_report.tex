@@ -799,7 +799,7 @@
 		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F + V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
 	\end{equation}
 	
-	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = 0.273 V^{1/2}$. We summarize our results in Table \ref{table::nmos_derived_params}.
+	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = 0.273 V^{1/2}$. We summarize our results in Table \ref{table::nmos_derived_params} and show a fit of the data in Figure \ref{fig::nmos_iv_fit}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -822,6 +822,12 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_iv_fit.png}}
+		\caption{Fitting Level 1 Mosfet Model to NMOS IV Data}
+		\label{fig::nmos_iv_fit}
+	\end{figure}	
 	
 	\pagebreak
 	\section{PMOS IV Characteristics}
@@ -940,7 +946,7 @@
 		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F - V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
 	\end{equation}
 	
-	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = -0.261 V^{1/2}$. We summarize our results in Table \ref{table::pmos_derived_params}.
+	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = -0.261 V^{1/2}$. We summarize our results in Table \ref{table::pmos_derived_params} and show a fit of the data in Figure \ref{fig::pmos_iv_fit}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -963,4 +969,10 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_iv_fit.png}}
+		\caption{Fitting Level 1 Mosfet Model to PMOS IV Data}
+		\label{fig::pmos_iv_fit}
+	\end{figure}
 \end{document}
