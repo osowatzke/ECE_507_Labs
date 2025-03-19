@@ -729,5 +729,50 @@
 		k_n = I_{ds}\left[\frac{W_n}{L}\left(V_{gs} - V_{t_n} - \frac{V_{DSAT_n}}{2}\right)V_{DSAT_n}(1 + {\lambda}V_{ds})\right]^{-1} = 321.6 {\mu}A/V^2
 	\end{equation}
 	
-	 
+	Finally, we can solve for the body effect coefficient, $\gamma$. To do so, we compute the threshold voltage with a non-zero source-to-body voltage, $V_{SB}$. Our test circuit for this measurement is shown in Figure \ref{fig::nmos_gamma_meas_schem}.
+	
+	 \begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_gamma_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Body Effect Coefficient}
+		\label{fig::nmos_gamma_meas_schem}
+	\end{figure}
+	
+	\noindent Using the test circuit, we can measure an updated threshold voltage as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_gamma_meas.png}}
+		\caption{Determine Updated NMOS Threshold Voltage}
+		\label{fig::nmos_gamma_meas}
+	\end{figure}
+	
+	\noindent Examining our measured data, we find that $V_T = 0.893 text{V}$. Next, we can solve for the body effect coefficient as follows:
+	
+	\begin{equation}
+		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F + V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
+	\end{equation}
+	
+	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = 0.273 V^{1/2}$. We summarize our results in Table \ref{table::nmos_derived_params}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Derived Parameters for NMOS Gate}
+	\label{table::nmos_derived_params}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{Parameter} & \texttt{Value}\\
+		\hline	
+		$V_{T_0}$ & $0.759\ \text{V}$ \\
+		\hline	
+		$V_{DSAT}$ & $0.202\ \text{V}$ \\
+		\hline	
+		$\lambda$ & $0.128\ \text{V}^{-1}$\\
+		\hline	
+		$k_n$ & $321.6\ {\mu}A/V^2$\\
+		\hline	
+		$\gamma$ & $0.273\ \text{V}^{1/2}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 \end{document}
