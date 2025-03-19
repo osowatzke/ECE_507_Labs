@@ -601,6 +601,10 @@
 	\end{center}
 	\end{table}
 	
+	\subsection{Conclusion}
+	
+	In this lab, we used xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. To balance the equivalent resistance of the pull-up and pull-down networks, we learned that we had to modify the widths of the transistors in each network. In the NAND gate, we specifically doubled the widths of the NMOS gates, while keeping the widths of the PMOS gates constant. Similarly, for the NOR gate, we doubled the widths of the PMOS gates, while keeping the widths of the NMOS gates constant. Following the procedure described for the inverter, we also determined the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also use the equations presented in class to theoretically compute these parameters. The equations presented in class proved difficult to analyze for each of the gates. As a result, we used the equivalent inverter model to simplify our analysis. However, our theoretical analysis proved to be a poor fit for the measured data for a couple reasons. First, the equations presented in class assumed that the transistors were in the velocity saturation, which was not the case in most of our equations. Additionally, the level 1 mosfet models we used for our theoretical analysis proved to be a poor fit for the IV data in between the resistive and velocity saturation regions.
+	
 	\subsection{NAND Gate}
 
 	\begin{align}
