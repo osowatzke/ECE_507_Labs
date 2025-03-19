@@ -378,6 +378,8 @@
 	
 	\section{NOR Gate}
 	
+	In this section, we analyze the NOR gate built using SkyWater 130nm technology. We start by drawing a NOR gate and its corresponding symbol in xschem. Next, using ngspice, we analyze the voltage transfer characteristics of the gate, determining the switching threshold, $V_M$, and the noise margins. Then, using transient analysis, we measure the delay of the gate and its power consumption. For each value that we measure, we also compute a theoretical-equivalent using the equations provided in class.
+	
 	\subsection{Design}
 	
 	The NOR gate pull-down circuit is composed of two parallel NMOS transistors. The pull-up circuit is the complement of the pull-down circuit and is composed of two PMOS transistors in series. For analysis, we can create an equivalent inverter from the NOR gate. In this equivalent inverter, the channel length of the PMOS transistor is doubled because the PMOS transistors in the NOR gate are laid out in series. (This is equivalent to halving the width of the transistor). The NOR gate pull-down circuit is on when either transistor is on. However, for analysis, we consider the worst (slowest) case, when only one transistor is on. Therefore, the NMOS transistor width in the equivalent inverter remains unchanged.
