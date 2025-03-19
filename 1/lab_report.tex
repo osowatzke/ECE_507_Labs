@@ -256,7 +256,7 @@
 		r = \frac{\beta_pV_{DSAT_p}}{\beta_nV_{DSAT_n}} = \frac{k_pW_pV_{DSAT_p}}{k_nW_nV_{DSAT_n}}
 	\end{equation}
 	
-	\noindent In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $Vm$. Doing so, we find that $V_m \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, equation \label{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|Vgs - Vt| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class do not do a good job of representing the current in the transition between linear and saturation regions, where $V_m$ unfortunately lies. 
+	\noindent In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $Vm$. Doing so, we find that $V_m \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|Vgs - Vt| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class do not do a good job of representing the current in the transition between linear and saturation regions, where $V_m$ unfortunately lies. 
 	
 	\subsubsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
@@ -294,11 +294,47 @@
 		\hline	
 		$1$ & $0 \rightarrow 1$ & $0.9184 \text{V}$ & $0.7116 \text{V}$ & $0.8816 \text{V}$ & $0.7116 \text{V}$\\
 		\hline	
-		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $1.0224 \text{V}$ & $0.8046 \text{V}$ & $0.7776 \text{V}$ & $0.8046 \text{V}$\\
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $1.0224 \text{V}$ & $0.8046 \text{V}$ & $0.7776 \text{V}$ & $0.7776 \text{V}$\\
 		\hline
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	We can also compute the noise margins using the equations presented in class. For this analysis, we consider the case where \texttt{a} and \texttt{b} vary together. This allows us to analyze the circuit with an equivalent inverter model. For our theoretical analysis, we also consider Figure \ref{fig::noise_margins_theory}, which is provided in \cite{rabaey_2003_digital}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{noise_margins_theory.png}}
+		\caption{Theoretical Noise Margins Analysis}
+		\label{fig::noise_margins_theory}
+	\end{figure}
+	
+	\noindent From the graph, we see that we can define $V_{IL}$ and $V_{IH}$ as follows:
+	
+	\begin{equation}
+		V_{IH} = V_{M} - \frac{V_M}{g}
+	\end{equation}
+	
+	\begin{equation}
+		V_{IL} = V_{M} + \frac{V_{DD} - V_M}{g}
+	\end{equation}
+	
+	\noindent For an inverter we can also define $g$ as follows:
+	
+	\begin{equation}
+		g = -\frac{1}{I_D(V_M)}\frac{k_nV_{DSAT_n} + k_pV_{DSAT_p}}{\lambda_n - \lambda_p} \approx \frac{1 + r}{(V_M - V_{T_n} - V_{DSAT_n}/2)(\lambda_n - \lambda_p)}
+	\end{equation}
+	
+	\noindent Substituting values from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, we find that $g \approx -265$. If we then use our theoretical estimate of $V_{M}$, we find that $V_{IL} \approx 0.8368\ \text{V}$ and $V_{IH} \approx 0.8436\ \text{V}$, which implies that $NM_L = 0.8368\ \text{V}$ and $NM_H \approx 0.9564\ \text{V}$. Note that this is  significantly different than our measured values. As discussed above, this is because $V_m$ is not in the velocity saturation region and because the level 1 model does not fit the transition between linear and saturation regions well.
+	
+	For our theoretical work, we can also use parameters measured in ngspice. We specifically use $Vm = 0.9108 V$ and $g = -14.83$, which we found in accordance with the steps in Figure \ref{fig::nand_noise_analysis_g_sweep_va_vb}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_g_sweep_va_vb.png}}
+		\caption{Gain Measurement}
+		\label{fig::nand_noise_analysis_g_sweep_va_vb}
+	\end{figure}
+	
+	\noindent With the updated values, we find that $V_{IL} \approx 0.8508\ \text{V}$ and $V_{IH} \approx 0.9722\ \text{V}$, which implies that $NM_L = 0.8508\ \text{V}$ and $NM_H \approx 0.8278\ \text{V}$. These values are a lot closer to the theoretical values, but still contain a large margin of error.
 	
 	\subsubsection{Delay Analysis}
 	
