@@ -123,7 +123,7 @@
 	
 	\subsection{Voltage Transfer Characteristics}
 	
-	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we need to analyze the VTC for all combinations of inputs that lead to a logic level change. To generate the VTC in ngspice, we only need to consider one set of transitions because we care about the steady state output voltages for each input voltage. As such, we analyze the input voltages that result in high-to-low transitions. These voltages are dictated in Table \ref{table::nand_gate_high_to_low_transitions}.
+	In this section, we analyze the voltage transfer characteristics (VTC) of our NAND gate. For this analysis, we analyze the VTC for all combinations of inputs that lead to an output logic level change. When generating the VTC in ngspice, we consider consider only one set of transitions because the steady state output voltages are the same regardless of which direction we sweep. As such, we analyze the input voltages that result in high-to-low transitions. These voltages are dictated in Table \ref{table::nand_gate_high_to_low_transitions}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -143,7 +143,7 @@
 	\end{center}
 	\end{table}
 	
-	\noindent The test circuit we use to generate the VTC for the first entry in the above table is shown in Figure \ref{fig::nand_vtc_test_sweep_va}.
+	\noindent The test circuit we use to generate the VTC for the first entry in the table is given in Figure \ref{fig::nand_vtc_test_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_sweep_va.png}}
@@ -151,7 +151,7 @@
 		\label{fig::nand_vtc_test_sweep_va}
 	\end{figure}	
 	
-	\noindent Using this test circuit, we perform DC analysis to generate the VTC and find \texttt{Vm}, which is the voltage at which \texttt{Vin = Vout}. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
+	\noindent Using this test circuit, we perform DC analysis to generate the VTC and find $V_M$, which is the voltage at which $V_{in} = V_{out}$. The results of this analysis are shown in Figure \ref{fig::nand_vtc_sweep_va}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_sweep_va.png}}
@@ -159,7 +159,7 @@
 		\label{fig::nand_vtc_sweep_va}
 	\end{figure}
 	
-	Examining the results, we find that \texttt{Vm = 0.8257V}. With slight modifications to our test circuit, we perform similar analysis to find \texttt{Vm} for the other sets inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. These results are included in Table \ref{table::nand_gate_vm}.
+	Examining the results, we find that $V_M = 0.8257\ \text{V}$. With slight modifications to our test circuit, we can find $V_M$ for the other sets inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. These results are included in Table \ref{table::nand_gate_vm}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -179,11 +179,11 @@
 	\end{center}
 	\end{table}
 	
-	\noindent Reviewing our captured results, we see that \texttt{Vm} is dependent on the gate inputs. \texttt{Vm} is the largest when both gates switch at the same time. This makes sense because our pull-up network is strongest in this case, causing \texttt{Vm} to shift to the right.
+	\noindent Reviewing our captured results, we see that $V_M$ is dependent on the gate inputs. $V_M$ is the largest when both gates switch at the same time. This makes sense because our pull-up network is strongest in this case, causing $V_M$ to shift to the right.
 	
-	We can solve the IV equations to find \texttt{Vm} analytically. However, that can get complicated, especially for gates more complex than an inverter. When both inputs switch at the same time, we can instead use an equivalent inverter model described in \cite{cmos_vlsi_design, equivalent_inverter, inverter_dc_analysis}. In the equivalent inverter model, we treat the gate as an inverter and scale the NMOS and PMOS transistors to reflect the series and parallel transistors. For parallel connections, the equivalent resistance will be halved, and for series connections, the equivalent resistance will be doubled. For an NAND gate, this is equivalent to doubling the PMOS width, which halves PMOS resistance, and halving NMOS width, which doubles NMOS resistance.
+	We can solve the IV equations to find $V_M$ analytically. However, that can get complicated, especially for gates more complex than an inverter. When both inputs switch at the same time, we can instead use an equivalent inverter model described in \cite{cmos_vlsi_design, equivalent_inverter, inverter_dc_analysis}. In the equivalent inverter model, we treat the gate as an inverter and scale the NMOS and PMOS transistors to reflect the series and parallel transistors. For parallel connections, the equivalent resistance will be halved, and for series connections, the equivalent resistance will be doubled. For an NAND gate, this is equivalent to doubling the PMOS width and halving NMOS width.
 	
-	In an inverter, we can solve for $V_M$ as follows:
+	In an inverter (assuming velocity saturation), we can solve for $V_M$ as follows:
 	
 	\begin{equation}
 		\label{eq::vm}
@@ -197,7 +197,7 @@
 		r = \frac{\beta_pV_{DSAT_p}}{\beta_nV_{DSAT_n}} = \frac{k_pW_pV_{DSAT_p}}{k_nW_nV_{DSAT_n}}
 	\end{equation}
 	
-	\noindent In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class do not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ unfortunately lies. 
+	\noindent In Equation \ref{eq::beta_ratio}, we use the transistor widths of the equivalent. Then, we substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined. 
 	
 	\subsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
