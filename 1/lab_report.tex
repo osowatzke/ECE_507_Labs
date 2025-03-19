@@ -26,7 +26,8 @@
 {./images/nor/noise_analysis}
 {./images/nor/power}
 {./images/nor/vtc}
-{./images/nmos}}
+{./images/nmos}
+{./images/pmos}}
 
 \hypersetup{
     colorlinks=true,
@@ -775,4 +776,143 @@
 	\end{center}
 	\end{table}
 	
+	\pagebreak
+	\section{PMOS IV Characteristics}
+	
+	In this appendix, we fit a first-order mosfet model to PMOS IV characteristics measured with the sky130A PDK. This enables us to use the equations presented in class to perform first-order analysis of our CMOS gate. We start by estimating the threshold voltage of the PMOS transistor. To perform this measurement, we use the linear extrapolation (or maximum gm) method given in \cite{cmos_vlsi_design}. Our ngspice flowchart for this analysis is given in Figure \ref{fig::pmos_vt_meas_schem}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_vt_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the PMOS Threshold Voltage}
+		\label{fig::pmos_vt_meas_schem}
+	\end{figure}
+	
+	\noindent Using the flowchart, we examine the drain current for the PMOS transistor in the linear region of operation. In this region, the drain current of the PMOS transistor is given as follows:
+	
+	\begin{equation}
+		I_{ds} = -k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{ds}}{2}\right)V_{ds}
+	\end{equation}
+	
+	\noindent To fit the IV characteristics, we estimate the $I_{ds}$ curve with a line that is tangent to the point with maximum-slope. We then define $V_t$ as the voltage at which the estimated current is zero. This procedure is illustrated in Figure \ref{fig::pmos_vt_meas}, which predicts a threshold voltage of -0.793 V.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_vt_meas.png}}
+		\caption{Estimating PMOS Threshold Voltage}
+		\label{fig::pmos_vt_meas}
+	\end{figure}
+	
+	Next, we measure the saturation voltage. We use the flowchart shown in Figure \ref{fig::pmos_vt_meas_schem} to perform this measurement.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_vdsat_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the PMOS Saturation Voltage}
+		\label{fig::pmos_vdsat_meas_schem}
+	\end{figure}
+	
+	 \noindent In the above schematic, we consider the drain current in the velocity saturation region. The drain current in this region is defined as follows:
+	
+	\begin{equation}
+		\label{eq::pmos_sat_current}
+		I_{ds} = -k_p\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})
+	\end{equation}
+	
+	\noindent If we analyze the ratio of drain currents for the same values of $V_{ds}$ and different values of $V_{gs}$, we can express the ratios as follows:
+	
+	\begin{equation}
+		\frac{V_{gs_1} - V_{t_n} - V_{DSAT_p}/2}{V_{gs_2} - V_{t_n} - V_{DSAT_p}/2} = \frac{V_{gs_1} - V}{V_{gs_2} - V} = \frac{I_{ds_1}}{I_{ds_2}} = \alpha
+	\end{equation}
+	
+	\noindent Solving for $V$, we obtain the following:
+	
+	\begin{equation}
+		V = \frac{{\alpha}V_{gs_2} - V_{gs_1}}{\alpha - 1}
+	\end{equation}
+	
+	\noindent where $V_{DSAT_p} = 2(V - V_{t_p})$. Following the procedure outlined above, we execute the following commands in ngspice to derive the saturation voltage. Our work is shown in Figure \ref{fig::pmos_vdsat_meas} and we find that $V_{DSAT_p} = -0.361\ \text{V}$.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_vdsat_meas.png}}
+		\caption{Measuring the PMOS Saturation Voltage}
+		\label{fig::pmos_vdsat_meas}
+	\end{figure}
+	
+	Then, we find the channel length modulation coefficient $\lambda$. To do this, we use the NGSPICE schematic shown in Figure \ref{fig::pmos_lambda_meas_schem}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_lambda_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the PMOS Channel Length Modulation Coefficient}
+		\label{fig::pmos_lambda_meas_schem}
+	\end{figure}
+	
+	\noindent Here, we once again consider currents in the velocity saturation state. We specifically look at the ratios of currents when varying $V_{ds}$ and keeping $V_{gs}$ constant. Doing so, we obtain the following:
+	
+	\begin{equation}
+		\frac{1 + {\lambda}V_{ds_1}}{1 + {\lambda}V_{ds_2}} = \frac{I_{ds_1}}{I_{ds_2}} = \alpha
+	\end{equation}
+	
+	\noindent Solving for $\lambda$, we obtain the following:
+	
+	\begin{equation}
+		\lambda = \frac{\alpha - 1}{V_{ds_1} - V_{ds_2}}
+	\end{equation}
+	
+	\noindent In Figure \ref{fig::pmos_lambda_meas}, we perform this analysis for the PMOS circuit and find that $\lambda = 0.128 V^{-1}$.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_lambda_meas.png}}
+		\caption{NGSPICE Schematic Used to Measure the PMOS Channel Length Modulation Coefficient}
+		\label{fig::pmos_lambda_meas}
+	\end{figure}
+	
+	\noindent Using $\lambda$, we can solve for $k_p$. To do so, we use the current at $V_{ds}=1.8\ \text{V}$ and Equation \ref{eq::pmos_sat_current}. Solving for $k_p$, we obtain:
+	
+	\begin{equation}
+		k_p = -I_{ds}\left[\frac{W_p}{L}\left(V_{gs} - V_{t_p} - \frac{V_{DSAT_p}}{2}\right)V_{DSAT_p}(1 + {\lambda}V_{ds})\right]^{-1} = 321.6 {\mu}A/V^2
+	\end{equation}
+	
+	Finally, we can solve for the body effect coefficient, $\gamma$. To do so, we compute the threshold voltage with a non-zero source-to-body voltage, $V_{SB}$. Our test circuit for this measurement is shown in Figure \ref{fig::pmos_gamma_meas_schem}.
+	
+	 \begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_gamma_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the PMOS Body Effect Coefficient}
+		\label{fig::pmos_gamma_meas_schem}
+	\end{figure}
+	
+	\noindent Using the test circuit, we can measure an updated threshold voltage as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{pmos_gamma_meas.png}}
+		\caption{Determine Updated PMOS Threshold Voltage}
+		\label{fig::pmos_gamma_meas}
+	\end{figure}
+	
+	\noindent Examining our measured data, we find that $V_T = 0.893 text{V}$. Next, we can solve for the body effect coefficient as follows:
+	
+	\begin{equation}
+		\gamma = \frac{V_T - V_{T_0}}{\sqrt{|-2\phi_F + V_{SB}|} - {\sqrt{|-2\phi_F|}}} 
+	\end{equation}
+	
+	\noindent Assuming $2\phi = -0.6 V$, we find that $\gamma = 0.273 V^{1/2}$. We summarize our results in Table \ref{table::pmos_derived_params}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Derived Parameters for PMOS Gate}
+	\label{table::pmos_derived_params}
+	\begin{tabular}{| c | c |}
+		\hline
+		\texttt{Parameter} & \texttt{Value}\\
+		\hline	
+		$V_{T_0}$ & $0.759\ \text{V}$ \\
+		\hline	
+		$V_{DSAT}$ & $0.202\ \text{V}$ \\
+		\hline	
+		$\lambda$ & $0.128\ \text{V}^{-1}$\\
+		\hline	
+		$k_n$ & $321.6\ {\mu}A/V^2$\\
+		\hline	
+		$\gamma$ & $0.273\ \text{V}^{1/2}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
