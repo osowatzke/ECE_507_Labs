@@ -671,6 +671,7 @@
 	 \noindent In the above schematic, we consider the drain current in the velocity saturation region. The drain current in this region is defined as follows:
 	
 	\begin{equation}
+		\label{eq::nmos_sat_current}
 		I_{ds} = k_n\frac{W_n}{L}\left(V_{gs} - V_{t_n} - \frac{V_{DSAT_n}}{2}\right)V_{DSAT_n}(1 + {\lambda}V_{ds})
 	\end{equation}
 	
@@ -694,5 +695,39 @@
 		\label{fig::nmos_vdsat_meas}
 	\end{figure}
 	
+	Then, we find the channel length modulation coefficient $\lambda$. To do this, we use the NGSPICE schematic shown in Figure \ref{fig::nmos_lambda_meas_schem}.
 	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vt_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Channel Length Modulation Coefficient}
+		\label{fig::nmos_lambda_meas_schem}
+	\end{figure}
+	
+	\noindent Here, we once again consider currents in the velocity saturation state. We specifically look at the ratios of currents when varying $V_{ds}$ and keeping $V_{gs}$ constant. Doing so, we obtain the following:
+	
+	\begin{equation}
+		\frac{1 + {\lambda}V_{ds_1}}{1 + {\lambda}V_{ds_2}} = \frac{I_{ds_1}}{I_{ds_2}} = \alpha
+	\end{equation}
+	
+	\noindent Solving for $\lambda$, we obtain the following:
+	
+	\begin{equation}
+		\lambda = \frac{\alpha - 1}{V_{ds_1} - V_{ds_2}}
+	\end{equation}
+	
+	\noindent In Figure \ref{fig::nmos_lambda_meas}, we perform this analysis for the NMOS circuit and find that $\lambda = 0.128 V^{-1}$.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_lambda_meas.png}}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Channel Length Modulation Coefficient}
+		\label{fig::nmos_lambda_meas}
+	\end{figure}
+	
+	\noindent Using $\lambda$, we can solve for $k_n$. To do so, we use the current at $V_{ds}=1.8\ \text{V}$ and Equation \ref{eq::nmos_sat_current}. Solving for $k_n$, we obtain:
+	
+	\begin{equation}
+		k_n = I_{ds}\left[\frac{W_n}{L}\left(V_{gs} - V_{t_n} - \frac{V_{DSAT_n}}{2}\right)V_{DSAT_n}(1 + {\lambda}V_{ds})\right]^{-1} = 321.6 {\mu}A/V^2
+	\end{equation}
+	
+	 
 \end{document}
