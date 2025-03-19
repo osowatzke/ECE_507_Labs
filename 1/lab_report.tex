@@ -270,7 +270,7 @@
 	
 	\noindent Substituting values from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, we find that $g \approx -265$. If we then use our theoretical estimate of $V_{M}$, we find that $V_{IL} \approx 0.8368\ \text{V}$ and $V_{IH} \approx 0.8436\ \text{V}$, which implies that $NM_L \approx 0.8368\ \text{V}$ and $NM_H \approx 0.9564\ \text{V}$. Note that these values are significantly different than our measured values. As discussed above, this occurs for two reasons. First, $V_M$ is not in the velocity saturation region. Second, the level 1 model equations do not fit the transition between linear and velocity saturation regions well.
 	
-	To improve the quality of our theoretical noise margin estimates, we can instead use parameters from in ngspice. We specifically use $V_M = 0.9108 V$ and $g = -14.83$, where $g$ is computed in Figure \ref{fig::nand_noise_analysis_g_sweep_va_vb}.
+	To improve the quality of our theoretical noise margin estimates, we can instead use parameters measured in ngspice. We specifically use $V_M = 0.9108 V$ and $g = -14.83$, where $g$ is computed in Figure \ref{fig::nand_noise_analysis_g_sweep_va_vb}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_g_sweep_va_vb.png}}
@@ -466,14 +466,14 @@
 	
 	\subsection{Noise Analysis}
 	
-	Using the test circuit shown in Figure \ref{fig::nor_vtc_test_sweep_va}, we can also measure the noise margins, which are defined by Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. In the referenced formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=0}, we can identify the unity gain points and solve for the noise margins.
+	Using the test circuit shown in Figure \ref{fig::nor_vtc_test_sweep_va}, we can also measure the noise margins, which are defined by Equations \ref{eq::noise_margin_high} and \ref{eq::noise_margin_low}. In the referenced formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain function is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=0}, we can identify the unity gain points and solve for the noise margins.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_sweep_va.png}}
 		\caption{Measuring Noise Margins for the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}	\label{fig::nor_noise_analysis_sweep_va}
 	\end{figure}
 	
-	Examining the outputs shown in Figure \ref{fig::nor_noise_analysis_sweep_va}, we find that \texttt{Vil = 0.7756 V} and \texttt{Vih = 0.9764 V}. This implies that \texttt{Nmh = 1.8 V - 0.9764 V = 0.8326 V} and \texttt{Nml = 0.7756 V - 0 V = 0.7756 V}. With slight modifications to the test circuit, we can measure the noise margins for the sets of inputs listed in Table \ref{table::nor_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nor_gate_noise_analysis}.
+	Examining the outputs shown in Figure \ref{fig::nor_noise_analysis_sweep_va}, we find that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$. This implies that $NM_{H} = 1.8\ \text{V} - 0.9764 \text{V} = 0.8326 \text{V}$ and $NM_{L} = 0.7756 \text{V} - 0 \text{V} = 0.7756 \text{V}$. With slight modifications to the test circuit, we can also measure the noise margins for the additional sets of inputs listed in Table \ref{table::nor_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nor_gate_noise_analysis}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -493,9 +493,9 @@
 	\end{center}
 	\end{table}
 	
-	We can also compute the noise margins using the equations presented in class. For this analysis, we consider the case where \texttt{a} and \texttt{b} vary together. This allows us to analyze the circuit with an equivalent inverter model. To solve for the theoretical noise margins, we can substituting values from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics} into equations \ref{eq::vih_theory} - \ref{eq::g_theory}. Doing so, we find that $g \approx -266$. Using our theoretical estimate of $V_{M}$ from the previous section, we find that $V_{IL} \approx 0.8426\ \text{V}$ and $V_{IH} \approx 0.8494\ \text{V}$, which implies that $NM_L = 0.8426\ \text{V}$ and $NM_H \approx 0.9506\ \text{V}$. Note that this is  significantly different than our measured values. As discussed above, this is because $V_m$ is not in the velocity saturation region and because the level 1 model does not fit the transition between linear and saturation regions well.
+	We can also compute the noise margins using the equations presented in class. For this analysis, we consider the case where \texttt{a} and \texttt{b} vary together. This allows us to analyze the circuit with an equivalent inverter model. To solve for the theoretical noise margins, we substitute values from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics} into equations \ref{eq::vih_theory} - \ref{eq::g_theory}. Doing so, we find that $g \approx -266$. If we then use our theoretical estimate of $V_{M}$, we find that $V_{IL} \approx 0.8426\ \text{V}$ and $V_{IH} \approx 0.8494\ \text{V}$, which implies that $NM_L = 0.8426\ \text{V}$ and $NM_H \approx 0.9506\ \text{V}$. Note that these values are significantly different than our measured values. As discussed above, this occurs for two reasons. First, $V_M$ is not in the velocity saturation region. Second, the level 1 model equations do not fit the transition between linear and velocity saturation regions well.
 	
-	For our theoretical work, we can also use parameters measured in ngspice. We specifically use $Vm = 0.8078 V$ and $g = -18.35$, which we found in accordance with Figure \ref{fig::nor_noise_analysis_g_sweep_va_vb}.
+	To improve the quality of our theoretical noise margin estimates, we can also use parameters measured in ngspice. We specifically use $Vm = 0.8078 V$ and $g = -18.35$, where $g$ is computed in Figure \ref{fig::nor_noise_analysis_g_sweep_va_vb}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_g_sweep_va_vb.png}}
@@ -503,7 +503,7 @@
 		\label{fig::nor_noise_analysis_g_sweep_va_vb}
 	\end{figure}
 	
-	\noindent With the updated values, we find that $V_{IL} \approx 0.7537\ \text{V}$ and $V_{IH} \approx 0.8518\ \text{V}$, which implies that $NM_L = 0.7537\ \text{V}$ and $NM_H \approx 0.9482\ \text{V}$. These values are a lot closer to the theoretical values, but still contain a large margin of error.
+	\noindent With the updated values, we find that $V_{IL} \approx 0.7537\ \text{V}$ and $V_{IH} \approx 0.8518\ \text{V}$, which implies that $NM_L = 0.7537\ \text{V}$ and $NM_H \approx 0.9482\ \text{V}$. Compared to the values computed with the first-order MOSFET equations, these values are a significantly closer to our measured data.
 	
 	\subsection{Delay Analysis}
 	
