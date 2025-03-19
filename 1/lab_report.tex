@@ -240,6 +240,8 @@
 	
 	\noindent Reviewing our captured results, we see that \texttt{Vm} is dependent on the gate inputs. \texttt{Vm} is the largest when both gates switch at the same time. This makes sense because our pull-up network is strongest in this case, causing \texttt{Vm} to shift to the right.
 	
+	We can solve the IV equations to find \texttt{Vm} analytically. However, that can get complicated, especially for gates more complex than an inverter. When both inputs switch at the same time, we can instead use an equivalent inverter model described in \cite{cmos_vlsi_design, equivalent_inverter, inverter_dc_analysis}. In the equivalent inverter model, we treat the gate as an inverter and scale the NMOS and PMOS transistors to reflect the series and parallel transistors. For parallel connections, the equivalent resistance will be halved, and for series connections, the equivalent resistance will be doubled. For an NAND gate, this is equivalent to doubling the PMOS width (halving PMOS resistance) and halving NMOS width (doubling NMOS resistance).
+	
 	\subsubsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
 	
@@ -908,7 +910,7 @@
 		\hline	
 		$\lambda$ & $-0.335\ \text{V}^{-1}$\\
 		\hline	
-		$k_n$ & $63.25\ {\mu}A/V^2$\\
+		$k_p$ & $63.25\ {\mu}A/V^2$\\
 		\hline	
 		$\gamma$ & $-0.261\ \text{V}^{1/2}$\\
 		\hline
