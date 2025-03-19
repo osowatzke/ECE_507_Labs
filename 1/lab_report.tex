@@ -214,14 +214,14 @@
 		\label{eq::noise_margin_low}
 	\end{equation}
 	
-	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=1}, we can identify the unity gain points and solve for the noise margins.
+	In the above formulas, $V_{IH}$ and $V_{IL}$ are defined as the unity points of the gain function, where the gain function is defined as the derivative of the VTC. For the case in which we vary \texttt{a} with \texttt{b=1}, we can identify the unity gain points and solve for the noise margins.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis_sweep_va.png}}
 		\caption{Measuring Noise Margins for the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}	\label{fig::nand_noise_analysis_sweep_va}
 	\end{figure}
 	
-	Examining the outputs shown in Figure \ref{fig::nand_noise_analysis_sweep_va}, we find that \texttt{Vil = 0.6926 V} and \texttt{Vih = 0.9264 V}. This implies that \texttt{Nmh = 1.8 V - 0.9264 V = 0.8736 V} and \texttt{Nml = 0.6926 V - 0 V = 0.6926 V}. With slight modifications to the test circuit, we can measure the noise margins for the sets of inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nand_gate_noise_analysis}.
+	Examining the outputs shown in Figure \ref{fig::nand_noise_analysis_sweep_va}, we find that $V_{IL} = 0.6926\ \text{V}$ and $V_{IH} = 0.9264\ \text{V}$. This implies that $N_{MH} = 1.8\ \text{V} - 0.9264 \text{V} = 0.8736 \text{V}$ and $N_{ML} = 0.6926 \text{V} - 0 \text{V} = 0.6926 \text{V}$. With slight modifications to the test circuit, we can also measure the noise margins for the additional sets of inputs listed in Table \ref{table::nand_gate_high_to_low_transitions}. Our results for this analysis are listed in Table \ref{table::nand_gate_noise_analysis}.
 	
 	\begin{table}[H]
 	\begin{center}
