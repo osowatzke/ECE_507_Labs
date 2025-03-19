@@ -664,8 +664,8 @@
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vt_meas_schem.png}}
-		\caption{NGSPICE Schematic Used to Measure the NMOS Threshold Voltage}
-		\label{fig::nmos_vt_meas_schem}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Saturation Voltage}
+		\label{fig::nmos_vdsat_meas_schem}
 	\end{figure}
 	
 	 \noindent In the above schematic, we consider the drain current in the velocity saturation region. The drain current in this region is defined as follows:
@@ -686,6 +686,13 @@
 		V = \frac{{\alpha}V_{gs_2} - V_{gs_1}}{\alpha - 1}
 	\end{equation}
 	
-	\noindent where $V_{DSAT_n} = 2(V - V_{t_n})$.
+	\noindent where $V_{DSAT_n} = 2(V - V_{t_n})$. Following the procedure outlined above, we execute the following commands in ngspice to derive the saturation voltage. Our work is shown in Figure \ref{fig::nmos_vt_meas_schem} and we find that $V_{DSAT_n} = 0.202\ \text{V}$.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vdsat_meas.png}}
+		\caption{Measuring the NMOS Saturation Voltage}
+		\label{fig::nmos_vdsat_meas}
+	\end{figure}
+	
 	
 \end{document}
