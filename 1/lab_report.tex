@@ -25,7 +25,8 @@
 {./images/nor/design}
 {./images/nor/noise_analysis}
 {./images/nor/power}
-{./images/nor/vtc}}
+{./images/nor/vtc}
+{./images/nmos}}
 
 \hypersetup{
     colorlinks=true,
@@ -630,4 +631,61 @@
 	\begin{equation}
 		P_{switching} = {\alpha}CV_{DD}^2f
 	\end{equation}
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{IEEEabrv,sources}
+	\pagebreak
+	\appendix
+	\section{NMOS IV Characteristics}
+	
+	In this appendix, we fit a first-order mosfet model to NMOS IV characteristics measured with the sky130A PDK. This enables us to use the equations presented in class to perform first-order analysis of our CMOS gate. We start by estimating the threshold voltage of the NMOS transistor. To perform this measurement, we use the linear extrapolation (or maximum gm) method given in \cite{cmos_vlsi_design}. Our ngspice flowchart for this analysis is given in Figure \ref{fig::nmos_vt_meas_schem}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vt_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Threshold Voltage}
+		\label{fig::nmos_vt_meas_schem}
+	\end{figure}
+	
+	\noindent Using the flowchart, we examine the drain current for the NMOS transistor in the linear region of operation. In this region, the drain current of the NMOS transistor is given as follows:
+	
+	\begin{equation}
+		I_{ds} = k_n\frac{W_n}{L}\left(V_{gs} - V_{t_n} - \frac{V_{ds}}{2}\right)V_{ds}
+	\end{equation}
+	
+	\noindent To fit the IV characteristics, we estimate the $I_{ds}$ curve with a line that is tangent to the point with maximum-slope. We then define $V_t$ as the voltage at which the estimated current is zero. This procedure is illustrated in Figure \ref{fig::nmos_vt_meas}, which predicts a threshold voltage of 0.759 V.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vt_meas.png}}
+		\caption{Estimating NMOS Threshold Voltage}
+		\label{fig::nmos_vt_meas}
+	\end{figure}
+	
+	Next, we measure the saturation voltage. We use the flowchart shown in Figure \ref{fig::nmos_vt_meas_schem} to perform this measurement.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nmos_vt_meas_schem.png}}
+		\caption{NGSPICE Schematic Used to Measure the NMOS Threshold Voltage}
+		\label{fig::nmos_vt_meas_schem}
+	\end{figure}
+	
+	 \noindent In the above schematic, we consider the drain current in the velocity saturation region. The drain current in this region is defined as follows:
+	
+	\begin{equation}
+		I_{ds} = k_n\frac{W_n}{L}\left(V_{gs} - V_{t_n} - \frac{V_{DSAT_n}}{2}\right)V_{DSAT_n}(1 + {\lambda}V_{ds})
+	\end{equation}
+	
+	\noindent If we analyze the ratio of drain currents for the same values of $V_{ds}$ and different values of $V_{gs}$, we can express the ratios as follows:
+	
+	\begin{equation}
+		\frac{V_{gs_1} - V_{t_n} - V_{DSAT_n}/2}{V_{gs_2} - V_{t_n} - V_{DSAT_n}/2} = \frac{V_{gs_1} - V}{V_{gs_2} - V} = \frac{I_{ds_1}}{I_{ds_2}} = \alpha
+	\end{equation}
+	
+	\noindent Solving for $V$, we obtain the following:
+	
+	\begin{equation}
+		V = \frac{{\alpha}V_{gs_2} - V_{gs_1}}{\alpha - 1}
+	\end{equation}
+	
+	\noindent where $V_{DSAT_n} = 2(V - V_{t_n})$.
+	
 \end{document}
