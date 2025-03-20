@@ -751,46 +751,6 @@
 	
 	In this lab, we used xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. To balance the equivalent resistance of the pull-up and pull-down networks, we learned that we had to modify the widths of the transistors in each network. In the NAND gate, we specifically doubled the widths of the NMOS gates, while keeping the widths of the PMOS gates constant. Similarly, for the NOR gate, we doubled the widths of the PMOS gates, while keeping the widths of the NMOS gates constant. Following the procedure described for the inverter, we also determined the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also use the equations presented in class to theoretically compute these parameters. The equations presented in class proved difficult to analyze for each of the gates. As a result, we used the equivalent inverter model to simplify our analysis. However, our theoretical analysis proved to be a poor fit for the measured data for a couple reasons. First, the equations presented in class assumed that the transistors were in the velocity saturation, which was not the case in most of our equations. Additionally, the level 1 mosfet models we used for our theoretical analysis proved to be a poor fit for the IV data in between the resistive and velocity saturation regions.
 	
-	\subsection{NAND Gate}
-
-	\begin{align}
-		I_{ds_p} &= -k_p\frac{W_p}{L}V_{dsat_p}\left(V_{gs_p} - V_{T0_p} - \frac{V_{dsat_p}}{2}\right)\left(1 + {\lambda_p}V_{ds_p}\right) \\
-		&= -k_p\frac{W}{L}V_{dsat_p}\left(V_m - V_{dd} - V_{T0_p} - \frac{V_{dsat_p}}{2}\right)\left(1 + {\lambda_p}(V_m - V_{dd})\right)
-	\end{align}
-	
-	\begin{align}
-		I_{ds_n} &= k_n\frac{W_n}{L}V_{dsat_n}\left(V_{gs_n} - V_{T0_n} - \frac{V_{dsat_n}}{2}\right)\left(1 + {\lambda_n}V_{ds_n}\right) \\
-		&= k_n\frac{W_n}{L}V_{dsat_n}\left(V_m - V_{T0_n} - \frac{V_{dsat_n}}{2}\right)\left(1 + {\lambda_n}V_m\right)
-	\end{align}
-	
-	Using KCL, we know that:
-	
-	\begin{equation}
-		I_{ds_n} + I_{ds_p} = 0
-	\end{equation}
-	
-	Solving numerically, using the parameters in Table \ref{table::nmos_derived_params} we find that $V_m = 0.8422 V$.
-	
-	\begin{equation}
-		V_{IH} = V_{M} - \frac{V_M}{g}
-	\end{equation}
-	
-	\begin{equation}
-		V_{IL} = V_{M} + \frac{V_{DD} - V_M}{g}
-	\end{equation}
-	
-	\begin{equation}
-		g = -\frac{1}{I_D(V_M)}\frac{k_nV_{DSAT_n} + k_pV_{DSAT_p}}{\lambda_n - \lambda_p} \approx \frac{1 + r}{(V_M - V_{T_n} - V_{DSAT_n}/2)(\lambda_n - \lambda_p)}
-	\end{equation}
-	
-	\begin{equation}
-		t_p = 0.69R_{on}C_L
-	\end{equation}
-	
-	\begin{equation}
-		P_{switching} = {\alpha}CV_{DD}^2f
-	\end{equation}
-	
 	\bibliographystyle{IEEEtran}
 	\bibliography{IEEEabrv,sources}
 	\pagebreak
