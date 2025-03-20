@@ -435,7 +435,33 @@
 	\end{center}
 	\end{table}
 	
-	For comparison, we also can 
+	For comparison, we can also compute a theoretical power estimate for the case where both \texttt{a} and \texttt{b} switch together. The power consumption can be computed as follows:
+	
+	\begin{equation}
+		P_{\text{total}} = P_{\text{dynamic}} + P_{\text{static}}
+	\end{equation}
+	
+	\noindent where
+	
+	\begin{equation}
+		P_{\text{dynamic}} = P_{\text{switching}} +  P_{\text{shortcircuit}}
+	\end{equation}
+	
+	\noindent For a first-order estimate of the power, we ignore the static and short circuit power, which results in the following estimate:
+	
+	\begin{equation}
+		P_{\text{total}} \approx P_{\text{switching}} = \alpha CV_{DD}^2f
+	\end{equation}
+	
+	\noindent For our test setup, $\alpha = 1/2$ and $f = 1/(20 ns)$. For the capacitance, we need to consider the extrinsic intrinsic and instrinsic switching capacitances. The extrinsic capacitance is configured to be $4 fF$, and the intrinsic capacitance can be estimated by:
+	
+	 \begin{equation}
+	 	\label{eq::nand_cint_est}
+	 	C_int \approx 2C_{gp} + (C_{gn} + 2C_{gn})
+	 \end{equation}
+	 
+	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nand_gate_eq_params}. Letting $C_{gp} = 1.9 fF$ and $C_{gn} = 1.6 fF$, we find that $C_{int} \approx 8.6 fF$. Substituting, we find $P_total \approx 1.021 {\mu}W$. Note that this estimate is pretty close to the measured value and could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
+	   
 	\section{NOR Gate}
 	
 	In this section, we analyze the NOR gate built using SkyWater 130nm technology. We start by drawing a NOR gate and its corresponding symbol in xschem. Next, using ngspice, we analyze the voltage transfer characteristics of the gate, determining the switching threshold, $V_M$, and the noise margins. Then, using transient analysis, we measure the delay of the gate and its power consumption. For each value that we measure, we also compute a theoretical-equivalent using the equations provided in class.
