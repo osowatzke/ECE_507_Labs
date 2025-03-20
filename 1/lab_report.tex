@@ -338,11 +338,12 @@
 	\end{center}
 	\end{table}
 	
-	We can compare our measured data against theoretical results. We use the circuit shown in Figure \ref{fig::nand_eq_test_sweep_va_vb} to estimate the equivalent capacitance and resistance of the NAND gate when both inputs are swept together.
+	We can compare our measurements to theoretical results. To get these results, we use the circuit shown in Figure \ref{fig::nand_eq_test_sweep_va_vb} to estimate the equivalent capacitance and resistance of the NAND gate when both inputs are swept together.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_eq_test_sweep_va_vb.png}}
-		\caption{Circuit to Estimate Equivalent Resistance and Capacitance}			\label{fig::nand_eq_test_sweep_va_vb}
+		\caption{Circuit to Estimate Equivalent Resistance and Capacitance of NAND Gate}
+		\label{fig::nand_eq_test_sweep_va_vb}
 	\end{figure}
 	
 	\noindent After running a simulation, we can extract the MOSFET names and their equivalent parameters as follows:
@@ -358,7 +359,7 @@
 		\caption{M1 MOSFET Parameters}			\label{fig::nand_eq_params_sweep_va_vb}
 	\end{figure}
 	
-	Using the provided methodology, we extract relevant parameters at $V_DD/2$ the end of  the \texttt{tphl} and start of \texttt{tplh} measurement windows. Our results are displayed in Table \ref{table::nand_gate_eq_params}.
+	Using the provided methodology, we extract relevant parameters at $V_{DD}/2$. The values we measure at this input voltage are displayed in Table \ref{table::nand_gate_eq_params}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -388,13 +389,13 @@
 		t_{PLH} = 0.69R_{eq}C_{eq} \approx 0.69(R_{M2}||R_{M4})(2C_{g_{M1}}) \approx 54.092\ \text{ps}
 	\end{equation}
 	
-	\noindent To find $t_{PLH}$, we can solve for the Elmore delay of the pull-up network. Doing so we find:
+	\noindent To find $t_{PHL}$, we can solve for the Elmore delay of the pull-up network. Doing so we find:
 	
 	\begin{equation}
-		t_{PHL} = 0.69R_{eq}C_{eq} \approx 0.69(2R_{M1}C_{g_{M1}} + 2(R_{M1} + R_{M3})C_{g_{M3}})\approx 65.960\ \text{ps}
+		t_{PHL} = 0.69R_{eq}C_{eq} \approx 0.69(2R_{M1}C_{g_{M1}} + 2(R_{M1} + R_{M3})C_{g_{M3}})\approx 131.920\ \text{ps}
 	\end{equation}
 	
-	\noindent Our propagation delay estimates are roughly off by a factor of 2. This is likely occurring for a couple reasons. First, we approximated the equivalent resistance as the resistance at the endpoint of the measurement window instead of using an integral over the measurement interval. Secondly, we approximated the diffusion capacitances using the gate capacitance, which is a good estimate for contacted diffusion. However, if we instead assumed uncontacted diffusion, \cite{cmos_vlsi_design} states that the diffusion capacitances are approximately half the gate capacitance. If we updated our assumptions, we could reduce our delays by a factor of 2 and get closer to the measured values.
+	\noindent Our propagation delay estimates are off with respect to the measured data. This is likely occurring because of how we approximated the equivalent resistance. We found the equivalent resistance at a single point instead of integrating it over the measurement window. To get the equivalent resistance for $t_{PLH}$, our test circuit should have also forced $V_{in}$ to $0$ and measured the resistance while the output value was in range $[0, V_{DD}/2]$. Similarly, to get the equivalent resistance for $t_{PHL}$, our test circuit should have also forced $V_{in}$ to $V_{DD}$ and measured the resistance while the output value was in range $[V_{DD}, V_{DD}/2]$.
 	
 	\subsection{Power Analysis}
 	
@@ -621,6 +622,65 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	We can compare our measurements to theoretical results. To get these results, we use the circuit shown in Figure \ref{fig::nor_eq_test_sweep_va_vb} to estimate the equivalent capacitance and resistance of the NOR gate when both inputs are swept together.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_eq_test_sweep_va_vb.png}}
+		\caption{Circuit to Estimate Equivalent Resistance and Capacitance of NOR Gate}
+		\label{fig::nor_eq_test_sweep_va_vb}
+	\end{figure}
+	
+	\noindent After running a simulation, we can extract the MOSFET names and their equivalent parameters as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_eq_display_sweep_va_vb.png}}
+		\caption{Extracting MOSFET Names}
+		\label{fig::nor_eq_display_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_eq_params_sweep_va_vb.png}}
+		\caption{M1 MOSFET Parameters}			\label{fig::nor_eq_params_sweep_va_vb}
+	\end{figure}
+	
+	Using the provided methodology, we extract relevant parameters at $V_{DD}/2$. The values we measure at this input voltage are displayed in Table \ref{table::nor_gate_eq_params}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Parameters Measured in SPICE Simulation}
+	\label{table::nor_gate_eq_params}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Transistor & $Cg$ & $R_{eq}$ \\
+		\hline	
+		\texttt{M1} & $0.899fF$ & $4.652k\Omega$ \\
+		\hline
+		\texttt{M2} & $3.709fF$ & $10.651k\Omega$ \\
+		\hline
+		\texttt{M3} & $0.899fF$ & $4.652k\Omega$ \\
+		\hline
+		\texttt{M4} & $3.543fF$ & $110.998k\Omega$ \\
+		\hline
+	\end{tabular}	
+	\end{center}
+	\end{table}
+	
+	\noindent The diffusion capacitances proved difficult to measure with this method. As a result, we estimated the diffusion capacitances with the gate capacitance, an approximation made by \cite{cmos_vlsi_design} for contacted diffusion. Additionally, because most our measurement windows were in the cutoff region, we approximated $C_{gs}$ and $C_{gd}$ as 0. 
+	
+	To find $t_{PHL}$, we consider the pull-down network. To find the propagation delay, we combine the parallel resistors and capacitors into a single parallel capacitor and resistor.
+	
+	\begin{equation}
+		t_{PLH} = 0.69R_{eq}C_{eq} \approx 0.69(R_{M1}||R_{M3})(2C_{g_{M1}}) \approx 5.771\ \text{ps}
+	\end{equation}
+	
+	\noindent To find $t_{PHL}$, we can solve for the Elmore delay of the pull-up network. Doing so we find:
+	
+	\begin{equation}
+		t_{PHL} = 0.69R_{eq}C_{eq} \approx 0.69(2R_{M2}C_{g_{M2}} + 2(R_{M2} + R_{M4})C_{g_{M4}})\approx 65.960\ \text{ps}
+	\end{equation}
+	
+	\noindent Our propagation delay estimates are roughly off by a factor of 2. This is likely occurring for a couple reasons. First, we approximated the equivalent resistance as the resistance at the endpoint of the measurement window instead of integrating over the measurement interval. Secondly, we approximated the diffusion capacitances using the gate capacitance, which is a good estimate for contacted diffusion. However, if we instead assumed uncontacted diffusion, \cite{cmos_vlsi_design} states that the diffusion capacitances are approximately half the gate capacitance. If we updated our assumptions to reflect this, we could reduce our delays by a factor of 2 and get closer to the measured delays.
 	
 	\subsection{Power Analysis}
 	
