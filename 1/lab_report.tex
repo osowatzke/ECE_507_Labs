@@ -1,4 +1,4 @@
-\documentclass[fleqn]{article}
+\documentclass{article}
 \usepackage[margin=1in]{geometry}
 \usepackage[nodisplayskipstretch]{setspace}
 \usepackage{amsmath, nccmath, bm}
@@ -103,9 +103,9 @@
 	
 	\subsection{Design}
 	
-	The NAND gate pull-down circuit is composed of two NMOS transistors in series. The pull-up circuit is the complement of the pull-down circuit and is composed of two parallel PMOS transistors. To determine the optimum sizing of the transistors in each network, we consider the equivalent resistance of each network. Compared to an inverter, the equivalent resistance of the pull-down network is doubled because the NMOS transistors are laid out in series. For the pull-up network, we consider the worst (slowest) case, in which only one PMOS transistor turns on. In this case, the pull-up network is equivalent to the pull-up network of an inverter.
+	The NAND gate pull-down circuit is composed of two NMOS transistors in series. The pull-up circuit is the complement of the pull-down circuit and is composed of two parallel PMOS transistors. To determine the optimum sizing of the transistors in each network, we consider the equivalent resistance of each network. Compared to an inverter, the equivalent resistance of the pull-down network is doubled because the NMOS transistors are laid out in series. For the pull-up network, we consider the worst (slowest) case, in which only one PMOS transistor turns on. In this case, the pull-up network resistance is equivalent to that of an inverter. To account for differences in resistance, we need to double the width of the NMOS transistors, which halves their resistance. 
 	
-	To account for differences in resistance, we need to double the width of the NMOS transistors, which halves their resistance. For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the NMOS and PMOS widths should be the same in an NAND gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 2 and the PMOS width 2. The NAND gate circuit with these transistor widths is shown in Figure \ref{fig::nand_schematic}.
+	For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the NMOS and PMOS widths should be the same in an NAND gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 2 and the PMOS width 2. The NAND gate circuit with these transistor widths is shown in Figure \ref{fig::nand_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nand_schematic.png}}
@@ -197,7 +197,7 @@
 		r = \frac{\beta_pV_{DSAT_p}}{\beta_nV_{DSAT_n}} = \frac{k_pW_pV_{DSAT_p}}{k_nW_nV_{DSAT_n}}
 	\end{equation}
 	
-	\noindent In Equation \ref{eq::beta_ratio}, we use the transistor widths of the equivalent. Then, we substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined. 
+	\noindent In Equation \ref{eq::beta_ratio}, we use the transistor widths of the equivalent inverter. Then, we substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined. 
 	
 	\subsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
@@ -282,7 +282,7 @@
 	
 	\subsection{Delay Analysis}
 	
-	In this section, we analyze the propagation delay of the NAND gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay. We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nand_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nand_gate_low_to_high_transitions}.
+	In this section, we analyze the propagation delay of the NAND gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay (\texttt{tplh}). We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nand_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nand_gate_low_to_high_transitions}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -318,7 +318,7 @@
 		\label{fig::nand_delay_sweep_va}
 	\end{figure}
 	
-	Examining the output results, we find that \texttt{tphl = 20.859 ps} for \texttt{a = }$0 \rightarrow 1$ and \texttt{b = 1}. Similarly, we find that \texttt{tphl = 33.178 ps} for \texttt{a = }$1 \rightarrow 0$ and \texttt{b = 1}. We perform similar analysis for the remaining transitions listed in Table \ref{table::nand_gate_high_to_low_transitions} and Table \ref{table::nand_gate_high_to_low_transitions}. Our results are summarized in Table \ref{table::nand_gate_delay_analysis}.
+	Examining the output results, we find that \texttt{tphl = 20.859 ps} for \texttt{a = }$0 \rightarrow 1$ and \texttt{b = 1}. Similarly, we find that \texttt{tphl = 33.178 ps} for \texttt{a = }$1 \rightarrow 0$ and \texttt{b = 1}. We perform similar analysis for the remaining transitions listed in Table \ref{table::nand_gate_high_to_low_transitions} and Table \ref{table::nand_gate_low_to_high_transitions}. Our results are summarized in Table \ref{table::nand_gate_delay_analysis}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -460,7 +460,7 @@
 	 	C_int \approx 2C_{gp} + (C_{gn} + 2C_{gn})
 	 \end{equation}
 	 
-	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nand_gate_eq_params}. Letting $C_{gp} = 1.9 fF$ and $C_{gn} = 1.6 fF$, we find that $C_{int} \approx 8.6 fF$. Substituting, we find $P_total \approx 1.021 {\mu}W$. Note that this estimate is pretty close to the measured value and could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
+	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nand_gate_eq_params}. Letting $C_{gp} = 1.9 fF$ and $C_{gn} = 1.6 fF$, we find that $C_{int} \approx 8.6 fF$. Substituting, we find $P_total \approx 1.021 {\mu}W$. Note that this estimate is pretty close to the measured data. The fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
 	   
 	\section{NOR Gate}
 	
@@ -468,9 +468,9 @@
 	
 	\subsection{Design}
 	
-	The NOR gate pull-down circuit is composed of two parallel NMOS transistors. The pull-up circuit is the complement of the pull-down circuit and is composed of two PMOS transistors in series. To determine the optimum sizing of the transistors in each network, we consider the equivalent resistance of each network. Compared to an inverter, the equivalent resistance of the pull-up network is doubled because the PMOS transistors are laid out in series. For the pull-up network, we consider the worst (slowest) case, in which only one NMOS transistor turns on. In this case, the pull-up network is equivalent to the pull-up network of an inverter.
+	The NOR gate pull-down circuit is composed of two parallel NMOS transistors. The pull-up circuit is the complement of the pull-down circuit and is composed of two PMOS transistors in series. To determine the optimum sizing of the transistors in each network, we consider the equivalent resistance of each network. Compared to an inverter, the equivalent resistance of the pull-up network is doubled because the PMOS transistors are laid out in series. For the pull-down network, we consider the worst (slowest) case, in which only one NMOS transistor turns on. In this case, the pull-down network resistance is equivalent to that of an inverter. To account for differences in resistance, we need to double the width of the PMOS transistors, which halves their resistance. 
 	
-	To account for differences in resistance, we need to double the width of the PMOS transistors, which halves their resistance. For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the PMOS width should be 4x larger than the NMOS width in a NOR gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 1 and the PMOS width 4. The NOR gate circuit with these transistor widths is shown in Figure \ref{fig::nor_schematic}.
+	For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the PMOS width should be 4x larger than the NMOS width in a NOR gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 1 and the PMOS width 4. The NOR gate circuit with these transistor widths is shown in Figure \ref{fig::nor_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nor_schematic.png}}
@@ -771,7 +771,7 @@
 	 	C_int \approx (2C_{gp} + C_{gp}) + 2C_{gn}
 	 \end{equation}
 	 
-	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nor_gate_eq_params}. Letting $C_{gp} = 3.6 fF$ and $C_{gn} = 0.9 fF$, we find that $C_{int} \approx 12.6 fF$. Substituting, we find $P_total \approx 1.345 {\mu}W$. Note that this estimate is pretty close to the measured value and could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
+	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nor_gate_eq_params}. Letting $C_{gp} = 3.6 fF$ and $C_{gn} = 0.9 fF$, we find that $C_{int} \approx 12.6 fF$. Substituting, we find $P_total \approx 1.345 {\mu}W$. Note that this estimate is pretty close to the measured data. The fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
 	
 	\subsection{Conclusion}
 	
