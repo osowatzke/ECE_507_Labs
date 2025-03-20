@@ -453,14 +453,14 @@
 		P_{\text{total}} \approx P_{\text{switching}} = \alpha CV_{DD}^2f
 	\end{equation}
 	
-	\noindent For our test setup, $\alpha = 1/2$ and $f = 1/(20 ns)$. For the capacitance, we need to consider the extrinsic intrinsic and instrinsic switching capacitances. The extrinsic capacitance is configured to be $4 fF$, and the intrinsic capacitance can be estimated by:
+	\noindent For our test setup, $\alpha = 1/2$ and $f = 1/(20 ns)$. For the capacitance, we need to consider the extrinsic intrinsic and instrinsic switching capacitances. The extrinsic capacitance is $4 fF$, and the intrinsic capacitance can be estimated by:
 	
 	 \begin{equation}
 	 	\label{eq::nand_cint_est}
 	 	C_int \approx 2C_{gp} + (C_{gn} + 2C_{gn})
 	 \end{equation}
 	 
-	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nand_gate_eq_params}. Letting $C_{gp} = 1.9 fF$ and $C_{gn} = 1.6 fF$, we find that $C_{int} \approx 8.6 fF$. Substituting, we find $P_total \approx 1.021 {\mu}W$. Note that this estimate is pretty close to the measured data. The fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
+	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nand_gate_eq_params}. Letting $C_{gp} = 1.9 fF$ and $C_{gn} = 1.6 fF$, we find that $C_{int} \approx 8.6 fF$. Substituting, we find $P_{total} \approx 1.021 {\mu}W$. Note that this estimate is pretty close to the measured data. However, the fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
 	   
 	\section{NOR Gate}
 	
@@ -581,7 +581,7 @@
 	
 	We can also compute the noise margins using the equations presented in class. For this analysis, we consider the case where \texttt{a} and \texttt{b} vary together. This allows us to analyze the circuit with an equivalent inverter model. To solve for the theoretical noise margins, we substitute values from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics} into equations \ref{eq::vih_theory} - \ref{eq::g_theory}. Doing so, we find that $g \approx -266$. If we then use our theoretical estimate of $V_{M}$, we find that $V_{IL} \approx 0.8426\ \text{V}$ and $V_{IH} \approx 0.8494\ \text{V}$, which implies that $NM_L = 0.8426\ \text{V}$ and $NM_H \approx 0.9506\ \text{V}$. Note that these values are significantly different than our measured values. As discussed above, this occurs for two reasons. First, $V_M$ is not in the velocity saturation region. Second, the level 1 model equations do not fit the transition between linear and velocity saturation regions well.
 	
-	To improve the quality of our theoretical noise margin estimates, we can also use parameters measured in ngspice. We specifically use $Vm = 0.8078 V$ and $g = -18.35$, where $g$ is computed in Figure \ref{fig::nor_noise_analysis_g_sweep_va_vb}.
+	To improve the quality of our theoretical noise margin estimates, we can also use parameters measured in ngspice. We specifically use $V_M = 0.8078 V$ and $g = -18.35$, where $g$ is computed in Figure \ref{fig::nor_noise_analysis_g_sweep_va_vb}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_g_sweep_va_vb.png}}
@@ -593,7 +593,7 @@
 	
 	\subsection{Delay Analysis}
 	
-	In this section, we analyze the propagation delay of the NOR gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay. We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nor_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nor_gate_low_to_high_transitions}.
+	In this section, we analyze the propagation delay of the NOR gate. To do so, we need to measure both the high-to-low propagation delay (\texttt{tphl}) and the low-to-high propagation delay (\texttt{tplh}). We measure \texttt{tphl} for each of the transitions listed in Table \ref{table::nor_gate_high_to_low_transitions}, and we measure \texttt{tplh} for each of the transitions listed in Table \ref{table::nor_gate_low_to_high_transitions}.
 	
 	\begin{table}[H]
 	\begin{center}
@@ -764,18 +764,18 @@
 		P_{\text{total}} \approx P_{\text{switching}} = \alpha CV_{DD}^2f
 	\end{equation}
 	
-	\noindent For our test setup, $\alpha = 1/2$ and $f = 1/(20 ns)$. For the capacitance, we need to consider the extrinsic intrinsic and instrinsic switching capacitances. The extrinsic capacitance is configured to be $4 fF$, and the intrinsic capacitance can be estimated by:
+	\noindent For our test setup, $\alpha = 1/2$ and $f = 1/(20 ns)$. For the capacitance, we need to consider the extrinsic intrinsic and instrinsic switching capacitances. The extrinsic capacitance is $4 fF$, and the intrinsic capacitance can be estimated by:
 	
 	 \begin{equation}
 	 	\label{eq::cint_est}
 	 	C_int \approx (2C_{gp} + C_{gp}) + 2C_{gn}
 	 \end{equation}
 	 
-	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nor_gate_eq_params}. Letting $C_{gp} = 3.6 fF$ and $C_{gn} = 0.9 fF$, we find that $C_{int} \approx 12.6 fF$. Substituting, we find $P_total \approx 1.345 {\mu}W$. Note that this estimate is pretty close to the measured data. The fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
+	  \noindent where $C_{gp}$ and $C_{gn}$ are estimated using Table \ref{table::nor_gate_eq_params}. Letting $C_{gp} = 3.6 fF$ and $C_{gn} = 0.9 fF$, we find that $C_{int} \approx 12.6 fF$. Substituting, we find $P_{total} \approx 1.345 {\mu}W$. Note that this estimate is pretty close to the measured data. However, the fidelity of our estimate could be improved by considering the contribution of $P_{\text{static}}$ and $P_{\text{shortcircuit}}$.
 	
 	\subsection{Conclusion}
 	
-	In this lab, we used xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. To balance the equivalent resistance of the pull-up and pull-down networks, we learned that we had to modify the widths of the transistors in each network. In the NAND gate, we specifically doubled the widths of the NMOS gates, while keeping the widths of the PMOS gates constant. Similarly, for the NOR gate, we doubled the widths of the PMOS gates, while keeping the widths of the NMOS gates constant. Following the procedure described for the inverter, we also determined the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also use the equations presented in class to theoretically compute these parameters. The equations presented in class proved difficult to analyze for each of the gates. As a result, we used the equivalent inverter model to simplify our analysis. However, our theoretical analysis proved to be a poor fit for the measured data for a couple reasons. First, the equations presented in class assumed that the transistors were in the velocity saturation, which was not the case in most of our equations. Additionally, the level 1 mosfet models we used for our theoretical analysis proved to be a poor fit for the IV data in between the resistive and velocity saturation regions.
+	In this lab, we used xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. To balance the equivalent resistance of the pull-up and pull-down networks, we learned that we had to modify the widths of the transistors in each network. In the NAND gate, we specifically doubled the widths of the NMOS gates, while keeping the widths of the PMOS gates constant. Similarly, for the NOR gate, we doubled the widths of the PMOS gates, while keeping the widths of the NMOS gates constant. Following the procedure described for the inverter, we also determined the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also used the equations presented in class to theoretically compute these parameters. The equations presented in class proved difficult to analyze for each of the gates. As a result, we used the equivalent inverter model to simplify our analysis. However, our theoretical analysis proved to be a poor fit for the measured data for a couple reasons. First, the equations presented in class assumed that the transistors were in the velocity saturation, which was not the case in most of our equations. Additionally, the level 1 mosfet models we used for our theoretical analysis proved to be a poor fit for the IV data in between the resistive and velocity saturation regions.
 	
 	\bibliographystyle{IEEEtran}
 	\bibliography{IEEEabrv,sources}
