@@ -338,6 +338,64 @@
 	\end{center}
 	\end{table}
 	
+	We can compare our measured data against theoretical results. We use the circuit shown in Figure \ref{fig::nand_eq_test_sweep_va_vb} to estimate the equivalent capacitance and resistance of the NAND gate when both inputs are swept together.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_eq_test_sweep_va_vb.png}}
+		\caption{Circuit to Estimate Equivalent Resistance and Capacitance}			\label{fig::nand_eq_test_sweep_va_vb}
+	\end{figure}
+	
+	\noindent After running a simulation, we can extract the MOSFET names and their equivalent parameters as follows:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_eq_display_sweep_va_vb.png}}
+		\caption{Extracting MOSFET Names}
+		\label{fig::nand_eq_display_sweep_va_vb}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{nand_eq_params_sweep_va_vb.png}}
+		\caption{M1 MOSFET Parameters}			\label{fig::nand_eq_params_sweep_va_vb}
+	\end{figure}
+	
+	Using the provided methodology, we extract relevant parameters at $V_DD/2$ the end of  the \texttt{tphl} and start of \texttt{tplh} measurement windows. Our results are displayed in Table \ref{table::nand_gate_eq_params}.
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Parameters Measured in SPICE Simulation}
+	\label{table::nand_gate_eq_params}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Transistor & $Cg$ & $R_{eq}$ \\
+		\hline	
+		\texttt{M1} & $1.444fF$ & $28.521k\Omega$ \\
+		\hline
+		\texttt{M2} & $1.868fF$ & $41.967k\Omega$ \\
+		\hline
+		\texttt{M3} & $1.761fF$ & $2.376k\Omega$ \\
+		\hline
+		\texttt{M4} & $1.868fF$ & $41.967k\Omega$ \\
+		\hline
+	\end{tabular}	
+	\end{center}
+	\end{table}
+	
+	\noindent The diffusion capacitances proved difficult to measure with this method. As a result, we estimated the diffusion capacitances with the gate capacitance, an approximation made by \cite{cmos_vlsi_design} for contacted diffusion. Additionally, because most our measurement windows were in the cutoff region, we approximated $C_{gs}$ and $C_{gd}$ as 0. 
+	
+	To find $t_{PLH}$, we consider the pull-up network. To find the propagation delay, we combine the parallel resistors and capacitors into a single parallel capacitor and resistor.
+	
+	\begin{equation}
+		t_{PLH} = 0.69R_{eq}C_{eq} \approx 0.69(R_{M2}||R_{M4})(2C_{g_{M1}}) \approx 54.092\ \text{ps}
+	\end{equation}
+	
+	\noindent To find $t_{PLH}$, we can solve for the Elmore delay of the pull-up network. Doing so we find:
+	
+	\begin{equation}
+		t_{PHL} = 0.69R_{eq}C_{eq} \approx 0.69(2R_{M1}C_{g_{M1}} + 2(R_{M1} + R_{M3})C_{g_{M3}})\approx 65.960\ \text{ps}
+	\end{equation}
+	
+	\noindent Our propagation delay estimates are roughly off by a factor of 2. This is likely occurring for a couple reasons. First, we approximated the equivalent resistance as the resistance at the endpoint of the measurement window instead of using an integral over the measurement interval. Secondly, we approximated the diffusion capacitances using the gate capacitance, which is a good estimate for contacted diffusion. However, if we instead assumed uncontacted diffusion, \cite{cmos_vlsi_design} states that the diffusion capacitances are approximately half the gate capacitance. If we updated our assumptions, we could reduce our delays by a factor of 2 and get closer to the measured values.
+	
 	\subsection{Power Analysis}
 	
 	In this section, we analyze the power consumption of our NAND gate. Similar to what we did above, we analyze the power consumption for each input variation that results in an output logical level change. For our input, we used a pulsed source. This allows us to capture both rising and falling edges of the output. We use the test circuit shown in Figure \ref{fig::nand_power_test_sweep_va} to measure the power consumption for variations of \texttt{a} with \texttt{b=1}. For this analysis, we have also attached a parasitic capacitance to the gate output.
@@ -376,6 +434,7 @@
 	\end{center}
 	\end{table}
 	
+	For comparison, we also can 
 	\section{NOR Gate}
 	
 	In this section, we analyze the NOR gate built using SkyWater 130nm technology. We start by drawing a NOR gate and its corresponding symbol in xschem. Next, using ngspice, we analyze the voltage transfer characteristics of the gate, determining the switching threshold, $V_M$, and the noise margins. Then, using transient analysis, we measure the delay of the gate and its power consumption. For each value that we measure, we also compute a theoretical-equivalent using the equations provided in class.
@@ -941,4 +1000,5 @@
 		\caption{Fitting Level 1 Mosfet Model to PMOS IV Data}
 		\label{fig::pmos_iv_fit}
 	\end{figure}
+
 \end{document}
