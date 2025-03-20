@@ -95,7 +95,7 @@
 	
 	\section{Introduction}
 	
-	In this lab, we use xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. Following the procedure described for the inverter, we determine the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also use the equations presented in class to theoretically compute these parameters. The equations presented in class are based on a first-order MOSFET model. To determine the parameters in these model, we fit the first-order MOSFET equations to measured the IV characteristics of the NMOS and PMOS gates. This work is included for reference in Appendices \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}.
+	In this lab, we use xschem to draw and simulate NAND and NOR gates built using SkyWater 130nm technology. Following the procedure described for the inverter, we determine the voltage transfer characteristics, noise margins, delay, and power of each gate. For comparison, we also use the equations presented in class to theoretically compute these parameters. The equations presented in class are based on a first-order MOSFET model. To determine the parameters in this model, we fit the first-order MOSFET equations to the measured IV characteristics of the NMOS and PMOS transistors. This work is included for reference in Appendices \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}.
 	
 	\section{NAND Gate}
 	
@@ -105,7 +105,7 @@
 	
 	The NAND gate pull-down circuit is composed of two NMOS transistors in series. The pull-up circuit is the complement of the pull-down circuit and is composed of two parallel PMOS transistors. To determine the optimum sizing of the transistors in each network, we consider the equivalent resistance of each network. Compared to an inverter, the equivalent resistance of the pull-down network is doubled because the NMOS transistors are laid out in series. For the pull-up network, we consider the worst (slowest) case, in which only one PMOS transistor turns on. In this case, the pull-up network resistance is equivalent to that of an inverter. To account for differences in resistance, we need to double the width of the NMOS transistors, which halves their resistance. 
 	
-	For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the NMOS and PMOS widths should be the same in an NAND gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 2 and the PMOS width 2. The NAND gate circuit with these transistor widths is shown in Figure \ref{fig::nand_schematic}.
+	For an inverter, we need to make the width of the PMOS transistor twice as large as the width of the NMOS transistor because the mobility of holes is lower than the mobility of electrons. After accounting for differences in resistances, we find that the NMOS and PMOS widths should be the same in a NAND gate. To match the behavior of the inverter with a NMOS width of 1 and a PMOS width of 2, we make the NMOS width 2 and the PMOS width 2. The NAND gate circuit with these transistor widths is shown in Figure \ref{fig::nand_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{nand_schematic.png}}
@@ -197,7 +197,7 @@
 		r = \frac{\beta_pV_{DSAT_p}}{\beta_nV_{DSAT_n}} = \frac{k_pW_pV_{DSAT_p}}{k_nW_nV_{DSAT_n}}
 	\end{equation}
 	
-	\noindent In Equation \ref{eq::beta_ratio}, we use the transistor widths of the equivalent inverter. Then, we substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined. 
+	\noindent In Equation \ref{eq::beta_ratio}, we use the transistor widths of the equivalent inverter. Then, we substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8404\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation region, which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of representing the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined. 
 	
 	\subsection{Noise Analysis}
 	\label{section::nand_noise_analysis}
@@ -306,7 +306,7 @@
 
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_test_sweep_va.png}}
-		\caption{Test Circuit to Measure the Delay of the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
+		\caption{Test Circuit to Measure the Propagation Delay of the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
 		\label{fig::nand_delay_test_sweep_va}
 	\end{figure}
 	
@@ -314,7 +314,7 @@
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_sweep_va.png}}
-		\caption{\texttt{tphl} Measurement for the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
+		\caption{Propagation Delay Measurement for the NAND Gate when \texttt{a} is Varied and \texttt{b=1}}
 		\label{fig::nand_delay_sweep_va}
 	\end{figure}
 	
@@ -548,7 +548,7 @@
 	
 	We can solve the IV equations to find $V_M$ analytically. However, that can get complicated, especially for gates more complex than an inverter. When both inputs switch at the same time, we can instead use an equivalent inverter model described in \cite{cmos_vlsi_design, equivalent_inverter, inverter_dc_analysis}. In the equivalent inverter model, we treat the gate as an inverter and scale the NMOS and PMOS transistors to reflect the series and parallel transistors. For parallel connections, the equivalent resistance will be halved, and for series connections, the equivalent resistance will be doubled. For an NOR gate, this is equivalent to doubling the NMOS width and halving PMOS width.
 	
-	\noindent We can use Equations \ref{eq::vm} and \ref{eq::beta_ratio} to solve for $V_M$ analytically. In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8462\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation state which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of modeling the current in the transition between linear and velocity saturation regions, where $V_M$ unfortunately defined.
+	\noindent We can use Equations \ref{eq::vm} and \ref{eq::beta_ratio} to solve for $V_M$ analytically. In Equation \ref{eq::beta_ratio}, we use the widths of the transistors in the equivalent inverter. Then, we can substitute parameters from Appendix \ref{appendix::nmos_iv_characteristics} and \ref{appendix::pmos_iv_characteristics}, to find $V_M$. Doing so, we find that $V_M \approx 0.8462\ \text{V}$. Note that this estimate is off for a few reasons. First, Equation \ref{eq::vm} assumes that both devices are operating in the velocity saturation region, which is not the case here ($|V_{gs} - V_t| < |V_{DSAT}|$ for both the NMOS and PMOS transistors). Secondly, the first order model presented in class does not do a good job of modeling the current in the transition between linear and velocity saturation regions, where $V_M$ is unfortunately defined.
 	
 	\subsection{Noise Analysis}
 	
@@ -617,7 +617,7 @@
 
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_test_sweep_va.png}}
-		\caption{Test Circuit to Measure the Delay of the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
+		\caption{Test Circuit to Measure the Propagation Delay of the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_delay_test_sweep_va}
 	\end{figure}
 	
@@ -625,7 +625,7 @@
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_sweep_va.png}}
-		\caption{\texttt{tphl} Measurement for the NAND Gate when \texttt{a} is Varied and \texttt{b=0}}
+		\caption{Propagation Delay Measurement for the NOR Gate when \texttt{a} is Varied and \texttt{b=0}}
 		\label{fig::nor_delay_sweep_va}
 	\end{figure}
 	
