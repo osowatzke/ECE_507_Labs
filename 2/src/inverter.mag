@@ -1,0 +1,98 @@
+magic
+tech sky130A
+timestamp 1742970851
+<< nwell >>
+rect -70 90 135 190
+<< nmos >>
+rect 50 0 65 50
+<< pmos >>
+rect 50 110 65 170
+<< ndiff >>
+rect 0 35 50 50
+rect 0 15 15 35
+rect 35 15 50 35
+rect 0 0 50 15
+rect 65 35 115 50
+rect 65 15 80 35
+rect 100 15 115 35
+rect 65 0 115 15
+<< pdiff >>
+rect 0 155 50 170
+rect 0 125 15 155
+rect 35 125 50 155
+rect 0 110 50 125
+rect 65 155 115 170
+rect 65 125 80 155
+rect 100 125 115 155
+rect 65 110 115 125
+<< ndiffc >>
+rect 15 15 35 35
+rect 80 15 100 35
+<< pdiffc >>
+rect 15 125 35 155
+rect 80 125 100 155
+<< psubdiff >>
+rect -50 35 0 50
+rect -50 15 -35 35
+rect -15 15 0 35
+rect -50 0 0 15
+<< nsubdiff >>
+rect -50 155 0 170
+rect -50 125 -35 155
+rect -15 125 0 155
+rect -50 110 0 125
+<< psubdiffcont >>
+rect -35 15 -15 35
+<< nsubdiffcont >>
+rect -35 125 -15 155
+<< poly >>
+rect 50 170 65 185
+rect 50 50 65 110
+rect 50 -15 65 0
+rect 25 -55 65 -15
+<< locali >>
+rect -45 155 45 165
+rect -45 125 -35 155
+rect -15 125 15 155
+rect 35 125 45 155
+rect -45 115 45 125
+rect 70 155 110 165
+rect 70 125 80 155
+rect 100 125 110 155
+rect 70 115 110 125
+rect 90 45 110 115
+rect -45 35 45 45
+rect -45 15 -35 35
+rect -15 15 15 35
+rect 35 15 45 35
+rect -45 5 45 15
+rect 70 35 110 45
+rect 70 15 80 35
+rect 100 15 110 35
+rect 70 5 110 15
+rect 90 -15 110 5
+rect -70 -35 65 -15
+rect 90 -35 135 -15
+rect 25 -55 65 -35
+<< viali >>
+rect -35 125 -15 155
+rect 15 125 35 155
+rect -35 15 -15 35
+rect 15 15 35 35
+<< metal1 >>
+rect -70 155 135 165
+rect -70 125 -35 155
+rect -15 125 15 155
+rect 35 125 135 155
+rect -70 115 135 125
+rect -70 35 135 45
+rect -70 15 -35 35
+rect -15 15 15 35
+rect 35 15 135 35
+rect -70 5 135 15
+<< labels >>
+flabel locali -70 -25 -70 -25 7 FreeSans 80 0 -40 0 A
+flabel metal1 -70 25 -70 25 7 FreeSans 80 0 -40 0 GND
+flabel metal1 -70 140 -70 140 7 FreeSans 80 0 -40 0 VDD
+flabel locali 135 -25 135 -25 3 FreeSans 80 0 40 0 Y
+<< end >>
