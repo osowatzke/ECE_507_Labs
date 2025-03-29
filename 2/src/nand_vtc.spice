@@ -1,0 +1,20 @@
+nand_test
+
+.lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include nand.spice
+
+Vdd Vdd GND 1.8
+.save i(vdd)
+Vin Vin GND 1.8
+.save i(vin)
+x1 Vin Vdd Vout Vdd GND nand
+
+.control
+  dc vin 0 1.8 1m
+  plot vin vout
+  meas dc vm when vin=vout
+.endc
+
+.save all
+.end
+

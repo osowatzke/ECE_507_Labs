@@ -1,0 +1,22 @@
+nand_noise_analysis
+
+.lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include nand.spice
+
+Vdd Vdd GND 1.8
+.save i(vdd)
+Vin Vin GND 1.8
+.save i(vin)
+x1 Vin Vdd Vout Vdd GND nand
+
+.control
+  dc vin 0 1.8 1m
+  let gain=(abs(deriv(vout)) >= 1)*1.8
+  plot gain vout
+  meas dc vil find vin when gain=1 cross=1
+  meas dc vih find vin when gain=1 cross=last
+.endc
+
+.save all
+.end
+
