@@ -176,6 +176,42 @@
 		\label{fig::nand_vtc_schem}
 	\end{figure}
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Netlist Results}
+	\label{table::vtc_netlist}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Schematic Results}
+	\label{table::vtc_schematic}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	\subsubsection{Noise Analysis}
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
@@ -195,6 +231,42 @@
 		\label{fig::nand_noise_analysis_schem}
 	\end{figure}
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins from Netlist Simulation}
+	\label{table::nand_gate_noise_analysis}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $0.9264 \text{V}$ & $0.6926 \text{V}$ & $0.8736 \text{V}$ & $0.6926 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $0.9184 \text{V}$ & $0.7116 \text{V}$ & $0.8816 \text{V}$ & $0.7116 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $1.0224 \text{V}$ & $0.8046 \text{V}$ & $0.7776 \text{V}$ & $0.7776 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins from Schematic Simulation}
+	\label{table::nand_gate_noise_analysis_schem}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $0.9264 \text{V}$ & $0.6926 \text{V}$ & $0.8736 \text{V}$ & $0.6926 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $0.9184 \text{V}$ & $0.7116 \text{V}$ & $0.8816 \text{V}$ & $0.7116 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $1.0224 \text{V}$ & $0.8046 \text{V}$ & $0.7776 \text{V}$ & $0.7776 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	\subsubsection{Delay Analysis}
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_delay_analysis.spice}
@@ -211,7 +283,7 @@
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_analysis_test_circuit.png}}
 		\caption{Schematic Circuit for NAND Gate Delay Analysis}
-		\label{fig::nand_delay_analysis_test_circuit}
+		\label{fig::nand_delay_analysis_test_circuit_schem}
 	\end{figure}
 	
 	\begin{figure}[H]
@@ -219,6 +291,42 @@
 		\caption{NAND Gate Delay Analysis with Schematic Simulation}
 		\label{fig::nand_delay_analysis_schem}
 	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Netlist Simulation}
+	\label{table::nand_gate_delay_analysis}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $20.336\ \text{ps}$ & $1 \rightarrow 0$ & $1$ & $33.469\ \text{ps}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $27.766\ \text{ps}$ & $1$ & $1 \rightarrow 0$ & $47.659\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $29.263\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $26.400\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Schematic Simulation}
+	\label{table::nand_gate_delay_analysis_schem}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $20.859\ \text{ps}$ & $1 \rightarrow 0$ & $1$ & $33.178\ \text{ps}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $28.416\ \text{ps}$ & $1$ & $1 \rightarrow 0$ & $48.137\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $29.297\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $26.097\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 	
 	\subsubsection{Power Analysis}
 	\begin{figure}[H]
@@ -236,7 +344,7 @@
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis_test_circuit.png}}
 		\caption{Schematic Circuit for NAND Gate Power Analysis}
-		\label{fig::nand_power_analysis_test_circuit}
+		\label{fig::nand_power_analysis_test_circuit_schem}
 	\end{figure}
 	
 	\begin{figure}[H]
