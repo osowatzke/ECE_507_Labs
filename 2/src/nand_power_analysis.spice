@@ -8,6 +8,7 @@ Vdd Vdd GND 1.8
 Vin Vin GND "pulse(0 1.8 0 0.1n 0.1n 10n 20n 10)"
 .save i(vin)
 x1 Vin Vdd Vout Vdd GND nand
+C1 Vout 0 4f m=1
 
 .control
   tran 0.02n 40n
