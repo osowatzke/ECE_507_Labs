@@ -1,4 +1,4 @@
-nand_test
+nand_vtc
 
 .lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 .include nand.spice
