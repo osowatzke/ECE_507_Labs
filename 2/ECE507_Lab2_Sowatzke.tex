@@ -566,4 +566,65 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\subsubsection{Delay Analysis}
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_delay_analysis.spice}
+		\caption{Test Circuit to Perform Delay Analysis on Netlist}
+		\label{fig::nor_delay_analysis_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis.png}}
+		\caption{NOR Gate Delay Analysis}
+		\label{fig::nor_delay_analysis}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis_test_circuit.png}}
+		\caption{Schematic Circuit for NOR Gate Delay Analysis}
+		\label{fig::nor_delay_analysis_test_circuit_schem}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis_schem.png}}
+		\caption{NOR Gate Delay Analysis with Schematic Simulation}
+		\label{fig::nor_delay_analysis_schem}
+	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Netlist Simulation}
+	\label{table::nor_gate_delay_analysis}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $45.126\ \text{ps}$ & $1 \rightarrow 0$ & $0$ & $45.536\ \text{ps}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $30.061\ \text{ps}$ & $0$ & $1 \rightarrow 0$ & $30.975\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $24.033\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $43.556\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Schematic Simulation}
+	\label{table::nor_gate_delay_analysis_schem}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $44.975\ \text{ps}$ & $1 \rightarrow 0$ & $0$ & $45.841\ \text{ps}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $29.139\ \text{ps}$ & $0$ & $1 \rightarrow 0$ & $29.942\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $22.437\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $40.998\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
