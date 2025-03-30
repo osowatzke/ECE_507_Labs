@@ -627,4 +627,65 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\subsubsection{Power Analysis}
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_power_analysis.spice}
+		\caption{Test Circuit to Perform Power Analysis on Netlist}
+		\label{fig::nor_power_analysis_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_analysis.png}}
+		\caption{NOR Gate Power Analysis}
+		\label{fig::nor_power_analysis}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_analysis_test_circuit.png}}
+		\caption{Schematic Circuit for NOR Gate Power Analysis}
+		\label{fig::nor_power_analysis_test_circuit_schem}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_analysis_schem.png}}
+		\caption{NOR Gate Power Analysis with Schematic Simulation}
+		\label{fig::nor_power_analysis_schem}
+	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Power Consumption from Netlist Simulation}
+	\label{table::nor_gate_power_analysis}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Power}\\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0$ & $2.24763{\mu}W$ \\
+		\hline	
+		$0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.43645{\mu}W$ \\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.67940{\mu}W$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Power Consumption from Schematic Simulation}
+	\label{table::nor_gate_power_analysis_schem}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Power}\\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0$ & $2.28022{\mu}W$ \\
+		\hline	
+		$0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.37674{\mu}W$ \\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.61932{\mu}W$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
