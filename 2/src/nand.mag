@@ -1,6 +1,6 @@
 magic
 tech sky130A
-timestamp 1743315850
+timestamp 1743316211
 << nwell >>
 rect -70 60 200 300
 << nmos >>
@@ -74,14 +74,14 @@ rect 115 -210 130 -195
 rect 20 30 40 50
 rect 140 30 160 50
 << locali >>
-rect -45 335 45 345
-rect -45 315 -35 335
-rect -15 315 15 335
-rect 35 315 45 335
-rect -45 265 45 315
-rect 135 335 175 345
-rect 135 315 145 335
-rect 165 315 175 335
+rect -45 330 45 340
+rect -45 310 -35 330
+rect -15 310 15 330
+rect 35 310 45 330
+rect -45 265 45 310
+rect 135 330 175 340
+rect 135 310 145 330
+rect 165 310 175 330
 rect -45 95 -35 265
 rect -15 95 15 265
 rect 35 95 45 265
@@ -94,7 +94,7 @@ rect 10 30 20 50
 rect 40 30 50 50
 rect 10 20 50 30
 rect 70 50 110 95
-rect 135 265 175 315
+rect 135 265 175 310
 rect 135 95 145 265
 rect 165 95 175 265
 rect 135 85 175 95
@@ -120,21 +120,21 @@ rect -15 -245 15 -225
 rect 35 -245 45 -225
 rect -45 -255 45 -245
 << viali >>
-rect -35 315 -15 335
-rect 15 315 35 335
-rect 145 315 165 335
+rect -35 310 -15 330
+rect 15 310 35 330
+rect 145 310 165 330
 rect 20 30 40 50
 rect 80 30 100 50
 rect 140 30 160 50
 rect -35 -245 -15 -225
 rect 15 -245 35 -225
 << metal1 >>
-rect -70 335 200 345
-rect -70 315 -35 335
-rect -15 315 15 335
-rect 35 315 145 335
-rect 165 315 200 335
-rect -70 305 200 315
+rect -70 330 200 340
+rect -70 310 -35 330
+rect -15 310 15 330
+rect 35 310 145 330
+rect 165 310 200 330
+rect -70 300 200 310
 rect 10 50 50 60
 rect 10 30 20 50
 rect 40 30 50 50
@@ -161,6 +161,6 @@ flabel metal1 170 40 170 40 3 FreeSans 80 0 40 0 B
 port 2 e
 flabel metal1 70 40 70 40 7 FreeSans 80 0 -40 0 Y
 port 3 w
-flabel metal1 -70 325 -70 325 7 FreeSans 80 0 -40 0 VDD
+flabel metal1 -70 320 -70 320 7 FreeSans 80 0 -40 0 VDD
 port 4 w
 << end >>
