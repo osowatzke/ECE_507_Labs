@@ -135,15 +135,44 @@
 		\label{fig::nand_netlist}
 	\end{figure}
 	
+	\subsection{Simulation Results}
+	
+	\subsubsection{VTC}
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_vtc.spice}
 		\caption{Test Circuit to Extract VTC from Netlist}
-		\label{fig::nand_vtc_extraction}
+		\label{fig::nand_vtc_test_circuit}
 	\end{figure}
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc.png}}
 		\caption{NAND Gate VTC from Extracted Netlist}
 		\label{fig::nand_vtc}
+	\end{figure}
+	
+	\subsubsection{Noise Analysis}
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
+		\caption{Test Circuit to Perform Noise Analysis on Netlist}
+		\label{fig::nand_noise_analysis_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis.png}}
+		\caption{NAND Gate Noise Analysis}
+		\label{fig::nand_noise_analysis}
+	\end{figure}
+	
+	\subsubsection{Delay Analysis}
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_delay_analysis.spice}
+		\caption{Test Circuit to Perform Delay Analysis on Netlist}
+		\label{fig::nand_delay_analysis_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_analysis.png}}
+		\caption{NAND Gate Delay Analysis}
+		\label{fig::nand_delay_analysis}
 	\end{figure}
 \end{document}
