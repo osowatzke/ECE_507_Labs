@@ -510,4 +510,60 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\subsubsection{Noise Analysis}
+	
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_noise_analysis.spice}
+		\caption{Test Circuit to Perform Noise Analysis on Netlist}
+		\label{fig::nor_noise_analysis_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis.png}}
+		\caption{NOR Gate Noise Analysis}
+		\label{fig::nor_noise_analysis}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_schem.png}}
+		\caption{NOR Gate Noise Analysis with Schematic Simulation}
+		\label{fig::nor_noise_analysis_schem}
+	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins from Netlist Simulation}
+	\label{table::nor_gate_noise_analysis}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.9764 \text{V}$ & $0.7756 \text{V}$ & $0.8326 \text{V}$ & $0.7756 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $1.0134 \text{V}$ & $0.7706 \text{V}$ & $0.7660 \text{V}$ & $0.7706 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.7006 \text{V}$ & $0.8844 \text{V}$ & $0.9156 \text{V}$ & $0.7006 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Noise Margins from Schematic Simulation}
+	\label{table::nor_gate_noise_analysis_schem}
+	\begin{tabular}{| c | c | c | c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vih} & \texttt{Vil} & \texttt{Nmh} & \texttt{Nml} \\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.9764 \text{V}$ & $0.7756 \text{V}$ & $0.8326 \text{V}$ & $0.7756 \text{V}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $1.0134 \text{V}$ & $0.7706 \text{V}$ & $0.7660 \text{V}$ & $0.7706 \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.7006 \text{V}$ & $0.8844 \text{V}$ & $0.9156 \text{V}$ & $0.7006 \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
