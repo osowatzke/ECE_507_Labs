@@ -50,6 +50,12 @@
 
 \lstset{style={verilog-style},showstringspaces=false}
 
+\lstdefinestyle{nocoloring}{
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black}
+}
+
 \makeatletter
 \newcommand*\@lbracket{[}
 \newcommand*\@rbracket{]}
@@ -124,9 +130,14 @@
 	\end{figure}
 	
 	\begin{figure}[H]
-		\lstinputlisting[frame=single]{./src/nand.spice}
+		\lstinputlisting[style=nocoloring,frame=single]{./src/nand.spice}
 		\caption{Extracted SPICE Netlist}
 		\label{fig::nand_netlist}
 	\end{figure}
 	
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_vtc.spice}
+		\caption{Test Circuit to Extract VTC from Netlist}
+		\label{fig::nand_vtc_extraction}
+	\end{figure}
 \end{document}
