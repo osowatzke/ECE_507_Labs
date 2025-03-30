@@ -186,9 +186,9 @@
 		\hline
 		\texttt{a} & \texttt{b} & \texttt{Vm}\\
 		\hline	
-		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		$0 \rightarrow 1$ & $1$ & $0.8257\ \text{V}$\\
 		\hline	
-		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		$1$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
 		\hline	
 		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
 		\hline
@@ -204,9 +204,9 @@
 		\hline
 		\texttt{a} & \texttt{b} & \texttt{Vm}\\
 		\hline	
-		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		$0 \rightarrow 1$ & $1$ & $0.8257\ \text{V}$\\
 		\hline	
-		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		$1$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
 		\hline	
 		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
 		\hline
@@ -446,4 +446,68 @@
 		\caption{NOR Schematic Symbol}
 		\label{fig::nor_symbol}
 	\end{figure}
+	
+	\subsection{Simulation Results}
+	
+	\subsubsection{VTC}
+	
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_vtc.spice}
+		\caption{Test Circuit to Extract VTC from Netlist}
+		\label{fig::nor_vtc_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc.png}}
+		\caption{NOR Gate VTC from Extracted Netlist}
+		\label{fig::nor_vtc}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_circuit.png}}
+		\caption{Schematic Circuit for NOR Gate VTC Test}
+		\label{fig::nor_vtc_schem_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_schem.png}}
+		\caption{VTC from Schematic Simulation}
+		\label{fig::nor_vtc_schem}
+	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Netlist Results}
+	\label{table::nor_vtc_netlist}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8952\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8919\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.8078\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Schematic Results}
+	\label{table::nor_vtc_schematic}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8952\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8919\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.8078\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
