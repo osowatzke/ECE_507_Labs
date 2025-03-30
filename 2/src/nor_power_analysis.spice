@@ -1,0 +1,23 @@
+nor_power_analysis
+
+.lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include nor.spice
+
+Vdd Vdd GND 1.8
+.save i(vdd)
+Vin Vin GND "pulse(0 1.8 0 0.1n 0.1n 10n 20n 10)"
+.save i(vin)
+x1 Vin GND Vout Vdd GND nor
+C1 Vout 0 4f m=1
+
+.control
+  tran 0.02n 10n
+  plot vdd#branch*1000 vout
+  meas tran curr_inte integ vdd#branch from=20e-09 to=40e-09
+  let power_int=curr_inte*1.8
+  print power_int/20e-09
+.endc
+
+.save all
+.end
+
