@@ -1,0 +1,27 @@
+nor_delay_analysis
+
+.lib /opt/SkyWater/skywater-pdk/installers/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include nor.spice
+
+Vdd Vdd GND 1.8
+.save i(vdd)
+Vin Vin GND "pulse(0 1.8 0 0.1n 0.1n 3n 6.6n 5)"
+.save i(vin)
+x1 Vin GND Vout Vdd GND nor
+
+.control
+  tran 0.02n 10n
+  plot vin vout
+  meas tran vin50 when vin=0.9 rise=2
+  meas tran vout50 when vout=0.9 fall=2
+  let tphl=vout50-vin50
+  print tphl
+  meas tran vin50 when vin=0.9 fall=1
+  meas tran vout50 when vout=0.9 rise=1
+  let tplh=vout50-vin50
+  print tplh
+.endc
+
+.save all
+.end
+
