@@ -176,6 +176,42 @@
 		\label{fig::nand_vtc_schem}
 	\end{figure}
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Netlist Results}
+	\label{table::vtc_netlist}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{VTC Schematic Results}
+	\label{table::vtc_schematic}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Vm}\\
+		\hline	
+		$0 \rightarrow 1$ & $0$ & $0.8257\ \text{V}$\\
+		\hline	
+		$0$ & $0 \rightarrow 1$ & $0.8195\ \text{V}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $0.9108\ \text{V}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	\subsubsection{Noise Analysis}
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
