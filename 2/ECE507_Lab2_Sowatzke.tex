@@ -446,4 +446,20 @@
 		\caption{NOR Schematic Symbol}
 		\label{fig::nor_symbol}
 	\end{figure}
+	
+	\subsection{Simulation Results}
+	
+	\subsubsection{VTC}
+	
+	\begin{figure}[H]
+		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_vtc.spice}
+		\caption{Test Circuit to Extract VTC from Netlist}
+		\label{fig::nor_vtc_test_circuit}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc.png}}
+		\caption{NOR Gate VTC from Extracted Netlist}
+		\label{fig::nor_vtc}
+	\end{figure}
 \end{document}
