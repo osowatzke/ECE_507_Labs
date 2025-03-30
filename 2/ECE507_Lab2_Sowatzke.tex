@@ -13,7 +13,9 @@
 %\usepackage{chngcntr}
 %\counterwithin{table}{section}
 \graphicspath{
-{./images}}
+{./images}
+{./images/nand}
+{./images/nor}}
 
 %\hypersetup{
 %    colorlinks=true,
@@ -388,4 +390,38 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\section{NOR Gates}
+	
+	\subsection{Layout}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.3\textwidth]{nor_layout.png}}
+		\caption{NOR Layout}
+		\label{fig::nor_layout}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{nor_nmos_channel_sizing.png}}
+		\caption{Checking NMOS Channel Size}
+		\label{fig::nor_nmos_channel_sizing}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{nor_pmos_channel_sizing.png}}
+		\caption{Checking PMOS Channel Size}
+		\label{fig::nor_pmos_channel_sizing}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{nor_drc_errors_terminal.png}}
+		\caption{Checking DRC Errors from Terminal}
+		\label{fig::nor_drc_errors_terminal}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{nor_drc_errors_drcmgr.png}}
+		\caption{Checking DRC Errors with drcmgr}
+		\label{fig::nor_drc_errors_drcmgr}
+	\end{figure}
 \end{document}
