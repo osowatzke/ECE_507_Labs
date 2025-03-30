@@ -352,4 +352,40 @@
 		\caption{NAND Gate Power Analysis with Schematic Simulation}
 		\label{fig::nand_power_analysis_schem}
 	\end{figure}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Power Consumption from Netlist Simulation}
+	\label{table::nand_gate_power_analysis}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Power}\\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $1$ & $1.34724{\mu}W$ \\
+		\hline	
+		$1$ & $0 \rightarrow 1 \rightarrow 0$ & $1.85866{\mu}W$ \\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.44641{\mu}W$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Power Consumption from Schematic Simulation}
+	\label{table::nand_gate_power_analysis_schem}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{Power}\\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $1$ & $1.34880{\mu}W$ \\
+		\hline	
+		$1$ & $0 \rightarrow 1 \rightarrow 0$ & $1.88943{\mu}W$ \\
+		\hline	
+		$0 \rightarrow 1 \rightarrow 0$ & $0 \rightarrow 1 \rightarrow 0$ & $1.44446{\mu}W$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
 \end{document}
