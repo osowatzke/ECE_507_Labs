@@ -292,6 +292,42 @@
 		\label{fig::nand_delay_analysis_schem}
 	\end{figure}
 	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Netlist Simulation}
+	\label{table::nand_gate_delay_analysis}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $28.574\ \text{ps}$ & $1 \rightarrow 0$ & $1$ & $44.343\ \text{ps}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $18.748\ \text{ps}$ & $1$ & $1 \rightarrow 0$ & $29.313\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $28.584\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $21.234\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}[H]
+	\begin{center}
+	\caption{Delay from Schematic Simulation}
+	\label{table::nand_gate_delay_analysis_schem}
+	\begin{tabular}{| c | c | c || c | c | c |}
+		\hline
+		\texttt{a} & \texttt{b} & \texttt{tphl} & \texttt{a} & \texttt{b} & \texttt{tplh} \\
+		\hline	
+		$0 \rightarrow 1$ & $1$ & $20.859\ \text{ps}$ & $1 \rightarrow 0$ & $1$ & $33.178\ \text{ps}$\\
+		\hline	
+		$1$ & $0 \rightarrow 1$ & $28.416\ \text{ps}$ & $1$ & $1 \rightarrow 0$ & $48.137\ \text{ps}$\\
+		\hline	
+		$0 \rightarrow 1$ & $0 \rightarrow 1$ & $29.297\ \text{ps}$ & $1 \rightarrow 0$ & $1 \rightarrow 0$ & $26.097\ \text{ps}$\\
+		\hline
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
 	\subsubsection{Power Analysis}
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_power_analysis.spice}
