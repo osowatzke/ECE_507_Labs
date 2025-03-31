@@ -513,6 +513,10 @@
 	
 	\subsection{Netlist}
 	
+	In this section, we generate a netlist from our NOR gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. Note in addition to the commands provided in the lab description we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic) simulations \cite{a2021_magic83}.
+	
+	Our NOR gate netlist generated with these commands is displayed in Figure \ref{fig::nor_netlist}. We can validate our transistor connections by examining the contents of the netlist. Doing so, we find that the NMOS transistors \texttt{X1} and \texttt{X2} are connected in parallel from \texttt{GND} to the output node \texttt{Y}. We also find that their gates are connected to inputs \texttt{A} and \texttt{B} respectively. Next, we find that the PMOS transistors \texttt{X3} and \texttt{X0} are connected in series from \texttt{VDD} to the output node \texttt{Y}. Similarly, we find that their gates are connected to inputs \texttt{A} and \texttt{B} respectively.
+	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single]{./src/nor.spice}
 		\caption{Extracted SPICE Netlist for NOR Gate}
