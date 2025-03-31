@@ -525,11 +525,15 @@
 	
 	\subsection{Schematic Simulation}
 	
+	n this section, we create a schematic for the NOR gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can then use our comparison results to validate the functionality of our layout. Our NOR gate schematic is shown in Figure \ref{fig::nor_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input A controls the gate of the PMOS transistor closest to VDD).
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_schematic.png}}
 		\caption{NOR Schematic}
 		\label{fig::nor_sechematic}
 	\end{figure}
+	
+	\noindent We also create a schematic symbol for our NOR gate, which is shown in Figure \ref{fig::nor_symbol}. This enables us to efficiently reuse our NOR gate in multiple test circuits.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nor_symbol.png}}
