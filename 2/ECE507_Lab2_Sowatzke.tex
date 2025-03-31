@@ -530,7 +530,7 @@
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_schematic.png}}
 		\caption{NOR Schematic}
-		\label{fig::nor_sechematic}
+		\label{fig::nor_schematic}
 	\end{figure}
 	
 	\noindent We also create a schematic symbol for our NOR gate, which is shown in Figure \ref{fig::nor_symbol}. This enables us to efficiently reuse our NOR gate in multiple test circuits.
@@ -543,7 +543,11 @@
 	
 	\subsection{Simulation Results}
 	
+	In this section, we compare the performance of our layout to the equivalent schematic. We use this comparison to validate the functionality of our layout. We specifically compare the behavior of the layout to the behavior of the schematic by performing VTC analysis, noise analysis, delay analysis, and power analysis.
+	
 	\subsubsection{VTC}
+	
+	First, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nor_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{VDD}.
 	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_vtc.spice}
@@ -551,11 +555,15 @@
 		\label{fig::nor_vtc_test_circuit}
 	\end{figure}
 	
+	The resulting VTC is shown in Figure \ref{fig::nor_vtc}. Looking at the output waveform, we see that the output voltage goes to zero, when either input is 1, which is the correct behavior for a NOR gate. Examining the terminal output, we also find that $V_m$, the voltage at which $V_{in} = V_{out}$, is 0.8952V.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc.png}}
 		\caption{VTC from Netlist Simulation}
 		\label{fig::nor_vtc}
 	\end{figure}
+	
+	\noindent We can perform similar analysis for our schematic, using the test circuit shown in Figure \ref{fig::nor_vtc_schem_test_circuit}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_test_circuit.png}}
@@ -563,11 +571,15 @@
 		\label{fig::nor_vtc_schem_test_circuit}
 	\end{figure}
 	
+	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8952\ \text{V}$, which is exactly the same value we found in our netlist.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_schem.png}}
 		\caption{VTC from Schematic Simulation}
 		\label{fig::nor_vtc_schem}
 	\end{figure}
+	
+	For completeness, we examine the VTC for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::nor_vtc_netlist} and \ref{table::nor_vtc_schematic}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout. 
 	
 	\begin{table}[H]
 	\begin{center}
