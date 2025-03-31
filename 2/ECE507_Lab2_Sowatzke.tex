@@ -832,6 +832,12 @@
 	\end{center}
 	\end{table}
 	
+	\section{Conclusion}
+	
+	In this report, we learned how to create transistor-level layouts in MAGIC. Using MAGIC, we specifically created NAND and NOR gate layouts. Our NAND gate was built from two NMOS transistors in series and two PMOS transistors in parallel. Similarly, our NOR gate was built from two NMOS transistors in parallel and two PMOS transistors in series. In our layouts, we created NMOS transistors using the n-diffusion regions and PMOS transistors using the p-diffusion regions. Our p-diffusion regions were placed in an n-well and the n-diffusion regions were placed in the p-type body. Each of gates was made up of polysilicon, and the transistors were connected together using local interconnect material. GND and VDD lines were made out of metal1 wires and placed next to the n-type and p-type material respectively. To prevent latchup, we also used well taps and substrate taps.
+	 
+	We validated each of our layout using DRC (design rule checks). After our layouts were validated, we created netlists from them. Then, we compared the netlists to equivalent schematics in simulation. In simulation, we specifically examined the VTC (voltage transfer characteristics), noise margins, propagation delay, and power consumption of our gates. We found that the netlists had comparable performance to each of our schematics, indicating correct behavior of our layouts.
+	
 	\bibliographystyle{IEEEtran}
 	\bibliography{IEEEabrv,sources}
 \end{document}
