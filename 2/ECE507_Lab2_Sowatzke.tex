@@ -172,6 +172,9 @@
 	In this section, we compare the performance of our layout to the equivalent schematic. We use this comparison to validate the functionality of our layout. We specifically compare the behavior of the layout to the behavior of the schematic by performing VTC analysis, noise analysis, delay analysis, and power analysis.
 	
 	\subsubsection{VTC}
+	
+	For our first comparison, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nand_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{VDD}.
+	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_vtc.spice}
 		\caption{SPICE Test Circuit to Extract VTC from Netlist}
