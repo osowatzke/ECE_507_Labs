@@ -133,6 +133,8 @@
 	
 	\subsection{Netlist}
 	
+	In this section, we generate a netlist from our NAND gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. Note that in addition to the commands provided in the lab description we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic simulations) \cite{a2021_magic83}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nand_netlist_creation.png}}
 		\caption{SPICE Netlist Extraction}
@@ -696,4 +698,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
+	
+	\bibliographystyle{IEEEtran}
+	\bibliography{IEEEabrv,sources}
 \end{document}
