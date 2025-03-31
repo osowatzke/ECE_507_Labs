@@ -471,7 +471,11 @@
 	
 	\section{NOR Gates}
 	
+	In this section, we create the layout of a NOR gate and examine its contents. Then, we validate our layout by performing DRC. After our design is validated, we extract a SPICE netlist. We also create a comparable schematic. Finally, we compare our layout-based netlists to the schematic in simulation. In these simulations, we specifically analyze the voltage transfer characteristics (VTC), noise margins, propagation delays, and power consumption of our gate. Comparable results confirm the correctness of our layout.
+	
 	\subsection{Layout}
+	
+	In this section, we review our NOR gate layout, which is displayed in Figure \ref{fig::nor_layout}. The NAND gate is composed of two NMOS transistors in parallel and two PMOS transistors in series. The NMOS transistors lie along the n-diffusion region and the PMOS transistor lie along the p-diffusion region. The n-diffusion region is placed in the p-type body, and the p-diffusion region is placed in an n-well. Polysilicon is used for the transistor gates. The layout also includes metal1 wires for ground and VDD. The ground wire is connected to the source of both NMOS transistors with local interconnect (li) material, and the VDD wire is connected to the source of leftmost PMOS transistor with li material. The drain of the rightmost PMOS transistor is connected to the drain of both NMOS transistors with li material to form the gate output. Metal1 contacts are placed on the gate inputs and outputs to allow for longer-distance routing. Depending on the distance that the I/O must be routed, li material may be sufficient for the connections. To prevent latchup, the ground wire is also connected to p-substrate diffusion with a substrate tap, and the VDD wire is connected to n-substrate diffusion with a well tap.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nor_layout.png}}
