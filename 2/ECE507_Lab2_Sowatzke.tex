@@ -483,6 +483,8 @@
 		\label{fig::nor_layout}
 	\end{figure}
 	
+	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nor_nmos_channel_sizing} and \ref{fig::nor_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NOR gate PMOS channel widths have been doubled to $4 {\mu}m$ to maintain the same equivalent resistance. The NOR gate NMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only when transistor is on).
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_nmos_channel_sizing.png}}
 		\caption{Checking NMOS Channel Size}
@@ -494,6 +496,8 @@
 		\caption{Checking PMOS Channel Size}
 		\label{fig::nor_pmos_channel_sizing}
 	\end{figure}
+	
+	For our layout to be valid, it must pass design rule checks (DRC). In Figures \ref{fig::nor_drc_errors_terminal} and \ref{fig::nor_drc_errors_drcmgr}, we confirm that our design meets DRC in two different ways. First, in Figure \ref{fig::nor_drc_errors_terminal}, we use terminal commands to perform a DRC. The \texttt{select} command, selects the entire design, and the \texttt{drc count} and \texttt{drc why} commands return the count and reason for DRC errors respectively. Examining the command outputs, we see that there are no DRC errors. Next, in Figure \ref{fig::nor_drc_errors_drcmgr}, we use the drcmgr to check for DRC errors. Examining the drcmgr output, we see that there are no DRC errors. The primary GUI toolbar also displays a DRC count of 0, which further confirms the validity of our layout.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_drc_errors_terminal.png}}
