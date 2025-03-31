@@ -105,7 +105,7 @@
 		\label{fig::nand_layout}
 	\end{figure}
 
-	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nand_nmos_channel_sizing} and \ref{fig::nand_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NAND gate NMOS channel widths have been doubled to $2 {\mu}m$ to maintain the same equivalent resistance. The NAND gate PMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only when transistor is on).
+	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nand_nmos_channel_sizing} and \ref{fig::nand_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NAND gate NMOS channel widths have been doubled to $2 {\mu}m$ to maintain the same equivalent resistance. The NAND gate PMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only one transistor is on).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_nmos_channel_sizing.png}}
@@ -135,7 +135,7 @@
 	
 	\subsection{Netlist}
 	
-	In this section, we generate a netlist from our NAND gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. Note in addition to the commands provided in the lab description we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic) simulations \cite{a2021_magic83}.
+	In this section, we generate a netlist from our NAND gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. In addition to the commands provided in the lab description, we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic) simulations \cite{a2021_magic83}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nand_netlist_creation.png}}
@@ -153,7 +153,7 @@
 	
 	\subsection{Schematic Simulation}
 	
-	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can then use our comparison results to validate the functionality of our layout. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
+	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can confirm functionality of our layout if our netlist simulations match closely with the schematic simulations. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_schematic.png}}
@@ -183,7 +183,7 @@
 		\label{fig::nand_vtc_test_circuit}
 	\end{figure}
 	
-	The resulting VTC is shown in Figure \ref{fig::nand_vtc}. Looking at the output waveform, we see that the output voltage goes to zero, when both inputs are 1, which is the correct behavior for a NAND gate. Examining the terminal output, we also find that $V_m$, the voltage at which $V_{in} = V_{out}$, is 0.8257V.
+	The resulting VTC is shown in Figure \ref{fig::nand_vtc}. Looking at the output waveform, we see that the output voltage goes to 0, when both inputs are 1, which is the correct behavior for a NAND gate. Examining the terminal output, we also find that $V_m$, the voltage at which $V_{in} = V_{out}$, is 0.8257V.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc.png}}
@@ -199,7 +199,7 @@
 		\label{fig::nand_vtc_schem_test_circuit}
 	\end{figure}
 	
-	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8257\ \text{V}$, which is exactly the same value we found in our netlist.
+	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8257\ \text{V}$, exactly the same value we found in our netlist simulation.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_schem.png}}
@@ -207,8 +207,8 @@
 		\label{fig::nand_vtc_schem}
 	\end{figure}	
 	
-	For completeness, we examine the VTC for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::vtc_netlist} and \ref{table::vtc_schematic}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout. 
-	
+	For completeness, we examine the VTC for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::vtc_netlist} and \ref{table::vtc_schematic}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout.
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{VTC Netlist Results}
@@ -226,7 +226,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{VTC Schematic Results}
@@ -243,8 +243,8 @@
 		\hline
 	\end{tabular}
 	\end{center}
-	\end{table}
-	
+	\end{table}	
+	\vspace{-24pt}
 	\subsubsection{Noise Analysis}
 	
 	Next, we perform noise analysis in both the netlist and schematic simulations and compare the results. For this noise analysis, we are specifically interested in the noise margins, which can be computed as follows:
@@ -259,7 +259,7 @@
 		\label{eq::nml}
 	\end{equation}
 	
-	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
+	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
 	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
@@ -267,7 +267,7 @@
 		\label{fig::nand_noise_analysis_test_circuit}
 	\end{figure}
 	
-	Examining the netlist, we see that input \texttt{A} is connected to a voltage source swept from 0V to 1.8V in 1mV steps and input \texttt{B} is connected to \texttt{VDD}. Note that these input connections are identical to what was used in Figure \ref{fig::nand_vtc_test_circuit}. Our noise analysis results captured with this test circuit are shown in Figure \ref{fig::nand_noise_analysis_schem}.
+	Examining the netlist, we see that input \texttt{A} is connected to a voltage source swept from 0V to 1.8V in 1mV steps and input \texttt{B} is connected to \texttt{VDD}. Note that these input connections are identical to what was used in Figure \ref{fig::nand_vtc_test_circuit}. Our noise analysis results captured with this test circuit are shown in Figure \ref{fig::nand_noise_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_noise_analysis.png}}
@@ -286,7 +286,7 @@
 	\noindent Examining the schematic simulation outputs, we find that $V_{IL} = 0.6926\ \text{V}$ and $V_{IH} = 0.9264\ \text{V}$, identical to what we found in the netlist simulation. This implies that the noise margins are also identical ($NM_H = 0.8736\ \text{V}$ and $NM_L = 0.6926\ \text{V}$).	
 	
 	For completeness, we also examine the noise margins for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::nand_gate_noise_analysis} and \ref{table::nand_gate_noise_analysis_schem}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout.
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Noise Margins from Netlist Simulation}
@@ -304,7 +304,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Noise Margins from Schematic Simulation}
@@ -322,7 +322,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\subsubsection{Delay Analysis}
 	
 	Then, we perform delay analysis for the netlist and schematic simulations and compare the results. The SPICE circuit we use to test the netlist is shown in Figure \ref{fig::nand_delay_analysis_test_circuit}.
@@ -332,7 +332,7 @@
 		\label{fig::nand_delay_analysis_test_circuit}
 	\end{figure}
 	
-	\noindent Compared to Figures \ref{fig::nand_vtc_test_circuit} and \ref{fig::nand_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the low-to-high propagation delay ($t_{plh}$) and falling edges of the input to measure high-to-low propagation delay ($t_{phl}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nand_delay_analysis}.
+	\noindent Compared to Figures \ref{fig::nand_vtc_test_circuit} and \ref{fig::nand_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the high-to-low propagation delay ($t_{phl}$) and falling edges of the input to measure low-to-high propagation delay ($t_{plh}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nand_delay_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_analysis.png}}
@@ -359,7 +359,7 @@
 	\noindent Examining the figure output, we find that $t_{phl} = 20.859\ \text{ps}$ and $t_{plh} = 33.178\ \text{ps}$. These results are approximately the same as our netlist simulation, and the slight differences can be explained by minor differences in the layout-based capacitances. However, overall, these findings indicate correct performance.
 	
 	For completeness, we also measure the propagation delays for other combinations of inputs. These results are summarized in Table \ref{table::nand_gate_delay_analysis} and \ref{table::nand_gate_delay_analysis_schem}. Comparing the results, we see that the netlist and schematic propagation delays are approximately the same for other combinations of inputs.
-	 
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Delay from Netlist Simulation}
@@ -377,7 +377,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Delay from Schematic Simulation}
@@ -395,7 +395,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\subsubsection{Power Analysis}
 	
 	Finally, we examine the power consumption of our layout in netlist-based simulation and compare the results to our schematic-based simulation. Our SPICE test circuit to measure the power consumption of our netlist is included in Figure \ref{fig::nand_power_analysis_test_circuit}.
@@ -414,7 +414,7 @@
 		\label{fig::nand_power_analysis}
 	\end{figure}
 	
-	\noindent Examining the outputs of Figure \ref{fig::nand_power_analysis}, we find that the NAND gate power consumption is $1.34724\ \mu{W}$. We can compare this power consumption to the power consumption of the NAND gate in our schematic simulation. To measure the power consumption of our schematic we use the test circuit shown in Figure \ref{fig::nand_power_analysis_test_circuit_schem}.
+	\noindent Examining the outputs of Figure \ref{fig::nand_power_analysis}, we find that the NAND gate power consumption is $1.34724\ \mu{W}$. We can compare this power consumption to the power consumption of the NAND gate in our schematic simulation. To measure the power consumption of our schematic, we use the test circuit shown in Figure \ref{fig::nand_power_analysis_test_circuit_schem}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis_test_circuit.png}}
@@ -433,7 +433,7 @@
 	\noindent Examining the terminal outputs, we find that the power consumption is $1.34880\ \mu{W}$. This is almost identical to what we find in the netlist simulation. Any slight differences can be explained by the presence of small layout-based capacitances.
 	
 	For completeness, we also measure the propagation delays for other combinations of inputs. The power consumption for the netlist-based simulation and the schematic simulation are summarized in Tables \ref{table::nand_gate_power_analysis} and \ref{table::nand_gate_power_analysis_schem}. Because the power consumption of the schematic is approximately the same as the netlist, we can conclude that our layout is valid.
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Power Consumption from Netlist Simulation}
@@ -451,7 +451,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Power Consumption from Schematic Simulation}
@@ -469,7 +469,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\section{NOR Gates}
 	
 	In this section, we create the layout of a NOR gate and examine its contents. Then, we validate our layout by performing DRC. After our design is validated, we extract a SPICE netlist. We also create a comparable schematic. Finally, we compare our layout-based netlists to the schematic in simulation. In these simulations, we specifically analyze the voltage transfer characteristics (VTC), noise margins, propagation delays, and power consumption of our gate. Comparable results confirm the correctness of our layout.
