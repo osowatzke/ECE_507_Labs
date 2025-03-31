@@ -175,7 +175,7 @@
 	
 	\subsubsection{VTC}
 	
-	For our first comparison, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nand_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{VDD}.
+	First, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nand_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{VDD}.
 	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_vtc.spice}
@@ -246,7 +246,6 @@
 	\end{table}
 	
 	\subsubsection{Noise Analysis}
-	\begin{figure}[H]
 	
 	Next, we perform noise analysis in both the netlist and schematic simulations and compare the results. For this noise analysis, we are specifically interested in the noise margins, which can be computed as follows:
 	
@@ -258,7 +257,9 @@
 		NM_L = V_{IL} - V_{OL}
 	\end{equation}
 	
-	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the noise margins in our netlist simulation.
+	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points, in turn, allow us to solve for the noise margins.	
+	
+	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Noise Analysis on Netlist}
 		\label{fig::nand_noise_analysis_test_circuit}
@@ -321,15 +322,16 @@
 	\end{table}
 	
 	\subsubsection{Delay Analysis}
-	\begin{figure}[H]
+	
 	
 	Then, we perform delay analysis for the netlist and schematic simulations and compare the results. The SPICE circuit we use to test the netlist is shown in Figure \ref{fig::nand_delay_analysis_test_circuit}.
-		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_delay_analysis.spice}
+	
+	\begin{figure}[H]	\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_delay_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Delay Analysis on Netlist}
 		\label{fig::nand_delay_analysis_test_circuit}
 	\end{figure}
 	
-	\noindent Compared to Figures \ref{fig::nand_vtc_test_circuit} and \ref{fig::nand_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the low-to-high propagation delay \texttt{tphl} and falling edges of the input to measure high-to-low propagation delay \texttt{tplh}. The measured values for the netlist simulation are shown in Figure \ref{fig::nand_delay_analysis}.
+	\noindent Compared to Figures \ref{fig::nand_vtc_test_circuit} and \ref{fig::nand_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the low-to-high propagation delay ($t_{plh}$) and falling edges of the input to measure high-to-low propagation delay ($t_{phl}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nand_delay_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_analysis.png}}
@@ -345,7 +347,7 @@
 		\label{fig::nand_delay_analysis_test_circuit_schem}
 	\end{figure}
 	
-	\noindent Using the test circuit, we measure the propagation delays, which are shown in Figure \ref{fig::nand_delay_analysis_test_circuit_schem}.
+	\noindent Using the test circuit, we measure the propagation delays, which are shown in Figure \ref{fig::nand_delay_analysis_schem}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_delay_analysis_schem.png}}
@@ -353,7 +355,7 @@
 		\label{fig::nand_delay_analysis_schem}
 	\end{figure}
 	
-	\noindent Examining the figure output, we find that $t_{phl} = 20.859\ \text{ps}$ and $t_{plh} = 33.178\ \text{ps}$. These results are approximately the same as our netlist simulation, and we can explain the slight differences with minor layout-based capacitance differences. However, overall these findings indicate performance.
+	\noindent Examining the figure output, we find that $t_{phl} = 20.859\ \text{ps}$ and $t_{plh} = 33.178\ \text{ps}$. These results are approximately the same as our netlist simulation, and the slight differences can be explained by minor differences in the layout-based capacitances. However, overall, these findings indicate correct performance.
 	
 	For completeness, we also measure the propagation delays for other combinations of inputs. These results are summarized in Table \ref{table::nand_gate_delay_analysis} and \ref{table::nand_gate_delay_analysis_schem}. Comparing the results, we see that the netlist and schematic propagation delays are approximately the same for other combinations of inputs.
 	 
@@ -394,9 +396,10 @@
 	\end{table}
 	
 	\subsubsection{Power Analysis}
-	\begin{figure}[H]
 	
 	Finally, we examine the power consumption of our layout in netlist-based simulation and compare the results to our schematic-based simulation. Our SPICE test circuit to measure the power consumption of our netlist is included in Figure \ref{fig::nand_power_analysis_test_circuit}.
+	
+	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_power_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Power Analysis on Netlist}
 		\label{fig::nand_power_analysis_test_circuit}
