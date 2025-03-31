@@ -141,6 +141,8 @@
 		\label{fig::nand_netlist_creation}
 	\end{figure}
 	
+	Our NAND gate netlist generated with these commands is displayed in Figure \ref{fig::nand_netlist}. We can validate our transistor connections by examining the contents of the netlist. Doing so, we find that the NMOS transistors \texttt{X1} and \texttt{X2} are connected in series from \texttt{GND} to the output node \texttt{Y}. We also find that their gates are connected to inputs \texttt{B} and \texttt{A} respectively. Next, we find that the PMOS transistors \texttt{X0} and \texttt{X3} are connected in parallel from \texttt{VDD} to the output node \texttt{Y}. Similarly, we find that their gates are connected to inputs \texttt{B} and \texttt{A} respectively.
+	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single]{./src/nand.spice}
 		\caption{Extracted SPICE Netlist for NAND Gate}
