@@ -117,6 +117,8 @@
 		\label{fig::nand_pmos_channel_sizing}
 	\end{figure}
 	
+	For our layout to be valid, it must pass design rule checks (DRC). In Figures \ref{fig::nand_drc_errors_terminal} and \ref{fig::nand_drc_errors_drcmgr}, we confirm that our design meets DRC in two different ways. First, in Figure \ref{fig::nand_drc_errors_terminal}, we use terminal commands to perform a DRC. The \texttt{select} command, selects the entire design, and the \texttt{drc count} and \texttt{drc why} commands return the count and reason for DRC errors respectively. Examining the command outputs, we see that there are no DRC errors. Next, in Figure \ref{fig::nand_drc_errors_drcmgr}, we use the drcmgr to check for DRC errors. Examining the drcmgr output, we see that there are no DRC errors. The primary GUI toolbar also displays a DRC count of 0, which further confirms the validity of our layout.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_drc_errors_terminal.png}}
 		\caption{Checking DRC Errors from Terminal}
