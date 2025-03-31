@@ -105,7 +105,7 @@
 		\label{fig::nand_layout}
 	\end{figure}
 
-	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nand_nmos_channel_sizing} and \ref{fig::nand_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter, with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NAND gate NMOS channel widths have been doubled to $2 {\mu}m$ to maintain the same equivalent resistance. The NAND gate PMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only when transistor is on).
+	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nand_nmos_channel_sizing} and \ref{fig::nand_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NAND gate NMOS channel widths have been doubled to $2 {\mu}m$ to maintain the same equivalent resistance. The NAND gate PMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only when transistor is on).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_nmos_channel_sizing.png}}
@@ -135,7 +135,7 @@
 	
 	\subsection{Netlist}
 	
-	In this section, we generate a netlist from our NAND gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. Note in addition to the commands provided in the lab description we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic simulations) \cite{a2021_magic83}.
+	In this section, we generate a netlist from our NAND gate layout. To do so, we specifically follow the commands listed in Figure \ref{fig::nand_netlist_creation}. Note in addition to the commands provided in the lab description we also run the \texttt{ext2spice} command with the \texttt{lvs} option. This option configures the \texttt{ext2spice} settings for LVS (layout vs schematic) simulations \cite{a2021_magic83}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nand_netlist_creation.png}}
@@ -153,7 +153,7 @@
 	
 	\subsection{Schematic Simulation}
 	
-	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can then the comparison results to validate the functionality of our layout. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
+	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can then use our comparison results to validate the functionality of our layout. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_schematic.png}}
@@ -199,7 +199,7 @@
 		\label{fig::nand_vtc_schem_test_circuit}
 	\end{figure}
 	
-	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8257\ \text{V}$, which is exactly the same value we found with our netlist.
+	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8257\ \text{V}$, which is exactly the same value we found in our netlist.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_schem.png}}
@@ -257,7 +257,7 @@
 		NM_L = V_{IL} - V_{OL}
 	\end{equation}
 	
-	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points, in turn, allow us to solve for the noise margins.	
+	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
 	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_noise_analysis.spice}
