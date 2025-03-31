@@ -189,17 +189,23 @@
 		\label{fig::nand_vtc}
 	\end{figure}
 	
+	\noindent We can perform similar analysis for our schematic, using the test circuit shown in Figure \ref{fig::nand_vtc_schem_test_circuit}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_test_circuit.png}}
 		\caption{Schematic Test Circuit to Collect NAND Gate VTC}
 		\label{fig::nand_vtc_schem_test_circuit}
 	\end{figure}
 	
+	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8257\ \text{V}$, which is exactly the same value we found with our netlist.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_vtc_schem.png}}
 		\caption{VTC from Schematic Simulation}
 		\label{fig::nand_vtc_schem}
-	\end{figure}
+	\end{figure}	
+	
+	For completeness, we examine the VTC for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::vtc_netlist} and \ref{table::vtc_schematic}. Comparing the results for both tables, we find that the netlist simulation are identical to those of the schematic simulation, which validates the behavior of our layout. 
 	
 	\begin{table}[H]
 	\begin{center}
