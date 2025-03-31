@@ -400,7 +400,7 @@
 		\label{fig::nand_power_analysis_test_circuit}
 	\end{figure}
 	
-	\noindent Similar to Figure \ref{fig::nand_delay_analysis_test_circuit}, we find that the input \texttt{A} is also being driven by a pulsed input source, while the input \texttt{B} is tied to \texttt{VDD}. The pulsed input source has a slightly larger period, which results in a slightly longer simulation time. The resulting power consumption is included in Figure \ref{fig::nand_power_analysis}.
+	\noindent Similar to Figure \ref{fig::nand_delay_analysis_test_circuit}, we find that the input \texttt{A} is also being driven by a pulsed input source, while the input \texttt{B} is tied to \texttt{VDD}. The pulsed input source has a slightly larger period, which results in a slightly longer simulation time. We have also included a 4fF parasitic capacitance to match the work we did in Lab 1. The resulting power consumption is included in Figure \ref{fig::nand_power_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis.png}}
@@ -408,17 +408,25 @@
 		\label{fig::nand_power_analysis}
 	\end{figure}
 	
+	\noindent Examining the outputs of Figure \ref{fig::nand_power_analysis}, we find that the NAND gate power consumption is $1.34724\ \mu{W}$. We can compare this power consumption to the power consumption of the NAND gate in our schematic simulation. To measure the power consumption of our schematic we use the test circuit shown in Figure \ref{fig::nand_power_analysis_test_circuit_schem}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis_test_circuit.png}}
 		\caption{Schematic Test Circuit for NAND Gate Power Analysis}
 		\label{fig::nand_power_analysis_test_circuit_schem}
 	\end{figure}
 	
+	\noindent Our simulation results are included in Figure \ref{fig::nand_power_analysis_schem}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis_schem.png}}
 		\caption{Power Analysis Results from Schematic Simulation}
 		\label{fig::nand_power_analysis_schem}
 	\end{figure}
+	
+	\noindent Examining the terminal outputs, we find that the power consumption is $1.34880\ \mu{W}$. This is almost identical to what we find in the netlist simulation. Any slight differences that exist we can explain with the presence of small layout-based capacitances.
+	
+	We get similar results, when we examine other combinations of inputs. The power consumption for the netlist-based simulation and the schematic simulation are summarized in Tables \ref{table::nand_gate_power_analysis} and \ref{table::nand_gate_power_analysis_schem}. Because the power consumption of the schematic is approximately the same as the netlist, we can conclude that our layout is valid.
 	
 	\begin{table}[H]
 	\begin{center}
