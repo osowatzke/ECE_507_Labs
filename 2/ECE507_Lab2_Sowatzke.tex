@@ -393,10 +393,14 @@
 	
 	\subsubsection{Power Analysis}
 	\begin{figure}[H]
+	
+	Finally, we examine the power consumption of our layout in netlist-based simulation and compare the results to our schematic-based simulation. Our SPICE test circuit to measure the power consumption of our netlist is included in Figure \ref{fig::nand_power_analysis_test_circuit}.
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nand_power_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Power Analysis on Netlist}
 		\label{fig::nand_power_analysis_test_circuit}
 	\end{figure}
+	
+	\noindent Similar to Figure \ref{fig::nand_delay_analysis_test_circuit}, we find that the input \texttt{A} is also being driven by a pulsed input source, while the input \texttt{B} is tied to \texttt{VDD}. The pulsed input source has a slightly larger period, which results in a slightly longer simulation time. The resulting power consumption is included in Figure \ref{fig::nand_power_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nand_power_analysis.png}}
