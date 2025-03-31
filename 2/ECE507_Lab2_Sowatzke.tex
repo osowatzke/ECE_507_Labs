@@ -685,11 +685,16 @@
 	\end{table}
 	
 	\subsubsection{Delay Analysis}
+	
+	Then, we perform delay analysis for the netlist and schematic simulations and compare the results. The SPICE circuit we use to test the netlist is shown in Figure \ref{fig::nor_delay_analysis_test_circuit}.
+	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_delay_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Delay Analysis on Netlist}
 		\label{fig::nor_delay_analysis_test_circuit}
 	\end{figure}
+	
+	\noindent Compared to Figures \ref{fig::nor_vtc_test_circuit} and \ref{fig::nor_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the low-to-high propagation delay ($t_{plh}$) and falling edges of the input to measure high-to-low propagation delay ($t_{phl}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nor_delay_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis.png}}
@@ -697,17 +702,25 @@
 		\label{fig::nor_delay_analysis}
 	\end{figure}
 	
+	\noindent Examining the terminal output, we find that the propagation delays are $t_{phl} = 45.126\ \text{ps}$ and $t_{plh} = 45.536\ \text{ps}$. We can perform similar analysis for a schematic simulation using the circuit shown in Figure \ref{fig::nor_delay_analysis_test_circuit_schem}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis_test_circuit.png}}
 		\caption{Schematic Test Circuit for NOR Gate Delay Analysis}
 		\label{fig::nor_delay_analysis_test_circuit_schem}
 	\end{figure}
 	
+	\noindent Using the test circuit, we measure the propagation delays, which are shown in Figure \ref{fig::nor_delay_analysis_schem}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis_schem.png}}
 		\caption{Delay Analysis Result from Schematic Simulation}
 		\label{fig::nor_delay_analysis_schem}
 	\end{figure}
+	
+	\noindent Examining the figure output, we find that $t_{phl} = 44.975\ \text{ps}$ and $t_{plh} = 45.841\ \text{ps}$. These results are approximately the same as our netlist simulation, and the slight differences can be explained by minor differences in the layout-based capacitances. However, overall, these findings indicate correct performance.
+	
+	For completeness, we also measure the propagation delays for other combinations of inputs. These results are summarized in Table \ref{table::nor_gate_delay_analysis} and \ref{table::nor_gate_delay_analysis_schem}. Comparing the results, we see that the netlist and schematic propagation delays are approximately the same for other combinations of inputs.
 	
 	\begin{table}[H]
 	\begin{center}
