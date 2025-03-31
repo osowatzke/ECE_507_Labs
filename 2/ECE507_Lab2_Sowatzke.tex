@@ -151,11 +151,15 @@
 	
 	\subsection{Schematic Simulation}
 	
+	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations and in turn validate the functionality of our layout. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gate have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_schematic.png}}
 		\caption{NAND Schematic}
 		\label{fig::nand_schematic}
 	\end{figure}
+	
+	\noindent We also create a schematic symbol for our NAND gate, which is shown in Figure \ref{fig::nand_symbol}. This enables us to efficiently reuse our NAND gate in multiple test circuits.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nand_symbol.png}}
