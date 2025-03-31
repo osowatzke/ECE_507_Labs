@@ -153,7 +153,7 @@
 	
 	\subsection{Schematic Simulation}
 	
-	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can confirm functionality of our layout if our netlist simulations match closely with the schematic simulations. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
+	In this section, we create a schematic for the NAND gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can confirm the functionality of our layout if our netlist simulations match closely with the schematic simulations. Our NAND gate schematic is shown in Figure \ref{fig::nand_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input B controls the gate of the NMOS transistor closest to ground).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nand_schematic.png}}
@@ -476,7 +476,7 @@
 	
 	\subsection{Layout}
 	
-	In this section, we review our NOR gate layout, which is displayed in Figure \ref{fig::nor_layout}. The NAND gate is composed of two NMOS transistors in parallel and two PMOS transistors in series. The NMOS transistors lie along the n-diffusion region and the PMOS transistor lie along the p-diffusion region. The n-diffusion region is placed in the p-type body, and the p-diffusion region is placed in an n-well. Polysilicon is used for the transistor gates. The layout also includes metal1 wires for ground and VDD. The ground wire is connected to the source of both NMOS transistors with local interconnect (li) material, and the VDD wire is connected to the source of leftmost PMOS transistor with li material. The drain of the rightmost PMOS transistor is connected to the drain of both NMOS transistors with li material to form the gate output. Metal1 contacts are placed on the gate inputs and outputs to allow for longer-distance routing. Depending on the distance that the I/O must be routed, li material may be sufficient for the connections. To prevent latchup, the ground wire is also connected to p-substrate diffusion with a substrate tap, and the VDD wire is connected to n-substrate diffusion with a well tap.
+	In this section, we review our NOR gate layout, which is displayed in Figure \ref{fig::nor_layout}. The NOR gate is composed of two NMOS transistors in parallel and two PMOS transistors in series. The NMOS transistors lie along the n-diffusion region and the PMOS transistor lie along the p-diffusion region. The n-diffusion region is placed in the p-type body, and the p-diffusion region is placed in an n-well. Polysilicon is used for the transistor gates. The layout also includes metal1 wires for ground and VDD. The ground wire is connected to the source of both NMOS transistors with local interconnect (li) material, and the VDD wire is connected to the source of leftmost PMOS transistor with li material. The drain of the rightmost PMOS transistor is connected to the drain of both NMOS transistors with li material to form the gate output. Metal1 contacts are placed on the gate inputs and outputs to allow for longer-distance routing. Depending on the distance that the I/O must be routed, li material may be sufficient for the connections. To prevent latchup, the ground wire is also connected to p-substrate diffusion with a substrate tap, and the VDD wire is connected to n-substrate diffusion with a well tap.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.3\textwidth]{nor_layout.png}}
@@ -484,7 +484,7 @@
 		\label{fig::nor_layout}
 	\end{figure}
 	
-	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nor_nmos_channel_sizing} and \ref{fig::nor_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NOR gate PMOS channel widths have been doubled to $4 {\mu}m$ to maintain the same equivalent resistance. The NOR gate NMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only when transistor is on).
+	Most of the transistor properties are defined by the size of the NMOS and PMOS transistor channels, whose dimensions are shown in Figures \ref{fig::nor_nmos_channel_sizing} and \ref{fig::nor_pmos_channel_sizing}. Note that we have designed the transistors with the minimum channel length for the sky130A technology (150 nm). The channel widths have been chosen to match the delay of an inverter with $1 {\mu}m$ NMOS channel widths and $2 {\mu}m$ PMOS channel widths. With respect to the inverter, the NOR gate PMOS channel widths have been doubled to $4 {\mu}m$ to maintain the same equivalent resistance. The NOR gate NMOS channel widths are kept the same to maintain the same equivalent resistance for the slowest case (when only one transistor is on).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_nmos_channel_sizing.png}}
@@ -526,7 +526,7 @@
 	
 	\subsection{Schematic Simulation}
 	
-	n this section, we create a schematic for the NOR gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can then use our comparison results to validate the functionality of our layout. Our NOR gate schematic is shown in Figure \ref{fig::nor_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input A controls the gate of the PMOS transistor closest to VDD).
+	In this section, we create a schematic for the NOR gate in xschem. We use this schematic to perform schematic simulations that we can compare to our netlist simulations. We can confirm the functionality of our layout if our netlist simulations match closely with the schematic simulations. Our NOR gate schematic is shown in Figure \ref{fig::nor_schematic}. Note that the channel width and length match those configured in our layout. Additionally, the sequential gates have the same order as the layout (input A controls the gate of the PMOS transistor closest to VDD).
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{nor_schematic.png}}
@@ -548,7 +548,7 @@
 	
 	\subsubsection{VTC}
 	
-	First, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nor_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{VDD}.
+	First, we compare the VTC from the netlist simulations to the VTC from the schematic simulations. To generate a VTC from our netlist, we create a test circuit in SPICE, which is shown in Figure \ref{fig::nor_vtc_test_circuit}. This circuit connects the \texttt{A} input of the circuit to a voltage source which is swept in 1mV steps from 0V to 1.8V, while the \texttt{B} input is connected to \texttt{GND}.
 	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_vtc.spice}
@@ -572,7 +572,7 @@
 		\label{fig::nor_vtc_schem_test_circuit}
 	\end{figure}
 	
-	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8952\ \text{V}$, which is exactly the same value we found in our netlist.
+	\noindent Examining the resulting VTC, we find that the output voltage goes to 0, as expected, when both inputs are 1. Additionally, we find that $V_m = 0.8952\ \text{V}$, exactly the same value we found in our netlist simulation.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_vtc_schem.png}}
@@ -581,7 +581,7 @@
 	\end{figure}
 	
 	For completeness, we examine the VTC for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::nor_vtc_netlist} and \ref{table::nor_vtc_schematic}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout. 
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{VTC Netlist Results}
@@ -599,7 +599,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{VTC Schematic Results}
@@ -617,18 +617,18 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\subsubsection{Noise Analysis}
 	
-	Next, we perform noise analysis in both the netlist and schematic simulations and compare the results. For this noise analysis, we are specifically interested in the noise margins, which can be computed using Equation \ref{eq::nmh} and \ref{eq::nml}. $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nor_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
-	
+	Next, we perform noise analysis in both the netlist and schematic simulations and compare the results. For this noise analysis, we are specifically interested in the noise margins, which can be computed using Equation \ref{eq::nmh} and \ref{eq::nml}. $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We use the SPICE circuit shown in Figure \ref{fig::nor_noise_analysis_test_circuit} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.
+	 
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_noise_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Noise Analysis on Netlist}
 		\label{fig::nor_noise_analysis_test_circuit}
 	\end{figure}
 	
-	Examining the netlist, we see that input \texttt{A} is connected to a voltage source swept from 0V to 1.8V in 1mV steps and input \texttt{B} is connected to \texttt{VDD}. Note that these input connections are identical to what was used in Figure \ref{fig::nor_vtc_test_circuit}. Our noise analysis results captured with this test circuit are shown in Figure \ref{fig::nor_noise_analysis}.
+	Examining the netlist, we see that input \texttt{A} is connected to a voltage source swept from 0V to 1.8V in 1mV steps and input \texttt{B} is connected to \texttt{GND}. Note that these input connections are identical to what was used in Figure \ref{fig::nor_vtc_test_circuit}. Our noise analysis results captured with this test circuit are shown in Figure \ref{fig::nor_noise_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis.png}}
@@ -636,7 +636,7 @@
 		\label{fig::nor_noise_analysis}
 	\end{figure}
 	
-	\noindent Examining the terminal outputs, we see that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$. This implies that $NM_H = 1.8\ \text{V} - 0.9764\ \text{V} = 0.8326\ \text{V}$ and $NM_L = 0.7756\ \text{V} - 0\ \text{V} = 0.7756\ \text{V}$. Using the test circuit shown in Figure \ref{fig::nor_vtc_schem_test_circuit}, we can perform similar analysis for our schematic simulations. These results are displayed in Figure \ref{fig::nor_vtc_schem_test_circuit}.
+	\noindent Examining the terminal outputs, we see that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$. This implies that $NM_H = 1.8\ \text{V} - 0.9764\ \text{V} = 0.8326\ \text{V}$ and $NM_L = 0.7756\ \text{V} - 0\ \text{V} = 0.7756\ \text{V}$. Using the test circuit shown in Figure \ref{fig::nor_vtc_schem_test_circuit}, we can perform similar analysis for our schematic simulations. These results are displayed in Figure \ref{fig::nor_noise_analysis_schem}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_schem.png}}
@@ -647,7 +647,7 @@
 	\noindent Examining the schematic simulation outputs, we find that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$, identical to what we found in the netlist simulation. This implies that the noise margins are also identical ($NM_H = 0.8326\ \text{V}$ and $NM_L = 0.7756\ \text{V}$).	
 	
 	For completeness, we also examine the noise margins for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::nor_gate_noise_analysis} and \ref{table::nor_gate_noise_analysis_schem}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout.
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Noise Margins from Netlist Simulation}
@@ -665,7 +665,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Noise Margins from Schematic Simulation}
@@ -683,7 +683,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\subsubsection{Delay Analysis}
 	
 	Then, we perform delay analysis for the netlist and schematic simulations and compare the results. The SPICE circuit we use to test the netlist is shown in Figure \ref{fig::nor_delay_analysis_test_circuit}.
@@ -694,7 +694,7 @@
 		\label{fig::nor_delay_analysis_test_circuit}
 	\end{figure}
 	
-	\noindent Compared to Figures \ref{fig::nor_vtc_test_circuit} and \ref{fig::nor_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the low-to-high propagation delay ($t_{plh}$) and falling edges of the input to measure high-to-low propagation delay ($t_{phl}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nor_delay_analysis}.
+	\noindent Compared to Figures \ref{fig::nor_vtc_test_circuit} and \ref{fig::nor_noise_analysis_test_circuit}, we see that our input \texttt{A} has been replaced with a pulsed voltage source. We can use rising edges of the input to measure the high-to-low propagation delay ($t_{phl}$) and falling edges of the input to measure low-to-high propagation delay ($t_{plh}$). The measured values for the netlist simulation are shown in Figure \ref{fig::nor_delay_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_delay_analysis.png}}
@@ -721,7 +721,7 @@
 	\noindent Examining the figure output, we find that $t_{phl} = 44.975\ \text{ps}$ and $t_{plh} = 45.841\ \text{ps}$. These results are approximately the same as our netlist simulation, and the slight differences can be explained by minor differences in the layout-based capacitances. However, overall, these findings indicate correct performance.
 	
 	For completeness, we also measure the propagation delays for other combinations of inputs. These results are summarized in Table \ref{table::nor_gate_delay_analysis} and \ref{table::nor_gate_delay_analysis_schem}. Comparing the results, we see that the netlist and schematic propagation delays are approximately the same for other combinations of inputs.
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Delay from Netlist Simulation}
@@ -739,7 +739,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Delay from Schematic Simulation}
@@ -757,7 +757,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\subsubsection{Power Analysis}
 	
 	Finally, we examine the power consumption of our layout in netlist-based simulation and compare the results to our schematic-based simulation. Our SPICE test circuit to measure the power consumption of our netlist is included in Figure \ref{fig::nor_power_analysis_test_circuit}.
@@ -768,7 +768,7 @@
 		\label{fig::nor_power_analysis_test_circuit}
 	\end{figure}
 	
-	\noindent Similar to Figure \ref{fig::nor_power_analysis_test_circuit}, we find that the input \texttt{A} is being driven by a pulsed input source, while the input \texttt{B} is tied to \texttt{VDD}. The pulsed input source has a slightly larger period, which results in a slightly longer simulation time. We have also included a 4fF parasitic capacitance to match the work we did in Lab 1. The resulting power consumption is included in Figure \ref{fig::nor_power_analysis}.
+	\noindent Similar to Figure \ref{fig::nor_power_analysis_test_circuit}, we find that the input \texttt{A} is being driven by a pulsed input source, while the input \texttt{B} is tied to \texttt{GND}. The pulsed input source has a slightly larger period, which results in a slightly longer simulation time. We have also included a 4fF parasitic capacitance to match the work we did in Lab 1. The resulting power consumption is included in Figure \ref{fig::nor_power_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_analysis.png}}
@@ -776,7 +776,7 @@
 		\label{fig::nor_power_analysis}
 	\end{figure}
 	
-	\noindent Examining the outputs of Figure \ref{fig::nand_power_analysis}, we find that the NOR gate power consumption is $2.24763\ \mu{W}$. We can compare this power consumption to the power consumption of the NOR gate in our schematic simulation. To measure the power consumption of our schematic we use the test circuit shown in Figure \ref{fig::nor_power_analysis_test_circuit_schem}.
+	\noindent Examining the outputs of Figure \ref{fig::nor_power_analysis}, we find that the NOR gate power consumption is $2.24763\ \mu{W}$. We can compare this power consumption to the power consumption of the NOR gate in our schematic simulation. To measure the power consumption of our schematic we use the test circuit shown in Figure \ref{fig::nor_power_analysis_test_circuit_schem}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_power_analysis_test_circuit.png}}
@@ -795,7 +795,7 @@
 	\noindent Examining the terminal outputs, we find that the power consumption is $2.28022\ \mu{W}$. This is almost identical to what we find in the netlist simulation. Any slight differences can be explained by the presence of small layout-based capacitances.
 	
 	For completeness, we also measure the propagation delays for other combinations of inputs. The power consumption for the netlist-based simulation and the schematic simulation are summarized in Tables \ref{table::nor_gate_power_analysis} and \ref{table::nor_gate_power_analysis_schem}. Because the power consumption of the schematic is approximately the same as the netlist, we can conclude that our layout is valid.
-	
+	\vspace{-12pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Power Consumption from Netlist Simulation}
@@ -813,7 +813,7 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-24pt}
 	\begin{table}[H]
 	\begin{center}
 	\caption{Power Consumption from Schematic Simulation}
@@ -831,10 +831,10 @@
 	\end{tabular}
 	\end{center}
 	\end{table}
-	
+	\vspace{-12pt}
 	\section{Conclusion}
 	
-	In this report, we learned how to create transistor-level layouts in MAGIC. Using MAGIC, we specifically created NAND and NOR gate layouts. Our NAND gate was built from two NMOS transistors in series and two PMOS transistors in parallel. Similarly, our NOR gate was built from two NMOS transistors in parallel and two PMOS transistors in series. In our layouts, we created NMOS transistors using the n-diffusion regions and PMOS transistors using the p-diffusion regions. Our p-diffusion regions were placed in an n-well and the n-diffusion regions were placed in the p-type body. Each of gates was made up of polysilicon, and the transistors were connected together using local interconnect material. GND and VDD lines were made out of metal1 wires and placed next to the n-type and p-type material respectively. To prevent latchup, we also used well taps and substrate taps.
+	In this report, we learned how to create transistor-level layouts in MAGIC. Using MAGIC, we specifically created NAND and NOR gate layouts. Our NAND gate was built from two NMOS transistors in series and two PMOS transistors in parallel. Similarly, our NOR gate was built from two NMOS transistors in parallel and two PMOS transistors in series. In our layouts, we created NMOS transistors using the n-diffusion regions and PMOS transistors using the p-diffusion regions. Our p-diffusion regions were placed in an n-well and the n-diffusion regions were placed in the p-type body. Each of gates was made up of polysilicon, and the transistors were connected together using local interconnect material. GND and VDD lines were made out of metal1 wires and placed below the n-type and above the p-type material respectively. To prevent latchup, we also used well taps and substrate taps.
 	 
 	We validated each of our layout using DRC (design rule checks). After our layouts were validated, we created netlists from them. Then, we compared the netlists to equivalent schematics in simulation. In simulation, we specifically examined the VTC (voltage transfer characteristics), noise margins, propagation delay, and power consumption of our gates. We found that the netlists had comparable performance to each of our schematics, indicating correct behavior of our layouts.
 	
