@@ -251,10 +251,12 @@
 	
 	\begin{equation}
 		NM_H = V_{OH} - V_{IH}
+		\label{eq::nmh}
 	\end{equation}
 	
 	 \begin{equation}
 		NM_L = V_{IL} - V_{OL}
+		\label{eq::nml}
 	\end{equation}
 	
 	\noindent $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nand_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
@@ -322,7 +324,6 @@
 	\end{table}
 	
 	\subsubsection{Delay Analysis}
-	
 	
 	Then, we perform delay analysis for the netlist and schematic simulations and compare the results. The SPICE circuit we use to test the netlist is shown in Figure \ref{fig::nand_delay_analysis_test_circuit}.
 	
@@ -619,11 +620,15 @@
 	
 	\subsubsection{Noise Analysis}
 	
+	Next, we perform noise analysis in both the netlist and schematic simulations and compare the results. For this noise analysis, we are specifically interested in the noise margins, which can be computed using Equation \ref{eq::nmh} and \ref{eq::nml}. $V_{IH}$ and $V_{IL}$ are the unity points of the gain function. We specifically use the SPICE circuit shown in Figure \ref{fig::nor_noise_analysis} to measure the unity gain points in our netlist. These points then allow us to solve for the noise margins.	
+	
 	\begin{figure}[H]
 		\lstinputlisting[style=nocoloring,frame=single,basicstyle=\fontsize{7}{7}\selectfont\ttfamily]{./src/nor_noise_analysis.spice}
 		\caption{SPICE Test Circuit to Perform Noise Analysis on Netlist}
 		\label{fig::nor_noise_analysis_test_circuit}
 	\end{figure}
+	
+	Examining the netlist, we see that input \texttt{A} is connected to a voltage source swept from 0V to 1.8V in 1mV steps and input \texttt{B} is connected to \texttt{VDD}. Note that these input connections are identical to what was used in Figure \ref{fig::nor_vtc_test_circuit}. Our noise analysis results captured with this test circuit are shown in Figure \ref{fig::nor_noise_analysis}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis.png}}
@@ -631,11 +636,17 @@
 		\label{fig::nor_noise_analysis}
 	\end{figure}
 	
+	\noindent Examining the terminal outputs, we see that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$. This implies that $NM_H = 1.8\ \text{V} - 0.9764\ \text{V} = 0.8326\ \text{V}$ and $NM_L = 0.7756\ \text{V} - 0\ \text{V} = 0.7756\ \text{V}$. Using the test circuit shown in Figure \ref{fig::nor_vtc_schem_test_circuit}, we can perform similar analysis for our schematic simulations. These results are displayed in Figure \ref{fig::nor_vtc_schem_test_circuit}.
+	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{nor_noise_analysis_schem.png}}
 		\caption{Noise Analysis Results from Schematic Simulation}
 		\label{fig::nor_noise_analysis_schem}
 	\end{figure}
+	
+	\noindent Examining the schematic simulation outputs, we find that $V_{IL} = 0.7756\ \text{V}$ and $V_{IH} = 0.9764\ \text{V}$, identical to what we found in the netlist simulation. This implies that the noise margins are also identical ($NM_H = 0.8326\ \text{V}$ and $NM_L = 0.7756\ \text{V}$).	
+	
+	For completeness, we also examine the noise margins for other combinations of inputs that result in an output logical change. We have summarized these results in Tables \ref{table::nor_gate_noise_analysis} and \ref{table::nor_gate_noise_analysis_schem}. Comparing the results from both tables, we find that the netlist simulation results are identical to the schematic simulation results, which validates the behavior of our layout.
 	
 	\begin{table}[H]
 	\begin{center}
