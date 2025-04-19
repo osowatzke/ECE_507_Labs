@@ -6,3 +6,5 @@ lib/UofU_TechLib_ami06
 lib/UofU_Analog_Parts
 lib/UofU_Example
 lib/UofU_Pads
+cds/.cadence
+cds/*.log

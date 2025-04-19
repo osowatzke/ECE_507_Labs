@@ -1,0 +1,15 @@
+CDK_DIR=/opt/SkyWater/ncsu-cdk-1.6.0/
+SOFTINCLUDE $SYSTEM_CDS_LIB_DIR/cds.lib
+UNDEFINE    basic
+DEFINE      basic                   /opt/SkyWater/ncsu-cdk-1.6.0/lib/basic
+DEFINE      NCSU_Analog_Parts 	    /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_Analog_Parts
+DEFINE      NCSU_Digital_Parts 	    /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_Digital_Parts
+--DEFINE      MOSIS_Layout_Test       /opt/SkyWater/ncsu-cdk-1.6.0/lib/MOSIS_Layout_Test
+DEFINE      NCSU_TechLib_ami06      /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_ami06
+DEFINE      NCSU_TechLib_ami16      /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_ami16
+DEFINE      NCSU_TechLib_hp06       /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_hp06
+DEFINE      NCSU_TechLib_tsmc02     /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_tsmc02
+DEFINE      NCSU_TechLib_tsmc02d    /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_tsmc02d
+DEFINE      NCSU_TechLib_tsmc03     /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_tsmc03
+DEFINE      NCSU_TechLib_tsmc03d    /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_tsmc03d
+DEFINE      NCSU_TechLib_tsmc04_4M2P    /opt/SkyWater/ncsu-cdk-1.6.0/lib/NCSU_TechLib_tsmc04_4M2P
