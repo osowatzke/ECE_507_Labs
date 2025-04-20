@@ -12,8 +12,8 @@ mkdir downloads
 if [ -d lib ]; then
     rm -rf lib/HMC_Sheets_8ths
     rm -rf lib/muddlib11
-    rm -rf lib/processor8
     # Don't do anything about directories under CM
+    # rm -rf lib/processor8
     # rm -rf lib/wordlib8
     rm -rf lib/UofU_TechLib_ami06
     rm -rf lib/UofU_Analog_Parts
@@ -38,9 +38,9 @@ curl -L -o "ECE-407-507_Updatedversion.zip" "https://drive.usercontent.google.co
 unzip ECE-407-507_Updatedversion.zip
 rm -rf ECE-407-507_Updatedversion.zip
 cp -rf ECE-407-507_Updatedversion/lab2/muddlib11 ../lib/muddlib11
-cp -rf ECE-407-507_Updatedversion/lab2/processor8 ../lib/processor8
 cp -rf ECE-407-507_Updatedversion/lib/oa/HMC_Sheets_8ths ../lib/HMC_Sheets_8ths
 # Directory now under CM
+#cp -rf ECE-407-507_Updatedversion/lab2/processor8 ../lib/processor8
 #cp -rf ECE-407-507_Updatedversion/lab2/wordlib8 ../lib/wordlib8
 rm -rf ECE-407-507_Updatedversion
 
