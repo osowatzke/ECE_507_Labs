@@ -284,4 +284,13 @@
 	
 	\noindent Unlike our previous runs, the application readiness checks include failures. However, these failures are not in the AND slice, OR slice, or ALU, so we consider them out of scope for this lab. Additionally, these failures do not result in any DRC errors and they do not preclude us from getting passing LVS results.
 	
+	\section{Datapath}
+	
+	In this section, we perform DRC and LVS checks for the datapath schematic with the updated ALU. We also show the schematic for the datapath in Figure \ref{fig::datapath_schematic}. However, we don't need to make any edits to the schematic since the ALU block is already included and its ports are unchanged.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_schematic.png}}}
+		\caption{Datapath Schematic}
+		\label{fig::datapath_schematic}
+	\end{figure}
 \end{document}
