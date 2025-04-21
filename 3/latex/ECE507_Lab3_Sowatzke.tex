@@ -293,4 +293,16 @@
 		\caption{Datapath Schematic}
 		\label{fig::datapath_schematic}
 	\end{figure}
+	
+	\noindent Next, we show the layout of the datapath in Figure \ref{fig::datapath_layout}.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_layout.png}}}
+		\caption{Datapath Layout}
+		\label{fig::datapath_layout}
+	\end{figure}
+	
+	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Due to shortcomings with the tool, we are again limited to application readiness checks and a review of the DRC annotations.
+	
+	
 \end{document}
