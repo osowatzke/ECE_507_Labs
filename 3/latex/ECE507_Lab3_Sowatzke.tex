@@ -166,7 +166,7 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
-	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create must connect groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
+	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create "Must Connect" groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
@@ -200,7 +200,7 @@
 		\label{fig::or2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Tehen, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This helps us to prevent unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
+	\noindent Then, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This helps us to prevent unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{or2_1x_8_layout_overview.png}}
@@ -221,4 +221,101 @@
 		\caption{Port Placement for a Given OR Gate}
 		\label{fig::or2_1x_8_single_gate_ports}
 	\end{figure}
+	
+	\noindent Next, following the work from the previous section, we perform application readiness checks and check the annotations browser for DRC failures. To avoid errors in the application readiness checks, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The application readiness checks shown in Figure \ref{fig::or_application_readiness_check} and DRC checks shown in Figure \ref{fig::or_drc} show no errors.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
+		\caption{Application Readiness Check Results}
+		\label{fig::or_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{or_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::or_drc}
+	\end{figure}
+	
+	\section{ALU}
+	
+	In this section, we complete the ALU schematic using the AND and OR wordslices we created in the previous sections. The resulting schematic is shown in Figure \ref{fig::alu_schematic}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\textwidth]{alu_schematic.png}}
+		\caption{ALU Schematic after Adding AND and OR Wordslices}
+		\label{fig::alu_schematic}
+	\end{figure}
+	
+	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. The AND wordslice (top) and OR wordslice (bottom) are highlighted in both of the layouts. Before rotation, the AND gate is on the left and the OR gate is on the right.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{alu_layout_overview.png}}
+		\caption{ALU Layout Display Level = 0}
+		\label{fig::alu_layout_overview}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{alu_layout_detailed.png}}
+		\caption{ALU Layout Display Level = 1}
+		\label{fig::alu_layout_detailed}
+	\end{figure}
+	
+	\noindent We focus on the layout for the first bit of the ALU datapath in Figure \ref{fig::alu_layout_bit0}. The AND and OR wordslices are highlighted in the figure. The AND wordslice is on the left, and the OR wordslice is on the right. Examining the layout, we see that the inputs of both gates are correctly connected to the \texttt{a} and \texttt{b} bitlines. Additionally, we see that the output of the AND gate is connected to \texttt{d0}, while the output of the OR gate is connected to \texttt{d1}. This is consistent with our schematic shown in Figure \ref{fig::alu_schematic}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{alu_layout_bit0.png}}
+		\caption{Layout for the First Bit of the ALU Datapath}
+		\label{fig::alu_layout_bit0}
+	\end{figure}
+	
+	\noindent Because the DRC and LVS checks dropdowns are missing, we perform an applications readiness check and look for DRC errors in the annotation browser. The application readiness check is shown in Figure \ref{fig::alu_application_readiness_check} and the DRC annotations are shown in Figure \ref{fig::alu_drc}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\textwidth]{alu_application_readiness_check.png}}
+		\caption{Application Readiness Check for ALU}
+		\label{fig::alu_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{alu_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::alu_drc}
+	\end{figure}
+	
+	\noindent Unlike our previous runs, the application readiness checks include failures. However, these failures are not in the AND slice, OR slice, or ALU, so we consider them out of scope for this lab. Additionally, these failures do not result in any DRC errors and they do not preclude us from getting passing LVS results.
+	
+	\section{Datapath}
+	
+	In this section, we perform DRC and LVS checks for the datapath schematic with the updated ALU. We also show the schematic for the datapath in Figure \ref{fig::datapath_schematic}. However, we don't need to make any edits to the schematic since the ALU block is already included and its ports are unchanged.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_schematic.png}}}
+		\caption{Datapath Schematic}
+		\label{fig::datapath_schematic}
+	\end{figure}
+	
+	\noindent Next, we show the layout of the datapath in Figure \ref{fig::datapath_layout}.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_layout.png}}}
+		\caption{Datapath Layout}
+		\label{fig::datapath_layout}
+	\end{figure}
+	
+	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Due to shortcomings with the tool, we are again limited to application readiness checks and a review of the DRC annotations. The application readiness checks are included in Figure \ref{fig::datapath_application_readiness_check}, and the DRC annotations are shown in Figure \ref{fig::datapath_drc}.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_application_readiness_check.png}}}
+		\caption{Application Readiness Check for Datapath (Additional Blocks Not Shown)}
+		\label{fig::datapath_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{datapath_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::datapath_drc}
+	\end{figure}
+	
+	\noindent Once again, we are more interested in the DRC results than the application readiness checks. However, we note that the application readiness checks pass for the AND wordslice, OR wordslice, and ALU.
+	
 \end{document}
