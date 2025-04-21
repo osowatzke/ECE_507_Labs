@@ -200,7 +200,7 @@
 		\label{fig::or2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Tehen, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This helps us to prevent unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
+	\noindent Then, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This helps us to prevent unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{or2_1x_8_layout_overview.png}}
@@ -267,4 +267,21 @@
 		\caption{Layout for the First Bit of the ALU Datapath}
 		\label{fig::alu_layout_bit0}
 	\end{figure}
+	
+	\noindent Because the DRC and LVS checks dropdowns are missing, we perform an applications readiness check and look for DRC errors in the annotation browser. The application readiness check is shown in Figure \ref{fig::alu_application_readiness_check} and the DRC annotations are shown in Figure \ref{fig::alu_drc}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\textwidth]{alu_application_readiness_check.png}}
+		\caption{Application Readiness Check for ALU}
+		\label{fig::alu_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{alu_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::alu_drc}
+	\end{figure}
+	
+	\noindent Unlike our previous runs, the application readiness checks include failures. However, these failures are not in the AND slice, OR slice, or ALU, so we consider them out of scope for this lab. Additionally, these failures do not result in any DRC errors and they do not preclude us from getting passing LVS results.
+	
 \end{document}
