@@ -90,6 +90,7 @@
 	In this lab, we perform design and verification for an ARM 8-bit microprocessor. We start by simulating a SystemVerilog model of the microprocessor in NC verilog. Then, we design 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we create a schematic, symbol, and layout. Then, we incorporate each of our wordslices into the ALU and update its schematic and layout. Similarly, we update the datapath layout with our updated ALU. At each stage of the design, we verify our layouts using DRC and LVS. Finally, we create a netlist from our design and validate its behavior in simulation. 
 	
 	\section{AND Wordslice}
+	\label{section::and_wordslice}
 	
 	In this section, we perform design and verification of our AND wordslice. Our wordslice specifically contains 8 \texttt{and2\_1x} gates from the \texttt{muddlib11} library. The resulting schematic is shown in Figure \ref{fig::and2_1x_8_schematic}. Note the vectorized ports and component instances.
 	
@@ -181,5 +182,23 @@
 		\label{fig::and_drc}
 	\end{figure}
 	
-	\section{NOR Wordslice}
+	\section{OR Wordslice}
+	
+	We repeat the process given in Section \ref{section::and_wordslice} to create an OR wordslice.  Our wordslice specifically contains 8 \texttt{or2\_1x} gates from the \texttt{muddlib11} library. The resulting schematic is shown in Figure \ref{fig::or2_1x_8_schematic}. Note the vectorized ports and component instances.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{or2_1x_8_schematic.png}}
+		\caption{Schematic for OR Wordslice}
+		\label{fig::or2_1x_8_schematic}
+	\end{figure}
+	
+	\noindent Next, we create a symbol for our OR wordslice. For this step, we start with a copy of the \texttt{or2\_1x} symbol and make small incremental updates. Our wordslice symbol with these updates is shown in Figure \ref{fig::or2_1x_8_symbol}. Note that the port names and wire widths have been updated to reflect the vectorized inputs and outputs.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.5\textwidth]{or2_1x_8_symbol.png}}
+		\caption{Symbol for OR Wordslice}
+		\label{fig::or2_1x_8_symbol}
+	\end{figure}
+	
+	
 \end{document}
