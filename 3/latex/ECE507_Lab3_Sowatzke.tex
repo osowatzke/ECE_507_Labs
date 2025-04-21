@@ -165,5 +165,13 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
+	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create must connect groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{and_application_readiness_check.png}}
+		\caption{Application Readiness Check Results}
+		\label{fig::and_application_readiness_check}
+	\end{figure}
+	
 	\section{NOR Wordslice}
 \end{document}
