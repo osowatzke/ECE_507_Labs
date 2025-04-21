@@ -152,7 +152,7 @@
 		\label{fig::and2_1x_8_single_gate_ports}
 	\end{figure}
 	
-	\noindent Next, we wanted to verify our design with DRC and LVS. According to the installed Cadence documentation, this should be done with Verify \textgreater\ DRC and Verify \textgreater\ LVS in the layout window. However, the Verify drop-down menu did not include these options. As a result, I was unable to perform DVS and LVS at the rigor I wanted.
+	\noindent The lab wanted us to verify our design with DRC and LVS. According to the Cadence Virtuoso documentation for our version of the tool, IC23.1, we should have been able to do this with Verify \textgreater\ DRC and Verify \textgreater\ LVS. However, the Verify drop-down menu did not include these options, likely because of a bad installation or bad environment. The drop-down menu from our Virtuoso installation is shown in Figure \ref{fig::verify_dropdown_menu}, and the expected menu is shown in Figure \ref{fig::verify_dropdown_menu_doc}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{verify_dropdown_menu.png}}
@@ -165,6 +165,8 @@
 		\caption{Verify Drop-Down Menu per Documentation}
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
+	
+	% As a result, I settled for a reduced set of checks.
 	
 	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create "Must Connect" groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
 	
