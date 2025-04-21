@@ -147,8 +147,22 @@
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.25\textwidth]{and2_1x_8_single_gate_ports.png}}
-		\caption{Port Placement for a Given AND Gate Instance}
+		\caption{Port Placement for a Given AND Gate}
 		\label{fig::and2_1x_8_single_gate_ports}
+	\end{figure}
+	
+	\noindent Next, we wanted to verify our design with DRC and LVS. According to the installed Cadence documentation, this should be done with Verify \textgreater\ DRC and Verify \textgreater\ LVS in the layout window. However, the Verify drop-down menu did not include these options. As a result, I was unable to perform DVS and LVS at the rigor I wanted.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{verify_dropdown_menu.png}}
+		\caption{Verify Drop-Down Menu in Layout Window}
+		\label{fig::verify_dropdown_menu}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[height=0.4\textwidth]{verify_dropdown_menu_doc.png}}}
+		\caption{Verify Drop-Down Menu per Documentation}
+		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
 	\section{NOR Wordslice}
