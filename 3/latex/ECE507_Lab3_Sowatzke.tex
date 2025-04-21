@@ -260,4 +260,11 @@
 		\label{fig::alu_layout_detailed}
 	\end{figure}
 	
+	\noindent We focus on the layout for the first bit of the ALU datapath in Figure \ref{fig::alu_layout_bit0}. The AND and OR wordslices are highlighted in the figure. The AND wordslice is on the left, and the OR wordslice is on the right. Examining the layout, we see that the inputs of both gates are correctly connected to the \texttt{a} and \texttt{b} bitlines. Additionally, we see that the output of the AND gate is connected to \texttt{d0}, while the output of the OR gate is connected to \texttt{d1}. This is consistent with our schematic shown in Figure \ref{fig::alu_schematic}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{alu_layout_bit0.png}}
+		\caption{Layout for the First Bit of the ALU Datapath}
+		\label{fig::alu_layout_bit0}
+	\end{figure}
 \end{document}
