@@ -166,7 +166,7 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
-	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create must connect groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
+	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create "Must Connect" groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
@@ -220,5 +220,19 @@
 		\centerline{\includegraphics[width=0.25\textwidth]{or2_1x_8_single_gate_ports.png}}
 		\caption{Port Placement for a Given OR Gate}
 		\label{fig::or2_1x_8_single_gate_ports}
+	\end{figure}
+	
+	\noindent Next, following the work from the previous section, we perform application readiness checks and check the annotations browser for DRC failures. To avoid errors in the application readiness checks, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The application readiness checks shown in Figure \ref{fig::or_application_readiness_check} and DRC checks shown in Figure \ref{fig::or_drc} show no errors.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
+		\caption{Application Readiness Check Results}
+		\label{fig::or_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{or_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::or_drc}
 	\end{figure}
 \end{document}
