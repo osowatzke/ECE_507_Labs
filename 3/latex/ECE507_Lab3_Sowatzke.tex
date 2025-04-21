@@ -302,7 +302,20 @@
 		\label{fig::datapath_layout}
 	\end{figure}
 	
-	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Due to shortcomings with the tool, we are again limited to application readiness checks and a review of the DRC annotations.
+	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Due to shortcomings with the tool, we are again limited to application readiness checks and a review of the DRC annotations. The application readiness checks are included in Figure \ref{fig::datapath_application_readiness_check}, and the DRC annotations are shown in Figure \ref{fig::datapath_drc}.
 	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_application_readiness_check.png}}}
+		\caption{Application Readiness Check for Datapath (Additional Blocks Not Shown)}
+		\label{fig::datapath_application_readiness_check}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{datapath_drc.png}}}
+		\caption{DRC Annotations Showing All Checks Passing}
+		\label{fig::datapath_drc}
+	\end{figure}
+	
+	\noindent Once again, we are more interested in the DRC results than the application readiness checks. However, we note that the application readiness checks pass for the AND wordslice, OR wordslice, and ALU.
 	
 \end{document}
