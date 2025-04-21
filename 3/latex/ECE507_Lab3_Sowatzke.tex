@@ -87,7 +87,7 @@
 	
 	\section{Introduction}
 	
-	In this lab, we perform design and verification for an ARM 8-bit microprocessor. We start by simulating a SystemVerilog model of the microprocessor in NC verilog. Then, we design 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we create a schematic, symbol, and layout. Then, we incorporate each of our wordslices into the ALU and update its schematic and layout. Similarly, we update the datapath layout with our updated ALU. At each stage of the design, we verify our layouts using DRC and LVS. Finally, we create a netlist from our design and validate its behavior in simulation. 
+	In this lab, we perform design and verification for an ARM 8-bit microprocessor. We start by simulating a SystemVerilog model of the microprocessor in NC verilog. Then, we design 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we create a schematic, symbol, and layout. Then, we incorporate each of our wordslices into the ALU schematic and layout. Similarly, we update the datapath layout with our updated ALU. At each stage of the design, we verify our layouts using DRC and LVS. Finally, we create a netlist from our design and validate its behavior in simulation. 
 	
 	\section{AND Wordslice}
 	\label{section::and_wordslice}
@@ -108,7 +108,7 @@
 		\label{fig::and2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Then, we create a layout for our wordslice. To create the layout, we start with a mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}.
+	\noindent Then, we create a layout for our wordslice. For the layout, we use an $8 \times 1$ mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}. Note that the our images are rotated $90^{\circ}$ with respect to the layouts.  
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{and2_1x_8_layout_mosiac_overview.png}}
@@ -122,7 +122,7 @@
 		\label{fig::and2_1x_8_layout_detailed}
 	\end{figure}
 	
-	\noindent In the layouts, we placed input and output ports for each of the gates. However, in this configuration, virtuoso shorted each element within the vector of pins. These shorts are displayed on an individual AND gates in Figure \ref{fig::and2_1x_8_cell_with_shorts} and in the Annotation Browser in Figure \ref{fig::and2_1x_8_annotation_shorts}. 
+	\noindent After placing the AND gates, we placed input and output ports for each gate. However, virtuoso shorted each element of the input/output buses. These shorts are displayed on an individual AND gates in Figure \ref{fig::and2_1x_8_cell_with_shorts} and in the Annotation Browser in Figure \ref{fig::and2_1x_8_annotation_shorts}. 
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.2\textwidth]{and2_1x_8_cell_with_shorts.png}}
@@ -136,7 +136,7 @@
 		\label{fig::and2_1x_8_annotation_shorts}
 	\end{figure}
 	
-	\noindent To work around this, I instantiated a single AND gate and then copied it 7 times with $33{\mu}m$ spacing. The resulting schematic at display level = 0 is shown in Figure \ref{fig::and2_1x_8_layout_overview}. Note that the AND gates are now displayed individually at this display level = 0, but the instantiated gates should be identical.
+	\noindent To work around this, I instantiated a single AND gate and then copied it 7 times with $33{\mu}m$ spacing. The resulting schematic at display level = 0 is shown in Figure \ref{fig::and2_1x_8_layout_overview}. Note that the AND gates are now displayed individually at this display level. However, the underlying content is the same.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{and2_1x_8_layout_overview.png}}
@@ -144,7 +144,7 @@
 		\label{fig::and2_1x_8_layout_overview}
 	\end{figure}
 	
-	\noindent We also highlight the port placement for a single AND gate, which is shown in Figure \ref{fig::and2_1x_8_single_gate_ports}.
+	\noindent For better visualization, we also highlight the port placement for a single AND gate, which is shown in Figure \ref{fig::and2_1x_8_single_gate_ports}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.25\textwidth]{and2_1x_8_single_gate_ports.png}}
