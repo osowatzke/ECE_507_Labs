@@ -135,12 +135,20 @@
 		\label{fig::and2_1x_8_annotation_shorts}
 	\end{figure}
 	
-	\noindent To work around this, I instantiated a single AND gate and then copied it 7 times with $33{\mu}m$ spacing. The resulting schematic at display level = 0 is shown in Figure \ref{fig::and2_1x_8_layout_overview}. Note that the AND gates are now displayed individually at this display level = 0, but the instantiated gates should be indentical.
+	\noindent To work around this, I instantiated a single AND gate and then copied it 7 times with $33{\mu}m$ spacing. The resulting schematic at display level = 0 is shown in Figure \ref{fig::and2_1x_8_layout_overview}. Note that the AND gates are now displayed individually at this display level = 0, but the instantiated gates should be identical.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{and2_1x_8_layout_overview.png}}
 		\caption{AND Wordslice Created without Mosiac at Display Level = 0}
 		\label{fig::and2_1x_8_layout_overview}
+	\end{figure}
+	
+	\noindent We also highlight the port placement for a single AND gate, which is shown in Figure \ref{fig::and2_1x_8_single_gate_ports}.
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.25\textwidth]{and2_1x_8_single_gate_ports.png}}
+		\caption{Port Placement for a Given AND Gate Instance}
+		\label{fig::and2_1x_8_single_gate_ports}
 	\end{figure}
 	
 	\section{NOR Wordslice}
