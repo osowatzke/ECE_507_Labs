@@ -220,7 +220,7 @@
 		\label{fig::or2_1x_8_single_gate_ports}
 	\end{figure}
 	
-	\noindent Next, following the procedure from the previous section, we perform DRC and LVS checks. To avoid LVS errors, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The DRC and LVS results are shown in Figures \ref{fig::or_drc} and \ref{fig::or_lvs} respectively.
+	\noindent Finally, following the procedure from the previous section, we perform DRC and LVS checks. To avoid LVS errors, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The DRC and LVS results are shown in Figures \ref{fig::or_drc} and \ref{fig::or_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{or_drc.png}}}
@@ -266,18 +266,18 @@
 		\label{fig::alu_layout_bit0}
 	\end{figure}
 	
-	\noindent Because the DRC and LVS checks dropdowns are missing, we perform an applications readiness check and look for DRC errors in the annotation browser. The application readiness check is shown in Figure \ref{fig::alu_application_readiness_check} and the DRC annotations are shown in Figure \ref{fig::alu_drc}.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\textwidth]{alu_application_readiness_check.png}}
-		\caption{Application Readiness Check for ALU}
-		\label{fig::alu_application_readiness_check}
-	\end{figure}
+	\noindent Finally, after properly associating the components in the schematic to the components in the layout, we perform DRC and LVS checks for our layout. The results are included in Figures \ref{fig::alu_drc} and \ref{fig::alu_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{alu_drc.png}}}
 		\caption{DRC Annotations Showing All Checks Passing}
 		\label{fig::alu_drc}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{alu_lvs.png}}
+		\caption{Passing LVS Checks}
+		\label{fig::alu_lvs}
 	\end{figure}
 	
 	\noindent Unlike our previous runs, the application readiness checks include failures. However, these failures are not in the AND slice, OR slice, or ALU, so we consider them out of scope for this lab. Additionally, these failures do not result in any DRC errors and they do not preclude us from getting passing LVS results.
