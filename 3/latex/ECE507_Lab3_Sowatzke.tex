@@ -89,6 +89,16 @@
 	
 	In this lab, we perform design and verification for an ARM 8-bit microprocessor. We start by simulating a SystemVerilog model of the microprocessor in NC verilog. Then, we design 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we create a schematic, symbol, and layout. Then, we incorporate each of our wordslices into the ALU schematic and layout. Similarly, we update the datapath layout with our updated ALU. At each stage of the design, we verify our layouts using DRC and LVS. Finally, we create a netlist from our design and validate its behavior in simulation. 
 	
+	\section{SystemVerilog Model RTL Simulation}
+	
+	In this section, we intended to show the results of our NC-Verilog  simulation. However, there was an IT issue on the session server that prevented us from running NC-Verilog. When, we tried the command provided in the lab description, we obtained the following results:
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.8\textwidth]{sim_error.png}}
+		\caption{Simulation Error When Attempting to Run NC Verilog}
+		\label{fig::sim_error}
+	\end{figure}
+	 
 	\section{AND Wordslice}
 	\label{section::and_wordslice}
 	
@@ -311,6 +321,9 @@
 		\caption{Passing LVS Checks}
 		\label{fig::datapath_lvs}
 	\end{figure}
+	
+	\section{Datapath Simulation}
+	
 	
 	\section{Conclusion}
 	
