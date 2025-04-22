@@ -176,7 +176,7 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
-	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker.... However, neither of these dropdowns included the "Join Nets with the Same Name" option given in the lab manual. Instead, I had to create "Must Connect" groups for gnd! and vdd! using Pins \textgreater\ Pin Connectivity Setting.... Additionally, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. After performing these updates, I was able to generate the DRC and LVS results shown in Figures \ref{fig::and_drc} and \ref{fig::and_lvs} respectively.
+	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker.... However, neither of these dropdowns included the "Join Nets with the Same Name" option given in the lab manual. Instead, I had to create "Must Connect" groups for gnd! and vdd! using Pins \textgreater\ Pin Connectivity Setting.... I also had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. After performing these updates, I was able to generate the DRC and LVS results shown in Figures \ref{fig::and_drc} and \ref{fig::and_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{and_drc.png}}}
@@ -344,7 +344,7 @@
 	
 	\section{Conclusion}
 	
-	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to an IT issue on the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problem with the mosiac command, which created uintentional short circuits. However, we were able to work around this by creating multiple copies of the same cell. 
+	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We spent close to 40 hours working on the lab due to IT issues and errors in the lab manual. First, we attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to an IT issue on the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problem with the mosiac command, which created uintentional short circuits. However, we were able to work around this by creating multiple copies of the same cell. 
 	
 	Next, we performed DRC and LVS for our layouts. To resolve the errors we found, we had to perform two actions. First, we had to associate gates in our layout with gates in our schematic. Then, we had to create "Must Connect" groups for gnd! and vdd! After these steps were complete, we received passing DRC and LVS results. 
 	
