@@ -258,7 +258,7 @@
 		\label{fig::alu_layout_detailed}
 	\end{figure}
 	
-	\noindent We focus on the layout for the first bit of the ALU datapath in Figure \ref{fig::alu_layout_bit0}. The AND and OR wordslices are highlighted in the figure. The AND wordslice is on the left, and the OR wordslice is on the right. Examining the layout, we see that the inputs of both gates are correctly connected to the \texttt{a} and \texttt{b} bitlines. Additionally, we see that the output of the AND gate is connected to \texttt{d0}, while the output of the OR gate is connected to \texttt{d1}. This is consistent with our schematic shown in Figure \ref{fig::alu_schematic}.
+	% \noindent We focus on the layout for the first bit of the ALU datapath in Figure \ref{fig::alu_layout_bit0}. The AND and OR wordslices are highlighted in the figure. The AND wordslice is on the left, and the OR wordslice is on the right. Examining the layout, we see that the inputs of both gates are correctly connected to the \texttt{a} and \texttt{b} bitlines. Additionally, we see that the output of the AND gate is connected to \texttt{d0}, while the output of the OR gate is connected to \texttt{d1}. This is consistent with our schematic shown in Figure \ref{fig::alu_schematic}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{alu_layout_bit0.png}}
@@ -280,11 +280,9 @@
 		\label{fig::alu_lvs}
 	\end{figure}
 	
-	\noindent Unlike our previous runs, the application readiness checks include failures. However, these failures are not in the AND slice, OR slice, or ALU, so we consider them out of scope for this lab. Additionally, these failures do not result in any DRC errors and they do not preclude us from getting passing LVS results.
-	
 	\section{Datapath}
 	
-	In this section, we perform DRC and LVS checks for the datapath schematic with the updated ALU. We also show the schematic for the datapath in Figure \ref{fig::datapath_schematic}. However, we don't need to make any edits to the schematic since the ALU block is already included and its ports are unchanged.
+	In this section, we perform DRC and LVS checks for the datapath schematic with the updated ALU. We also show the schematic for the datapath in Figure \ref{fig::datapath_schematic}. Note that we do not need to make any edits to the schematic because the ALU block is already included and its ports are unchanged.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_schematic.png}}}
@@ -300,13 +298,7 @@
 		\label{fig::datapath_layout}
 	\end{figure}
 	
-	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Due to shortcomings with the tool, we are again limited to application readiness checks and a review of the DRC annotations. The application readiness checks are included in Figure \ref{fig::datapath_application_readiness_check}, and the DRC annotations are shown in Figure \ref{fig::datapath_drc}.
-	
-	\begin{figure}[H]
-		\centerline{\fbox{\includegraphics[width=0.9\textwidth]{datapath_application_readiness_check.png}}}
-		\caption{Application Readiness Check for Datapath (Additional Blocks Not Shown)}
-		\label{fig::datapath_application_readiness_check}
-	\end{figure}
+	\noindent Note that layout automatically pulls the updates from the ALU layout. However, we still need to perform DRC and LVS checks to validate the overall design. Our DRC and LVS results after mapping blocks in our layout to blocks in our schematic are shown in Figures \ref{fig::datapath_drc} and \ref{fig::datapath_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{datapath_drc.png}}}
@@ -314,7 +306,11 @@
 		\label{fig::datapath_drc}
 	\end{figure}
 	
-	\noindent Once again, we are more interested in the DRC results than the application readiness checks. However, we note that the application readiness checks pass for the AND wordslice, OR wordslice, and ALU.
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.4\textwidth]{datapath_lvs.png}}}
+		\caption{Passing LVS Checks}
+		\label{fig::datapath_lvs}
+	\end{figure}
 	
 	\section{Conclusion}
 	
