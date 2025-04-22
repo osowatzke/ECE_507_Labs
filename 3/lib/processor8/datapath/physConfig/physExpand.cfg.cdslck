@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      osowatzke
+HostName                       compute.engr.arizona.edu
+ProcessIdentifier              594408
+ProcessCreationTime_UTC        1745279668
+ProcessCreationTime_Readable   Mon Apr 21 16:54:28 2025 MST
+AppIdentifier                  /opt/CoE/cadence/IC231/tools.lnx86/dfII/bin/64bit/virtuoso
+OSType                         lnx86
+ReasonForPlacingEditLock       
+FilePathUsedToEditLock         /home/osowatzke/repos/ECE_507_Labs/3/lib/processor8/datapath/physConfig/physExpand.cfg
+TimeEditLocked                 Mon Apr 21 18:58:04 2025 MST
