@@ -324,6 +324,23 @@
 	
 	\section{Datapath Simulation}
 	
+	In this section, we attempt to generate a netlist from our datapath and simulate it. First, to generate the netlist we go to Launch \textgreater\ Plugins \textgreater\ Simulation \textgreater\ NC-Verilog. This opened the following window:
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{nc_verilog_sim.png}}}
+		\caption{NC-Verilog Simulation Window}
+		\label{fig::nc_verilog_sim}
+	\end{figure}
+	
+	\noindent Using the window, we attempted to generate a netlist for our design. However, we received errors in the generation process, which are illustrated in Figure \ref{fig::netlist_generation_errors}.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{netlist_generation_errors.png}}}
+		\caption{Netlist Generation Errors}
+		\label{fig::netlist_generation_errors}
+	\end{figure}
+	
+	\noindent Interestingly, none of the errors occurred in modules that we modified, indicating a potential source file error or tool error. Because of these errors, we were unable to generate a netlist and perform a simulation. However, we still learned the procedure for generating a netlist, which we could use in simulation to verify our design.
 	
 	\section{Conclusion}
 	
