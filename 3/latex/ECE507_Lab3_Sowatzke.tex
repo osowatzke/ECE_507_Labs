@@ -152,7 +152,7 @@
 		\label{fig::and2_1x_8_single_gate_ports}
 	\end{figure}
 	
-	\noindent The lab wanted us to verify our design with DRC and LVS. According to the Cadence Virtuoso IC23.1 documentation, we should have been able to do this with Verify \textgreater\ DRC and Verify \textgreater\ LVS. However, the Verify drop-down menu did not include these options, likely because of a bad installation or bad environment. The drop-down menu from our Virtuoso installation is shown in Figure \ref{fig::verify_dropdown_menu}, and the expected menu is shown in Figure \ref{fig::verify_dropdown_menu_doc}.
+	\noident Next, we performed DRC and LVS for our layout. According to the Cadence Virtuoso IC23.1 documentation, we should have been able to do this with Verify \textgreater\ DRC and Verify \textgreater\ LVS. However, the Verify drop-down menu did not include these options. The drop-down menu from our Virtuoso installation is shown in Figure \ref{fig::verify_dropdown_menu}, and the expected menu is shown in Figure \ref{fig::verify_dropdown_menu_doc}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{verify_dropdown_menu.png}}
@@ -166,6 +166,9 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
+	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker...
+	
+	% , likely because of a bad installation or bad environment. 
 	% As a result, I settled for a reduced set of checks.
 	
 	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create "Must Connect" groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
