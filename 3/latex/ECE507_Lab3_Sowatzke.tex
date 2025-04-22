@@ -118,7 +118,7 @@
 		\label{fig::and2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Then, we create a layout for our wordslice. For the layout, we use an $8 \times 1$ mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}. Note that the our images are rotated $90^{\circ}$ with respect to the layouts.  
+	\noindent Then, we create a layout for our wordslice. For the layout, we use an $8 \times 1$ mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the actual layouts.  
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{and2_1x_8_layout_mosiac_overview.png}}
@@ -254,7 +254,7 @@
 		\label{fig::alu_schematic}
 	\end{figure}
 	
-	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the layouts. The AND wordslice (top) and OR wordslice (bottom) are highlighted in our figure.
+	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the actual layouts. The AND wordslice (top) and OR wordslice (bottom) are highlighted in our figures.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{alu_layout_overview.png}}
@@ -340,14 +340,14 @@
 		\label{fig::netlist_generation_errors}
 	\end{figure}
 	
-	\noindent Interestingly, none of the errors occurred in modules that we modified, indicating a potential source file error or tool error. Because of these errors, we were unable to generate a netlist and perform a simulation. However, we still learned the procedure for generating a netlist, which we could use in simulation to verify our design.
+	\noindent Interestingly, none of the errors occurred in modules that we modified, indicating a potential source file error or tool error. Because of these errors, we were unable to generate a netlist and perform a simulation. However, we still learned the procedure for generating a netlist, which could be used in simulation to verify this design or future designs.
 	
 	\section{Conclusion}
 	
-	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to an IT issue on the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problem with the mosiac command creating uintentional short circuits. We were able to work around this by creating multiple copies of the same cell. 
+	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to an IT issue on the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problem with the mosiac command, which created uintentional short circuits. However, we were able to work around this by creating multiple copies of the same cell. 
 	
 	Next, we performed DRC and LVS for our layouts. To resolve the errors we found, we had to perform two actions. First, we had to associate gates in our layout with gates in our schematic. Then, we had to create "Must Connect" groups for gnd! and vdd! After these steps were complete, we received passing DRC and LVS results. 
 	
-	Once our wordslices were validated, we incorporated them into the ALU schematic and layout. Then, we performed DRC and LVS on our layout. After applying lessons learned from the AND/OR wordslice layouts, we received passing DRC and LVS results. After validating our layout, we performed DRC and LVS on the datapath in a similar fashion and received passing results. Finally, we attempted to generate a netlist from the datapath schematic. Unfortunately, another source file and/or IT issue prevented us from fully generating the netlist. Even though we were unable to generate the netlist, we still learned how to use the tools and how to validate our designs.
+	Once our wordslices were validated, we incorporated them into the ALU schematic and layout. Then, we performed DRC and LVS on our layout. After applying the lessons learned from the AND/OR wordslice layouts, we received passing DRC and LVS results. We also performed a similar procedure for the datapath layout and received passing DRC and LVS results. Finally, we attempted to generate a netlist from the datapath schematic. Unfortunately, a source file and/or IT issue prevented us from fully generating the netlist. Even though we were unable to generate the netlist, we still learned how to use the tools and how to validate our designs.
 	
 \end{document}
