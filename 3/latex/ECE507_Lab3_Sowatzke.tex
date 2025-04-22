@@ -152,7 +152,7 @@
 		\label{fig::and2_1x_8_single_gate_ports}
 	\end{figure}
 	
-	\noident Next, we performed DRC and LVS for our layout. According to the Cadence Virtuoso IC23.1 documentation, we should have been able to do this with Verify \textgreater\ DRC and Verify \textgreater\ LVS. However, the Verify drop-down menu did not include these options. The drop-down menu from our Virtuoso installation is shown in Figure \ref{fig::verify_dropdown_menu}, and the expected menu is shown in Figure \ref{fig::verify_dropdown_menu_doc}.
+	\noindent Next, we performed DRC and LVS for our layout. According to the Cadence Virtuoso IC23.1 documentation, we should have been able to do this with Verify \textgreater\ DRC and Verify \textgreater\ LVS. However, the Verify drop-down menu did not include these options. The drop-down menu from our Virtuoso installation is shown in Figure \ref{fig::verify_dropdown_menu}, and the expected menu is shown in Figure \ref{fig::verify_dropdown_menu_doc}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.4\textwidth]{verify_dropdown_menu.png}}
@@ -166,20 +166,7 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
-	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker...
-	
-	% , likely because of a bad installation or bad environment. 
-	% As a result, I settled for a reduced set of checks.
-	
-	\noindent Instead, I performed a reduced set of checks using Verify \textgreater\ Application Readiness Checker.... To get passing results I had to do two things. First, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. Second, I had to create "Must Connect" groups for gnd! and vdd!, which I did with Pins \textgreater\ Pin Connectivity Setting.... My final application readiness checks are shown in Figure \ref{fig::and_application_readiness_check}.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
-		\caption{Application Readiness Check Results}
-		\label{fig::and_application_readiness_check}
-	\end{figure}
-	
-	\noindent I also was able to use Verify \textgreater\ Design to populate the DRC annotations in the annotation browser. These annotations are shown in Figure \ref{fig::and_drc} and confirm no DRC failures.
+	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker.... However, neither of these dropdowns included the "Join Nets with the Same Name" option given in the lab manual. Instead, I had to create "Must Connect" groups for gnd! and vdd! using Pins \textgreater\ Pin Connectivity Setting.... Additionally, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. After performing these updates, I was able to generate the DRC and LVS results shown in Figures \ref{fig::and_drc} and \ref{fig::and_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{and_drc.png}}}
@@ -187,9 +174,15 @@
 		\label{fig::and_drc}
 	\end{figure}
 	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{and_lvs.png}}
+		\caption{Passing LVS Checks}
+		\label{fig::and_lvs}
+	\end{figure}
+	
 	\section{OR Wordslice}
 	
-	We repeat the process given in Section \ref{section::and_wordslice} to create an OR wordslice.  Our wordslice specifically contains 8 \texttt{or2\_1x} gates from the \texttt{muddlib11} library. The resulting schematic is shown in Figure \ref{fig::or2_1x_8_schematic}. Note the vectorized ports and component instances.
+	In this section, we repeat the process given in Section \ref{section::and_wordslice} to create an OR wordslice.  Our wordslice specifically contains 8 \texttt{or2\_1x} gates from the \texttt{muddlib11} library. The resulting schematic is shown in Figure \ref{fig::or2_1x_8_schematic}. Note the vectorized ports and component instances.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{or2_1x_8_schematic.png}}
@@ -205,7 +198,7 @@
 		\label{fig::or2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Then, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This helps us to prevent unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
+	\noindent Then, we create a layout for our wordslice. We leverage what we learned from the previous section and copy OR gates instead of using a mosiac. This prevents us from creating unintentional shorts. The layout with different display levels is shown in Figures \ref{fig::or2_1x_8_layout_overview} and \ref{fig::or2_1x_8_layout_detailed}.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{or2_1x_8_layout_overview.png}}
@@ -227,18 +220,18 @@
 		\label{fig::or2_1x_8_single_gate_ports}
 	\end{figure}
 	
-	\noindent Next, following the work from the previous section, we perform application readiness checks and check the annotations browser for DRC failures. To avoid errors in the application readiness checks, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The application readiness checks shown in Figure \ref{fig::or_application_readiness_check} and DRC checks shown in Figure \ref{fig::or_drc} show no errors.
-	
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\textwidth]{and_application_readiness_check.png}}
-		\caption{Application Readiness Check Results}
-		\label{fig::or_application_readiness_check}
-	\end{figure}
+	\noindent Next, following the procedure from the previous section, we perform DRC and LVS checks. To avoid LVS errors, we map gates in the schematic to gates in the layout and create "Must Connect" groups for gnd! and vdd! The DRC and LVS results are shown in Figures \ref{fig::or_drc} and \ref{fig::or_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{or_drc.png}}}
 		\caption{DRC Annotations Showing All Checks Passing}
 		\label{fig::or_drc}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.4\textwidth]{or_lvs.png}}
+		\caption{Passing LVS Checks}
+		\label{fig::or_lvs}
 	\end{figure}
 	
 	\section{ALU}
@@ -251,7 +244,7 @@
 		\label{fig::alu_schematic}
 	\end{figure}
 	
-	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. The AND wordslice (top) and OR wordslice (bottom) are highlighted in both of the layouts. Before rotation, the AND gate is on the left and the OR gate is on the right.
+	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the layouts. The AND wordslice (top) and OR wordslice (bottom) are highlighted in our figure.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{alu_layout_overview.png}}
