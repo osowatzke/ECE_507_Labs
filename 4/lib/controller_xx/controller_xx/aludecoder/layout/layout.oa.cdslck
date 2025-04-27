@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      osowatzke
+HostName                       compute.engr.arizona.edu
+ProcessIdentifier              127258
+ProcessCreationTime_UTC        1745704917
+ProcessCreationTime_Readable   Sat Apr 26 15:01:57 2025 MST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/osowatzke/repos/ECE_507_Labs/4/lib/controller_xx/controller_xx/aludecoder/layout/layout.oa.cdslck
+TimeEditLocked                 Sun Apr 27 00:13:36 2025 MST
