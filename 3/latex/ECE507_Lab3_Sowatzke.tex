@@ -95,7 +95,7 @@
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.8\textwidth]{sim_error.png}}
-		\caption{Simulation Error When Attempting to Run NC Verilog}
+		\caption{Simulation Error When Attempting to Run NC-Verilog}
 		\label{fig::sim_error}
 	\end{figure}
 	 
@@ -110,7 +110,7 @@
 		\label{fig::and2_1x_8_schematic}
 	\end{figure}
 	
-	\noindent Next, we create a symbol for our AND wordslice. For this step, we start with a copy of the \texttt{and2\_1x} symbol and make small incremental updates. Our wordslice symbol with these updates is shown in Figure \ref{fig::and2_1x_8_symbol}. Note that the port names and wire widths have been updated to reflect the vectorized inputs and outputs.
+	\noindent Next, we create a symbol for our AND wordslice. For this step, we started with a copy of the \texttt{and2\_1x} symbol and made incremental updates. Our updated wordslice symbol is shown in Figure \ref{fig::and2_1x_8_symbol}. Note that the port names and wire widths have been updated to reflect the vectorized inputs and outputs.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{and2_1x_8_symbol.png}}
@@ -118,7 +118,7 @@
 		\label{fig::and2_1x_8_symbol}
 	\end{figure}
 	
-	\noindent Then, we create a layout for our wordslice. For the layout, we use an $8 \times 1$ mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}. Note that the our images are rotated $90^{\circ}$ with respect to the layouts.  
+	\noindent Then, we create a layout for our wordslice. For the layout, we use an $8 \times 1$ mosiac of AND gates. The resulting layout with different display levels is shown in Figures \ref{fig::and2_1x_8_layout_mosiac_overview} and \ref{fig::and2_1x_8_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the actual layouts.  
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{and2_1x_8_layout_mosiac_overview.png}}
@@ -176,7 +176,7 @@
 		\label{fig::verify_dropdown_menu_doc}
 	\end{figure}
 	
-	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker.... However, neither of these dropdowns included the "Join Nets with the Same Name" option given in the lab manual. Instead, I had to create "Must Connect" groups for gnd! and vdd! using Pins \textgreater\ Pin Connectivity Setting.... Additionally, I had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. After performing these updates, I was able to generate the DRC and LVS results shown in Figures \ref{fig::and_drc} and \ref{fig::and_lvs} respectively.
+	\noindent Luckily, we were able to perform comparable analysis using Verify \textgreater\ Design... and Verify \textgreater\ Application Readiness Checker.... However, neither of these dropdowns included the "Join Nets with the Same Name" option given in the lab manual. Instead, I had to create "Must Connect" groups for gnd! and vdd! using Pins \textgreater\ Pin Connectivity Setting.... I also had to associate each of the AND gates in the schematic with gates in my layout using Connectivity \textgreater\ Define Device Correspondence. After performing these updates, I was able to generate the DRC and LVS results shown in Figures \ref{fig::and_drc} and \ref{fig::and_lvs} respectively.
 	
 	\begin{figure}[H]
 		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{and_drc.png}}}
@@ -200,7 +200,7 @@
 		\label{fig::or2_1x_8_schematic}
 	\end{figure}
 	
-	\noindent Next, we create a symbol for our OR wordslice. For this step, we start with a copy of the \texttt{or2\_1x} symbol and make small incremental updates. Our wordslice symbol with these updates is shown in Figure \ref{fig::or2_1x_8_symbol}. Note that the port names and wire widths have been updated to reflect the vectorized inputs and outputs.
+	\noindent Next, we create a symbol for our OR wordslice. For this step, we started with a copy of the \texttt{or2\_1x} symbol and made incremental updates. Our updated wordslice symbol is shown in Figure  \ref{fig::or2_1x_8_symbol}. Note that the port names and wire widths have been updated to reflect the vectorized inputs and outputs.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.5\textwidth]{or2_1x_8_symbol.png}}
@@ -254,7 +254,7 @@
 		\label{fig::alu_schematic}
 	\end{figure}
 	
-	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the layouts. The AND wordslice (top) and OR wordslice (bottom) are highlighted in our figure.
+	\noindent Then, we modify the ALU layout to include the AND and OR wordslices. The layout with different display levels is shown in Figures \ref{fig::alu_layout_overview} and \ref{fig::alu_layout_detailed}. Note that the our figures are rotated $90^{\circ}$ with respect to the actual layouts. The AND wordslice (top) and OR wordslice (bottom) are highlighted in our figures.
 	
 	\begin{figure}[H]
 		\centerline{\includegraphics[height=0.8\textwidth, angle=270]{alu_layout_overview.png}}
@@ -324,11 +324,30 @@
 	
 	\section{Datapath Simulation}
 	
+	In this section, we attempt to generate a netlist from our datapath and simulate it. First, to generate the netlist we go to Launch \textgreater\ Plugins \textgreater\ Simulation \textgreater\ NC-Verilog. This opened the following window:
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{nc_verilog_sim.png}}}
+		\caption{NC-Verilog Simulation Window}
+		\label{fig::nc_verilog_sim}
+	\end{figure}
+	
+	\noindent Using the window, we attempted to generate a netlist for our design. However, we received errors in the generation process, which are illustrated in Figure \ref{fig::netlist_generation_errors}.
+	
+	\begin{figure}[H]
+		\centerline{\fbox{\includegraphics[width=0.5\textwidth]{netlist_generation_errors.png}}}
+		\caption{Netlist Generation Errors}
+		\label{fig::netlist_generation_errors}
+	\end{figure}
+	
+	\noindent Interestingly, none of the errors occurred in modules that we modified, indicating a potential source file error or tool error. Because of these errors, we were unable to generate a netlist and perform a simulation. However, we still learned the procedure for generating a netlist, which could be used in simulation to verify this design or future designs.
 	
 	\section{Conclusion}
 	
-	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to the IT configuration of the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problems with the mosiac command creating uintentional short circuits. We were able to work around this by creating multiple copies of the same cell. We ran into additional errors performing DRC and LVS. As a result, we resorted to application readiness checks and DRC annotations to verify our design. Both these checks passed without issues for our AND and OR wordslices. 
+	In this lab, we performed design and verification for an ARM 8-bit microprocessor. We spent close to 40 hours working on the lab due to IT issues and errors in the lab manual. First, we attempted to simulate a SystemVerilog model of the microprocessor in NC verilog. However, due to an IT issue on the session server, we were unable to perform this simulation. We also designed 8-bit AND and OR wordslices in Cadence Virtuoso. For each of these wordslices, we created a schematic, symbol, and layout. While creating the layout, we ran into problem with the mosiac command, which created uintentional short circuits. However, we were able to work around this by creating multiple copies of the same cell. 
 	
-	Once our wordslices were validated, we incorporated them into the ALU and updated the schematic and layout. We also performed application readiness checks and DRC annotations on this design. We failed some of the application readiness checks on modules we did not edit. We ignored these checks for the lab. Luckily, our DRC passed, which we considered a more meaningful metric. The application readiness checks also do not preclude us from passing LVS checks once the tools were properly configured. Finally, we updated the layouts and schematics for the datapath and attempted to generate a netlist. Unfortunately, another IT issue prevented us from fully generating the netlist. However, with a proper tool and environment, we believe the rest of the items in this lab can be completed.
+	Next, we performed DRC and LVS for our layouts. To resolve the errors we found, we had to perform two actions. First, we had to associate gates in our layout with gates in our schematic. Then, we had to create "Must Connect" groups for gnd! and vdd! After these steps were complete, we received passing DRC and LVS results. 
+	
+	Once our wordslices were validated, we incorporated them into the ALU schematic and layout. Then, we performed DRC and LVS on our layout. After applying the lessons learned from the AND/OR wordslice layouts, we received passing DRC and LVS results. We also performed a similar procedure for the datapath layout and received passing DRC and LVS results. Finally, we attempted to generate a netlist from the datapath schematic. Unfortunately, a source file and/or IT issue prevented us from fully generating the netlist. Even though we were unable to generate the netlist, we still learned how to use the tools and how to validate our designs.
 	
 \end{document}
