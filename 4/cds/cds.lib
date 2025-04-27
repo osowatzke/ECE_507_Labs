@@ -1,0 +1,29 @@
+# File Created by osowatzke at Fri Apr 18 14:22:06 2025
+# assisted by CdsLibEditor
+SOFTINCLUDE /opt/CoE/cadence/IC231/share/cdssetup/cds.lib
+DEFINE NCSU_Analog_Parts         $CDK_DIR/lib/NCSU_Analog_Parts
+DEFINE NCSU_Digital_Parts        $CDK_DIR/lib/NCSU_Digital_Parts
+#DEFINE      MOSIS_Layout_Test    $CDK_DIR/lib/MOSIS_Layout_Test
+DEFINE NCSU_TechLib_ami06        $CDK_DIR/lib/NCSU_TechLib_ami06
+DEFINE NCSU_TechLib_ami16        $CDK_DIR/lib/NCSU_TechLib_ami16
+DEFINE NCSU_TechLib_hp06         $CDK_DIR/lib/NCSU_TechLib_hp06
+DEFINE NCSU_TechLib_tsmc02       $CDK_DIR/lib/NCSU_TechLib_tsmc02
+DEFINE NCSU_TechLib_tsmc02d      $CDK_DIR/lib/NCSU_TechLib_tsmc02d
+DEFINE NCSU_TechLib_tsmc03       $CDK_DIR/lib/NCSU_TechLib_tsmc03
+DEFINE NCSU_TechLib_tsmc03d      $CDK_DIR/lib/NCSU_TechLib_tsmc03d
+DEFINE NCSU_TechLib_tsmc04_4M2P  $CDK_DIR/lib/NCSU_TechLib_tsmc04_4M2P
+
+#DEFINE analogLib  /opt/CoE/cadence/IC231/tools.lnx86/dfII/etc/cdslib/artist/analogLib
+#DEFINE functional /opt/CoE/cadence/IC231/tools.lnx86/dfII/etc/cdslib/artist/functional
+#DEFINE sbaLib     /opt/CoE/cadence/IC231/tools.lnx86/dfII/etc/cdslib/artist/sbaLib
+
+DEFINE HMC_Sheets_8ths    ../lib/HMC_Sheets_8ths
+DEFINE muddlib11          ../lib/muddlib11
+DEFINE processor8         ../lib/processor8
+DEFINE UofU_Analog_Parts  ../lib/UofU_Analog_Parts
+DEFINE UofU_Example       ../lib/UofU_Example
+DEFINE UofU_Pads          ../lib/UofU_Pads
+DEFINE UofU_TechLib_ami06 ../lib/UofU_TechLib_ami06
+DEFINE wordlib8           ../lib/wordlib8
+#Removed by ddDeleteObj: DEFINE controller_xx ../lib/controller_xx/controller_xx
+DEFINE controller_xx ../lib/controller_xx/controller_xx
